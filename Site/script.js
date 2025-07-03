@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-window.scrollTo(0, 0);
     
     // --- LÓGICA "VER MAIS" / "VER MENOS" PARA AS DESCRIÇÕES DOS CARDS ---
     const descriptions = document.querySelectorAll('.listing-card .details .description');

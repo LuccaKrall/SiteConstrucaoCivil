@@ -1,8 +1,8 @@
 /* Definição das cores e fontes */
 :root {
     --color-dark: #231F20;
-    --color-accent: #B3C61B;
-    --color-accent-darker: #9AAB17;
+    --color-accent: #D9A91A;
+    --color-accent-darker: #404040;
     --color-light: #FFFFFF;
     --color-gray: #f4f4f4;
     --color-shadow: rgba(0, 0, 0, 0.1);
@@ -40,7 +40,7 @@ body {
 /* ================ CABEÇALHO =================== */
 /* ============================================== */
 header {
-    background-color: var(--color-accent); /* Alterado para branco para um visual mais limpo */
+    background-image: linear-gradient(to right, #F2E7AC, #F2BD1D, #D9A91A); /* Alterado para branco para um visual mais limpo */
     padding: 15px 0;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 2px 8px var(--color-shadow);

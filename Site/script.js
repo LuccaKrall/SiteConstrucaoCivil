@@ -1,3 +1,4 @@
+window.scrollTo(0, 0);
 document.addEventListener('DOMContentLoaded', function() {
     
     // --- LÓGICA "VER MAIS" / "VER MENOS" PARA AS DESCRIÇÕES DOS CARDS ---

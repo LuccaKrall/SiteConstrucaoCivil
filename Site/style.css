@@ -650,3 +650,50 @@ footer {
         transform: rotate(-45deg) translate(7px, -6px);
     }
 }
+
+@media (max-width: 768px) {
+    /* Ajustes adicionais para mobile */
+    .details h2 {
+        font-size: 1.2rem;
+    }
+
+    .details .location {
+        font-size: 0.9rem;
+    }
+
+    .details .description {
+        font-size: 0.95rem;
+    }
+
+    .details .info span {
+        font-size: 0.9rem;
+    }
+
+    .cta-button {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+    }
+
+    .details {
+        padding: 20px;
+    }
+
+    .read-more-btn {
+        font-size: 0.85rem;
+    }
+
+    #menu-toggle {
+        width: 36px;
+        height: 30px;
+        padding: 6px;
+        border-radius: 6px;
+    }
+
+    #menu-toggle .bar {
+        height: 2.5px;
+    }
+
+    nav#main-nav a {
+        font-size: 1rem;
+    }
+}

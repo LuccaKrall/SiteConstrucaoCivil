@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
+        if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
+    }
+    // Leva a página para o topo
+    window.scrollTo(0, 0);
     // --- LÓGICA "VER MAIS" / "VER MENOS" PARA AS DESCRIÇÕES DOS CARDS ---
     const descriptions = document.querySelectorAll('.listing-card .details .description');
     

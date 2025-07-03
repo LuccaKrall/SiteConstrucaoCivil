@@ -1,0 +1,604 @@
+/* Definição das cores e fontes */
+:root {
+    --color-dark: #231F20;
+    --color-accent: #B3C61B;
+    --color-accent-darker: #9AAB17;
+    --color-light: #FFFFFF;
+    --color-gray: #f4f4f4;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* ============================================== */
+/* ======== RESET BÁSICO E ESTILOS GLOBAIS ======== */
+/* ============================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-gray);
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================== */
+/* ================ CABEÇALHO =================== */
+/* ============================================== */
+header {
+    background-color: var(--color-accent); /* Alterado para branco para um visual mais limpo */
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px var(--color-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    height: 50px;
+}
+
+.logo-container h4 {
+    margin: 0;
+    font-weight: 700;
+    color: var(--color-dark);
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+header nav a {
+    text-decoration: none;
+    color: var(--color-dark);
+    font-weight: 600;
+    transition: color 0.3s ease;
+    font-size: 1rem;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+header nav a:hover {
+    color: var(--color-accent);
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease;
+}
+
+header nav a:hover::after {
+    width: 100%;
+}
+
+/* ============================================== */
+/* ============= CONTEÚDO PRINCIPAL ============= */
+/* ============================================== */
+main {
+    padding: 60px 0 40px 0;
+}
+
+h1 {
+    color: var(--color-dark);
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 50px;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* ============================================== */
+/* ===== ESTILOS DOS CONTROLES DE FILTRO V2.0 ===== */
+/* ============================================== */
+.filter-controls {
+    display: flex;
+    align-items: flex-end;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding: 25px 30px;
+    margin-bottom: 50px;
+    background: var(--color-accent);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    border: 1px solid #e9e9e9;
+    border-top: 1px solid #f5f5f5;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: #444;
+    font-size: 0.9rem;
+    padding-left: 5px;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon > i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+#region-filter,
+#search-input {
+    width: 100%;
+    padding: 12px 15px 12px 50px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    background-color: #fcfcfc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#region-filter {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1.2rem center;
+    background-size: 1em;
+    padding-right: 3rem;
+}
+
+#region-filter:focus, 
+#search-input:focus {
+    border-color: var(--color-accent);
+    background-color: var(--color-light);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(179, 198, 27, 0.2);
+}
+
+.input-with-icon:focus-within > i {
+    color: var(--color-accent);
+}
+
+#search-input::placeholder {
+    color: #bbb;
+    font-weight: 400;
+}
+
+#show-all-btn {
+    background-color: #e9ecef;
+    color: #495057;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    text-transform: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+#show-all-btn:hover {
+    background-color: var(--color-accent-darker);
+    color: var(--color-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ============================================== */
+/* =========== CARDS DE TERRENOS ================ */
+/* ============================================== */
+.listings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 35px;
+}
+
+.listing-card {
+    background-color: var(--color-light);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--color-shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listing-card.hidden {
+    display: none;
+}
+
+.listing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.details {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.details h2 {
+    font-size: 1.6rem;
+    color: var(--color-dark);
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.details .location {
+    color: #777;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.details .description {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    color: #555;
+    position: relative;
+    transition: max-height 0.4s ease-out;
+}
+
+.description-collapsed {
+    max-height: 4.8em;
+    overflow: hidden;
+}
+
+.description-collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1.6em;
+    background: linear-gradient(to bottom, transparent, var(--color-light));
+}
+
+.read-more-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    font-family: var(--font-family);
+    color: var(--color-accent-darker);
+    font-weight: 700;
+    cursor: pointer;
+    align-self: flex-start;
+    font-size: 0.95rem;
+}
+
+.read-more-btn:hover {
+    text-decoration: underline;
+}
+
+.details .info {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.details .info span {
+    font-size: 1rem;
+    color: #666;
+}
+
+.cta-button {
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    border: none;
+    padding: 14px 25px;
+    border-radius: 80px;
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.cta-button:hover {
+    background-color: var(--color-accent-darker);
+    box-shadow: 0 4px 15px rgba(179, 198, 27, 0.4);
+    transform: translateY(-2px);
+}
+
+.cta-button i {
+    font-size: 1.2rem;
+}
+
+/* ============================================== */
+/* =========== CARROSSEL DE IMAGENS ============== */
+/* ============================================== */
+.carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: #e9e9e9;
+}
+
+.carousel-images {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-images img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-images img.active {
+    opacity: 1;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.carousel-button.prev {
+    left: 15px;
+}
+
+.carousel-button.next {
+    right: 15px;
+}
+
+.carousel-button i {
+    font-size: 0.9rem;
+}
+
+/* ============================================== */
+/* =================== RODAPÉ =================== */
+/* ============================================== */
+footer {
+    background-color: var(--color-dark);
+    color: var(--color-gray);
+    padding: 50px 0 20px 0;
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 280px;
+}
+
+.footer-section h3 {
+    color: var(--color-accent);
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 10px;
+}
+
+.footer-section p {
+    margin-bottom: 15px;
+    color: #ccc;
+    line-height: 1.7;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-section a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--color-accent);
+}
+
+.footer-section i {
+    color: var(--color-accent);
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* ============================================== */
+/* ================ RESPONSIVIDADE ================ */
+/* ============================================== */
+#menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+#menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-dark);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    html {
+        scroll-padding-top: 80px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .listings-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    /* Menu Hambúrguer */
+    #menu-toggle {
+        display: flex;
+    }
+
+    nav#main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Começa fora da tela */
+        background-color: var(--color-light);
+        width: 70%;
+        height: 100vh;
+        padding-top: 100px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        z-index: 1999;
+        transition: right 0.4s ease-in-out;
+    }
+    
+    nav#main-nav.active {
+        right: 0; /* Desliza para a tela */
+    }
+
+    nav#main-nav ul {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    nav#main-nav li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav#main-nav a {
+        display: block;
+        padding: 15px 30px;
+        width: 100%;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    nav#main-nav li:first-child a {
+        border-top: 1px solid #f0f0f0;
+    }
+
+    header nav a::after {
+        display: none;
+    }
+    
+    #menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 6px);
+    }
+    #menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    #menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}

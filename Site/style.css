@@ -546,7 +546,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-    html {
+     html {
         scroll-padding-top: 70px; /* Ajustado para a altura do header mobile */
     }
 

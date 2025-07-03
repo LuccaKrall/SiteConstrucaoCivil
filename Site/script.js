@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const showAllBtn = document.getElementById('show-all-btn');
     const listingCards = document.querySelectorAll('.listing-card');
 
-    // 1. Função para povoar o filtro de regiões dinamicamente
     function populateRegions() {
         const regions = new Set();
         listingCards.forEach(card => {
@@ -61,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 2. Função unificada para filtrar e pesquisar
     function applyFilters() {
         const selectedRegion = regionFilter.value;
         const searchTerm = searchInput.value.toLowerCase().trim();
@@ -70,11 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const cardRegion = card.dataset.region || '';
             const cardTitle = card.querySelector('h2').textContent.toLowerCase();
 
-            // Condições de visibilidade
             const regionMatch = (selectedRegion === 'all' || cardRegion === selectedRegion);
             const searchMatch = cardTitle.includes(searchTerm);
 
-            // O card só será visível se corresponder a AMBAS as condições
             if (regionMatch && searchMatch) {
                 card.classList.remove('hidden');
             } else {
@@ -83,17 +79,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 3. Adicionar "ouvintes" de eventos e executar a configuração inicial
     if (regionFilter && searchInput && showAllBtn && listingCards.length > 0) {
-        populateRegions(); // Povoa as regiões ao carregar a página
+        populateRegions();
         
         regionFilter.addEventListener('change', applyFilters);
         searchInput.addEventListener('input', applyFilters);
 
         showAllBtn.addEventListener('click', () => {
-            regionFilter.value = 'all'; // Reseta o seletor
-            searchInput.value = '';     // Limpa o campo de pesquisa
-            applyFilters();             // Aplica os filtros limpos, mostrando todos
+            regionFilter.value = 'all';
+            searchInput.value = '';
+            applyFilters();
         });
     }
 
@@ -116,16 +111,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- LÓGICA PARA O CARROSSEL DE IMAGENS ---
+    // --- LÓGICA UNIFICADA PARA TODOS OS CARROSSÉIS ---
     const carousels = document.querySelectorAll('.carousel');
     carousels.forEach(carousel => {
-        const imagesContainer = carousel.querySelector('.carousel-images');
-        const images = imagesContainer.querySelectorAll('img');
-        if (images.length <= 1) return; // Não inicializa o carrossel se tiver 1 ou 0 imagens
+        const images = carousel.querySelectorAll('.carousel-images img');
+        if (images.length <= 1) {
+             const prevButton = carousel.querySelector('.carousel-button.prev');
+             const nextButton = carousel.querySelector('.carousel-button.next');
+             if(prevButton) prevButton.style.display = 'none';
+             if(nextButton) nextButton.style.display = 'none';
+             return; 
+        }
 
         const prevButton = carousel.querySelector('.carousel-button.prev');
         const nextButton = carousel.querySelector('.carousel-button.next');
         let currentIndex = 0;
+        let autoSlideInterval = null;
 
         function showImage(index) {
             images.forEach((img, i) => {
@@ -133,17 +134,43 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
+        function next() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function prev() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        function startAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(next, 3000); // Passa a cada 3 segundos
+        }
+
+        // Adiciona controle manual com os botões
         if (prevButton && nextButton) {
             prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                showImage(currentIndex);
+                prev();
+                if (carousel.classList.contains('mini-carousel')) {
+                    startAutoSlide(); // Reinicia o timer se for o carrossel automático
+                }
             });
             nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % images.length;
-                showImage(currentIndex);
+                next();
+                if (carousel.classList.contains('mini-carousel')) {
+                    startAutoSlide(); // Reinicia o timer se for o carrossel automático
+                }
             });
-            showImage(currentIndex); // Mostra a primeira imagem
         }
+
+        // Inicia o carrossel automático APENAS se tiver a classe 'mini-carousel'
+        if (carousel.classList.contains('mini-carousel')) {
+            startAutoSlide();
+        }
+        
+        showImage(currentIndex); // Mostra a primeira imagem
     });
 
     // --- LÓGICA PARA O BOTÃO "TENHO INTERESSE" (WHATSAPP) ---

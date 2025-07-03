@@ -40,7 +40,7 @@ body {
 /* ================ CABEÇALHO =================== */
 /* ============================================== */
 header {
-    background-image: linear-gradient(to right, #F2E7AC, #F2BD1D, #D9A91A); /* Alterado para branco para um visual mais limpo */
+    background-image: linear-gradient(to right, #F2E7AC, #F2BD1D, #D9A91A);
     padding: 15px 0;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 2px 8px var(--color-shadow);
@@ -198,12 +198,12 @@ h1 {
     padding-right: 3rem;
 }
 
-#region-filter:focus, 
+#region-filter:focus,
 #search-input:focus {
     border-color: var(--color-accent);
     background-color: var(--color-light);
     outline: none;
-    box-shadow: 0 0 0 4px rgba(179, 198, 27, 0.2);
+    box-shadow: 0 0 0 4px rgba(217, 169, 26, 0.2);
 }
 
 .input-with-icon:focus-within > i {
@@ -362,7 +362,7 @@ h1 {
 
 .cta-button:hover {
     background-color: var(--color-accent-darker);
-    box-shadow: 0 4px 15px rgba(179, 198, 27, 0.4);
+    box-shadow: 0 4px 15px rgba(217, 169, 26, 0.4);
     transform: translateY(-2px);
 }
 
@@ -435,6 +435,25 @@ h1 {
 }
 
 /* ============================================== */
+/* =========== MINI CARROSSEL (DESTAQUES) ========== */
+/* ============================================== */
+.mini-carousel {
+    display: none; /* Oculto por padrão em telas grandes */
+    position: relative;
+    width: 90%; /* Div menor */
+    max-width: 600px;
+    margin: 20px auto 40px auto; /* Centralizado e com margem ajustada */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    aspect-ratio: 16 / 9; /* Proporção de tela */
+}
+
+.mini-carousel .carousel-images {
+    height: 100%;
+}
+
+/* ============================================== */
 /* =================== RODAPÉ =================== */
 /* ============================================== */
 footer {
@@ -504,21 +523,27 @@ footer {
 /* ================ RESPONSIVIDADE ================ */
 /* ============================================== */
 #menu-toggle {
-    display: none;
+    display: none; /* Inicia oculto */
     flex-direction: column;
     justify-content: space-around;
-    width: 30px;
-    height: 25px;
+    width: 40px;
+    height: 35px;
     cursor: pointer;
     z-index: 2000;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 15px; /* Botão arredondado */
+    padding: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    backdrop-filter: blur(2px);
 }
 
 #menu-toggle .bar {
     width: 100%;
     height: 3px;
     background-color: var(--color-dark);
-    border-radius: 2px;
+    border-radius: 5px; /* Barras arredondadas */
     transition: all 0.3s ease-in-out;
+
 }
 
 @media (max-width: 768px) {
@@ -527,11 +552,21 @@ footer {
     }
 
     h1 {
-        font-size: 2.2rem;
+        font-size: 1.5rem;
     }
 
     .subtitle {
         font-size: 1rem;
+    }
+
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    /* MOSTRA O MINI CARROSSEL NO MOBILE */
+    .mini-carousel {
+        display: block; 
     }
 
     .listings-container {
@@ -546,13 +581,14 @@ footer {
 
     /* Menu Hambúrguer */
     #menu-toggle {
-        display: flex;
+        display: flex; /* Mostra o botão no mobile */
+        
     }
 
     nav#main-nav {
         position: fixed;
         top: 0;
-        right: -100%; /* Começa fora da tela */
+        right: -100%;
         background-color: var(--color-light);
         width: 70%;
         height: 100vh;
@@ -563,7 +599,7 @@ footer {
     }
     
     nav#main-nav.active {
-        right: 0; /* Desliza para a tela */
+        right: 0;
     }
 
     nav#main-nav ul {
@@ -594,12 +630,15 @@ footer {
     }
     
     #menu-toggle.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(7px, 6px);
+        transform: rotate(45deg) translate(5px, 5px);
     }
     #menu-toggle.active .bar:nth-child(2) {
         opacity: 0;
     }
     #menu-toggle.active .bar:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
+    }
+    header {
+        padding: 7px;
     }
 }

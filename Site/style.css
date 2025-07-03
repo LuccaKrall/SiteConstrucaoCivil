@@ -74,7 +74,7 @@ header .container {
 header nav ul {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 15px;
 }
 
 header nav a {
@@ -215,31 +215,6 @@ h1 {
     font-weight: 400;
 }
 
-#show-all-btn {
-    background-color: #e9ecef;
-    color: #495057;
-    border: none;
-    padding: 14px 25px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    font-family: var(--font-family);
-    font-size: 0.9rem;
-    text-transform: none;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-}
-
-#show-all-btn:hover {
-    background-color: var(--color-accent-darker);
-    color: var(--color-light);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
 /* ============================================== */
 /* =========== CARDS DE TERRENOS ================ */
 /* ============================================== */
@@ -344,7 +319,7 @@ h1 {
 }
 
 .cta-button {
-    background-color: var(--color-accent);
+    background-color: #25D366;
     color: var(--color-dark);
     border: none;
     padding: 14px 25px;
@@ -546,9 +521,8 @@ footer {
 }
 
 @media (max-width: 768px) {
-    /* --- Ajustes Gerais para Mobile --- */
     html {
-        scroll-padding-top: 70px;
+        scroll-padding-top: 70px; /* Ajustado para a altura do header mobile */
     }
 
     h1 {
@@ -556,111 +530,55 @@ footer {
     }
 
     .subtitle {
-        font-size: 1rem;
+        font-size: 0.88rem;
     }
 
-    header{
-        padding: 7px;
-    }
-    
-    .listings-container {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        text-align: left;
-    }
-    
-    /* --- Filtros (Super Compacto) --- */
     .filter-controls {
         flex-direction: column;
         align-items: stretch;
-        padding: 12px 10px;
-        margin-bottom: 20px;
-        gap: 8px;
+        padding: 15px 12px;
+        margin-bottom: 25px;
+        gap: 10px;
     }
 
     #region-filter,
     #search-input {
-        padding-top: 8px;
-        padding-bottom: 8px;
-        font-size: 0.85rem;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 0.9rem;
     }
 
     .input-with-icon > i {
-        font-size: 0.85rem;
-        left: 15px;
-    }
-
-    #show-all-btn {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
     
-    /* --- Destaques e Carrossel --- */
+    header{
+        padding: 7px;
+    }
+    
+    /* MOSTRA O MINI CARROSSEL NO MOBILE */
     .mini-carousel {
         display: block; 
     }
-    
-    /* --- Cards --- */
-    .details {
-        padding: 20px;
-    }
-    
-    .details h2 {
-        font-size: 1.2rem;
+
+    .listings-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
 
-    .details .location {
-        font-size: 0.9rem;
+    .footer-content {
+        flex-direction: column;
+        text-align: left;
     }
 
-    .details .description {
-        font-size: 0.95rem;
-    }
-
-    .details .info span {
-        font-size: 0.9rem;
-    }
-
-    .cta-button {
-        font-size: 0.9rem;
-        padding: 12px 20px;
-    }
-    
-    .read-more-btn {
-        font-size: 0.85rem;
-    }
-
-    /* --- Menu Hambúrguer --- */
+    /* Menu Hambúrguer */
     #menu-toggle {
-        display: flex;
-        width: 36px;
-        height: 30px;
-        padding: 6px;
-        border-radius: 6px;
-    }
-
-    #menu-toggle .bar {
-        height: 2.5px;
-    }
-
-    #menu-toggle.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    #menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-    #menu-toggle.active .bar:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
+        display: flex; /* Mostra o botão no mobile */
     }
 
     nav#main-nav {
         position: fixed;
-        top: 64px;
+        top: 64px; /* Header height (50px logo + 2*7px padding) */
         right: -100%;
         background-color: var(--color-light);
         width: 80%;
@@ -693,7 +611,7 @@ footer {
         display: block;
         padding: 12px 20px;
         width: 100%;
-        font-size: 1rem;
+        font-size: 1.1rem;
         border-bottom: 1px solid #f0f0f0;
     }
     
@@ -707,5 +625,62 @@ footer {
 
     header nav a::after {
         display: none;
+    }
+    
+    #menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    #menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    #menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ajustes adicionais para mobile */
+    .details h2 {
+        font-size: 1.2rem;
+    }
+
+    .details .location {
+        font-size: 0.9rem;
+    }
+
+    .details .description {
+        font-size: 0.95rem;
+    }
+
+    .details .info span {
+        font-size: 0.9rem;
+    }
+
+    .cta-button {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+    }
+
+    .details {
+        padding: 20px;
+    }
+
+    .read-more-btn {
+        font-size: 0.85rem;
+    }
+
+    #menu-toggle {
+        width: 36px;
+        height: 30px;
+        padding: 6px;
+        border-radius: 6px;
+    }
+
+    #menu-toggle .bar {
+        height: 2.5px;
+    }
+
+    nav#main-nav a {
+        font-size: 1rem;
     }
 }

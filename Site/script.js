@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- LÓGICA DE FILTRAGEM E PESQUISA DE TERRENOS ---
     const regionFilter = document.getElementById('region-filter');
     const searchInput = document.getElementById('search-input');
-    const showAllBtn = document.getElementById('show-all-btn');
     const listingCards = document.querySelectorAll('.listing-card');
 
     function populateRegions() {
@@ -83,17 +82,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (regionFilter && searchInput && showAllBtn && listingCards.length > 0) {
+    if (regionFilter && searchInput && listingCards.length > 0) {
         populateRegions();
         
         regionFilter.addEventListener('change', applyFilters);
         searchInput.addEventListener('input', applyFilters);
-
-        showAllBtn.addEventListener('click', () => {
-            regionFilter.value = 'all';
-            searchInput.value = '';
-            applyFilters();
-        });
     }
 
     // --- LÓGICA PARA O MENU HAMBÚRGUER ---

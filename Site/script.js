@@ -93,27 +93,24 @@ window.scrollTo(0, 0);
         });
     }
 
-// --- LÓGICA PARA O MENU HAMBÚRGUER ---
-const menuToggle = document.getElementById('menu-toggle');
-const mainNav = document.getElementById('main-nav');
-if (menuToggle && mainNav) {
-    const navLinks = mainNav.querySelectorAll('a');
-    menuToggle.addEventListener('click', function() {
-        mainNav.classList.toggle('active');
-        this.classList.toggle('active');
-        document.body.classList.toggle('menu-open'); // Adicione esta linha
-    });
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (mainNav.classList.contains('active')) {
-                mainNav.classList.remove('active');
-                menuToggle.classList.remove('active');
-                document.body.classList.remove('menu-open'); // Adicione esta linha
-            }
+    // --- LÓGICA PARA O MENU HAMBÚRGUER ---
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+    if (menuToggle && mainNav) {
+        const navLinks = mainNav.querySelectorAll('a');
+        menuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            this.classList.toggle('active');
         });
-    });
-}
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+    }
 
     // --- LÓGICA UNIFICADA PARA TODOS OS CARROSSÉIS ---
     const carousels = document.querySelectorAll('.carousel');

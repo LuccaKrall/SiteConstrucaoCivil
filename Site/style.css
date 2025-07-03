@@ -30,36 +30,6 @@ body {
     line-height: 1.6;
 }
 
-/* Classe para o overlay do menu mobile */
-body.menu-open::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1998; /* Fica atrás do menu */
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1998;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-}
-
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -572,7 +542,7 @@ footer {
     height: 3px;
     background-color: #535351;
     border-radius: 10px; /* Barras arredondadas */
-    transition: all 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: all 0.3s ease-in-out;
 }
 
 @media (max-width: 768px) {
@@ -591,14 +561,15 @@ footer {
     .filter-controls {
         flex-direction: column;
         align-items: stretch;
-        padding: 15px 12px;
-        margin-bottom: 25px;
-        gap: 10px;
+        padding: 15px 12px; /* NOVO AJUSTE: Menos padding lateral */
+        margin-bottom: 25px; /* NOVO AJUSTE: Menos margem inferior */
+        gap: 10px; /* NOVO AJUSTE: Menos espaçamento entre os filtros */
     }
     header{
         padding: 7px;
     }
     
+    /* MOSTRA O MINI CARROSSEL NO MOBILE */
     .mini-carousel {
         display: block; 
     }
@@ -615,31 +586,23 @@ footer {
 
     /* Menu Hambúrguer */
     #menu-toggle {
-        display: flex;
-    }
-
-    #menu-toggle.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    #menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-    #menu-toggle.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
+        display: flex; /* Mostra o botão no mobile */
     }
 
     nav#main-nav {
         position: fixed;
-        top: 0; /* Começa do topo */
+        top: 64px; /* Header height (50px logo + 2*7px padding) */
         right: -100%;
         background-color: var(--color-light);
-        width: 85%;
-        max-width: 340px;
-        height: 100%;
-        padding-top: 80px;
-        box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+        width: 80%;
+        max-width: 320px;
+        height: auto; 
+        padding-top: 0;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        box-shadow: -5px 5px 15px rgba(0,0,0,0.15);
         z-index: 1999;
-        transition: right 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        transition: right 0.4s ease-in-out;
     }
     
     nav#main-nav.active {
@@ -676,10 +639,20 @@ footer {
     header nav a::after {
         display: none;
     }
+    
+    #menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    #menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    #menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
 }
 
-@media (max-width: 480px) {
-    /* Ajustes adicionais para mobile menor */
+@media (max-width: 768px) {
+    /* Ajustes adicionais para mobile */
     .details h2 {
         font-size: 1.2rem;
     }
@@ -718,13 +691,6 @@ footer {
 
     #menu-toggle .bar {
         height: 2.5px;
-    }
-    
-    #menu-toggle.active .bar:nth-child(1) {
-        transform: translateY(6px) rotate(45deg);
-    }
-    #menu-toggle.active .bar:nth-child(3) {
-        transform: translateY(-6px) rotate(-45deg);
     }
 
     nav#main-nav a {

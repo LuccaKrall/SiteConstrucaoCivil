@@ -184,4 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.open(whatsappURL, '_blank');
         });
     });
+      if (window.innerWidth > 768) {
+    document.getElementById("search-input")?.focus();
+  }
 });

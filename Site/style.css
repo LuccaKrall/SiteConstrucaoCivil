@@ -40,7 +40,7 @@ body {
 /* ================ CABEÇALHO =================== */
 /* ============================================== */
 header {
-    background-image: linear-gradient(to right, #F2E7AC, #F2BD1D, #D9A91A);
+    background-image: linear-gradient(to left, #F2E7AC, #F2BD1D, #D9A91A);
     padding: 15px 0;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 2px 8px var(--color-shadow);
@@ -124,7 +124,7 @@ h1 {
 .subtitle {
     text-align: center;
     color: #666;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     font-size: 1.2rem;
     font-weight: 300;
 }
@@ -137,7 +137,7 @@ h1 {
     align-items: flex-end;
     gap: 25px;
     flex-wrap: wrap;
-    padding: 25px 30px;
+    padding: 20px;
     margin-bottom: 50px;
     background: var(--color-accent);
     border-radius: 16px;
@@ -530,8 +530,8 @@ footer {
     height: 35px;
     cursor: pointer;
     z-index: 2000;
-    background-color: rgba(255, 255, 255, 0.85);
-    border-radius: 15px; /* Botão arredondado */
+    background-color: #F2E7AC;
+    border-radius: 8px; /* Botão arredondado */
     padding: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     backdrop-filter: blur(2px);
@@ -540,15 +540,14 @@ footer {
 #menu-toggle .bar {
     width: 100%;
     height: 3px;
-    background-color: var(--color-dark);
-    border-radius: 5px; /* Barras arredondadas */
+    background-color: #535351;
+    border-radius: 10px; /* Barras arredondadas */
     transition: all 0.3s ease-in-out;
-
 }
 
 @media (max-width: 768px) {
     html {
-        scroll-padding-top: 80px;
+        scroll-padding-top: 70px; /* Ajustado para a altura do header mobile */
     }
 
     h1 {
@@ -562,6 +561,12 @@ footer {
     .filter-controls {
         flex-direction: column;
         align-items: stretch;
+        padding: 15px 12px; /* NOVO AJUSTE: Menos padding lateral */
+        margin-bottom: 25px; /* NOVO AJUSTE: Menos margem inferior */
+        gap: 10px; /* NOVO AJUSTE: Menos espaçamento entre os filtros */
+    }
+    header{
+        padding: 7px;
     }
     
     /* MOSTRA O MINI CARROSSEL NO MOBILE */
@@ -582,18 +587,20 @@ footer {
     /* Menu Hambúrguer */
     #menu-toggle {
         display: flex; /* Mostra o botão no mobile */
-        
     }
 
     nav#main-nav {
         position: fixed;
-        top: 0;
+        top: 64px; /* Header height (50px logo + 2*7px padding) */
         right: -100%;
         background-color: var(--color-light);
-        width: 70%;
-        height: 100vh;
-        padding-top: 100px;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        width: 80%;
+        max-width: 320px;
+        height: auto; 
+        padding-top: 0;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        box-shadow: -5px 5px 15px rgba(0,0,0,0.15);
         z-index: 1999;
         transition: right 0.4s ease-in-out;
     }
@@ -615,7 +622,7 @@ footer {
 
     nav#main-nav a {
         display: block;
-        padding: 15px 30px;
+        padding: 12px 20px;
         width: 100%;
         font-size: 1.1rem;
         border-bottom: 1px solid #f0f0f0;
@@ -623,6 +630,10 @@ footer {
     
     nav#main-nav li:first-child a {
         border-top: 1px solid #f0f0f0;
+    }
+    
+    nav#main-nav li:last-child a {
+        border-bottom: none;
     }
 
     header nav a::after {
@@ -637,8 +648,5 @@ footer {
     }
     #menu-toggle.active .bar:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
-    }
-    header {
-        padding: 7px;
     }
 }

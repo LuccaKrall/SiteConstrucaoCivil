@@ -1,16 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-        if (history.scrollRestoration) {
+    if (history.scrollRestoration) {
         history.scrollRestoration = 'manual';
     }
-    // Leva a página para o topo
     window.scrollTo(0, 0);
-    // --- LÓGICA "VER MAIS" / "VER MENOS" PARA AS DESCRIÇÕES DOS CARDS ---
-    const descriptions = document.querySelectorAll('.listing-card .details .description');
+
+    // --- LÓGICA "VER MAIS" / "VER MENOS" PARA AS DESCRIÇÕES DOS CARDS (COM ACESSIBILIDADE) ---
+    const listingCardsForDesc = document.querySelectorAll('.listing-card');
     
-    descriptions.forEach(desc => {
+    listingCardsForDesc.forEach((card, index) => {
+        const desc = card.querySelector('.details .description');
+        if (!desc) return;
+
         const maxLines = 3;
-        const lineHeight = parseFloat(getComputedStyle(desc).lineHeight);
-        const maxHeight = lineHeight * maxLines;
+        const lineHeight = 1.6; // line-height from CSS
+        const maxHeight = (parseFloat(getComputedStyle(desc).fontSize) * lineHeight) * maxLines;
 
         if (desc.scrollHeight > maxHeight) {
             desc.classList.add('description-collapsed');
@@ -18,6 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const toggleButton = document.createElement('button');
             toggleButton.innerText = 'Ver mais';
             toggleButton.className = 'read-more-btn';
+
+            const descId = desc.id || `desc-${index}`;
+            desc.id = descId;
+            toggleButton.setAttribute('aria-expanded', 'false');
+            toggleButton.setAttribute('aria-controls', descId);
             
             desc.after(toggleButton);
             
@@ -28,19 +36,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     desc.style.maxHeight = desc.scrollHeight + 'px'; 
                     desc.classList.remove('description-collapsed');
                     this.innerText = 'Ver menos';
+                    this.setAttribute('aria-expanded', 'true');
                 } else {
                     desc.style.maxHeight = null; 
                     desc.classList.add('description-collapsed');
                     this.innerText = 'Ver mais';
+                    this.setAttribute('aria-expanded', 'false');
                 }
             });
         }
     });
 
-    // --- LÓGICA DE FILTRAGEM E PESQUISA DE TERRENOS ---
-    const regionFilter = document.getElementById('region-filter');
-    const searchInput = document.getElementById('search-input');
+    // --- LÓGICA DE FILTRAGEM E PESQUISA (COM ACESSIBILIDADE) ---
+    const regionFilter = document.getElementById('region-filter-input');
+    const searchInput = document.getElementById('search-filter-input');
     const listingCards = document.querySelectorAll('.listing-card');
+    const filterStatus = document.getElementById('filter-status');
 
     function populateRegions() {
         const regions = new Set();
@@ -66,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function applyFilters() {
         const selectedRegion = regionFilter.value;
         const searchTerm = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
 
         listingCards.forEach(card => {
             const cardRegion = card.dataset.region || '';
@@ -76,10 +88,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (regionMatch && searchMatch) {
                 card.classList.remove('hidden');
+                visibleCount++;
             } else {
                 card.classList.add('hidden');
             }
         });
+
+        if (filterStatus) {
+            filterStatus.textContent = `${visibleCount} terreno(s) encontrado(s).`;
+        }
     }
 
     if (regionFilter && searchInput && listingCards.length > 0) {
@@ -89,26 +106,33 @@ document.addEventListener('DOMContentLoaded', function() {
         searchInput.addEventListener('input', applyFilters);
     }
 
-    // --- LÓGICA PARA O MENU HAMBÚRGUER ---
+    // --- LÓGICA PARA O MENU HAMBÚRGUER (COM ACESSIBILIDADE) ---
     const menuToggle = document.getElementById('menu-toggle');
     const mainNav = document.getElementById('main-nav');
     if (menuToggle && mainNav) {
         const navLinks = mainNav.querySelectorAll('a');
+
         menuToggle.addEventListener('click', function() {
-            mainNav.classList.toggle('active');
+            const isActive = mainNav.classList.toggle('active');
             this.classList.toggle('active');
+            this.setAttribute('aria-expanded', isActive);
+            this.setAttribute('aria-label', isActive ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
         });
+
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                     menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.setAttribute('aria-label', 'Abrir menu de navegação');
+                    menuToggle.focus();
                 }
             });
         });
     }
 
-    // --- LÓGICA UNIFICADA PARA TODOS OS CARROSSÉIS ---
+    // --- LÓGICA UNIFICADA PARA TODOS OS CARROSSÉIS (COM ACESSIBILIDADE) ---
     const carousels = document.querySelectorAll('.carousel');
     carousels.forEach(carousel => {
         const images = carousel.querySelectorAll('.carousel-images img');
@@ -128,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function showImage(index) {
             images.forEach((img, i) => {
                 img.classList.toggle('active', i === index);
+                img.setAttribute('aria-hidden', i !== index);
             });
         }
 
@@ -142,32 +167,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function startAutoSlide() {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(next, 3000); // Passa a cada 3 segundos
+            stopAutoSlide();
+            autoSlideInterval = setInterval(next, 3000);
         }
 
-        // Adiciona controle manual com os botões
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
         if (prevButton && nextButton) {
             prevButton.addEventListener('click', () => {
                 prev();
-                if (carousel.classList.contains('mini-carousel')) {
-                    startAutoSlide(); // Reinicia o timer se for o carrossel automático
-                }
+                stopAutoSlide();
             });
             nextButton.addEventListener('click', () => {
                 next();
-                if (carousel.classList.contains('mini-carousel')) {
-                    startAutoSlide(); // Reinicia o timer se for o carrossel automático
-                }
+                stopAutoSlide();
             });
         }
 
-        // Inicia o carrossel automático APENAS se tiver a classe 'mini-carousel'
         if (carousel.classList.contains('mini-carousel')) {
+            carousel.addEventListener('mouseenter', stopAutoSlide);
+            carousel.addEventListener('focusin', stopAutoSlide);
+            carousel.addEventListener('mouseleave', startAutoSlide);
+            carousel.addEventListener('focusout', startAutoSlide);
             startAutoSlide();
         }
         
-        showImage(currentIndex); // Mostra a primeira imagem
+        showImage(currentIndex);
     });
 
     // --- LÓGICA PARA O BOTÃO "TENHO INTERESSE" (WHATSAPP) ---
@@ -178,8 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const numeroWhatsApp = '5514998001303';
             const mensagem = encodeURIComponent(`Olá! Tenho interesse no terreno: "${nomeTerreno}". Poderia me dar mais informações?`);
             const whatsappURL = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
-            window.open(whatsappURL, '_blank');
+            window.open(whatsappURL, '_blank', 'noopener,noreferrer');
         });
     });
-   
 });

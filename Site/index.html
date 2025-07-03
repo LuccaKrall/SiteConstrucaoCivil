@@ -27,286 +27,285 @@
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
-        <div id="menu-toggle">
+        <button id="menu-toggle" type="button" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="main-nav">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
-        </div>
+        </button>
     </div>
 </header>
 
-    <main id="terrenos">
-        <div class="container">
-            <h1 style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3);">Nossos Terrenos à Venda</h1>
+<main id="terrenos">
+    <div class="container">
+        <h1 style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3);">Nossos Terrenos à Venda</h1>
 
-            <div class="filter-controls">
-                <div class="filter-group">
-                    <label for="region-filter">Região</label>
-                    <div class="input-with-icon">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <select id="region-filter">
-                        </select>
-                    </div>
-                </div>
-                <div class="filter-group">
-                    <label for="search-input">Bairro</label>
-                    <div class="input-with-icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="search-input" placeholder="Ex: Terreno Jardim Olímpico">
-                    </div>
+        <div class="filter-controls">
+            <div class="filter-group">
+                <label for="region-filter-input">Região</label>
+                <div class="input-with-icon">
+                    <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    <select id="region-filter-input" aria-label="Filtrar por região">
+                    </select>
                 </div>
             </div>
-
-            <div class="mini-carousel carousel">
-                <div class="carousel-images">
-                    <img src="Terrenos/JARDIM OLIMPICO/26c775d7-2ae3-4742-ab3d-d4165420b9cd.jpg" alt="Destaque 1: Terreno Jardim Olímpico" class="active">
-                    <img src="Terrenos/ISAURA PITTA GARMS/7fbfc899-a74c-4837-9bd4-0052b9ff49e2.jpg" alt="Destaque 2: Terreno Isaura Pitta Garms">
-                </div>
-            </div>
-            <div class="seta">
-                
-            </div>
-            <div class="listings-container">
-                <div class="listing-card" data-region="Centro">
-                    <div class="carousel">
-                        <div class="carousel-images">
-                            <img src="Terrenos/Chacaras Sao Joao/06dad334-a0f9-429c-9077-d4424103507b.jpg" alt="Foto 1 do Terreno" class="active">
-                        </div>
-                        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="details">
-                        <h2>Terreno Chácara São João lor</h2>
-                        <p class="location">Bauru, SP</p>
-                        <p class="description">Excelente terreno plano de 300m² (12x25m) Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, dolores. Consequuntur suscipit non, sequi nostrum doloribus quam ut modi illum. Eos reprehenderit optio modi ullam repellendus adipisci neque nostrum aliquid Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam nulla, delectus eligendi aliquam voluptatibus commodi distinctio fugiat ratione repellat molestias placeat perspiciatis vel a accusantium unde! Provident deserunt ab vel?</p>
-                        <div class="info">
-                            <span>Área: <strong>300 m²</strong></span>
-                            <span>Preço: <strong>R$ 100.000,00</strong></span>
-                        </div>
-                        <button class="cta-button" data-nome="Terreno Chacara Sao Joao">
-                            <i class="fa-brands fa-whatsapp"></i> Tenho Interesse
-                        </button>
-                    </div>
-                </div>
-
-                <div class="listing-card" data-region="Sudeste">
-                    <div class="carousel">
-                        <div class="carousel-images">
-                            <img src="Terrenos/ISAURA PITTA GARMS/7fbfc899-a74c-4837-9bd4-0052b9ff49e2.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/ISAURA PITTA GARMS/0695c115-12d6-485c-b752-fa9bf902396a.jpg" alt="Foto 2 do Terreno" class="active">
-                            <img src="Terrenos/ISAURA PITTA GARMS/2d73bb58-98f1-4af4-a7e2-83dad4a5a1b1.jpg" alt="Foto 3 do Terreno" class="active">
-                        </div>
-                        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="details">
-                        <h2>Terreno Isaura Pitta Garms</h2>
-                        <p class="location">Bauru, SP</p>
-                        <p class="description">Amplo terreno residencial, pronto para construir.</p>
-                        <div class="info">
-                            <span>Área: <strong>250 m²</strong></span>
-                            <span>Preço: <strong>R$ 90.000,00</strong></span>
-                        </div>
-                        <button class="cta-button" data-nome="Terreno Isaura Pitta Garms">
-                            <i class="fa-brands fa-whatsapp"></i> Tenho Interesse
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="listing-card" data-region="Sul">
-                    <div class="carousel">
-                        <div class="carousel-images">
-                            <img src="Terrenos/JARDIM OLIMPICO/26c775d7-2ae3-4742-ab3d-d4165420b9cd.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/JARDIM OLIMPICO/71140f72-3770-425e-9f79-ba9a20300b54.jpg" alt="Foto 2 do Terreno" class="active">
-
-                        </div>
-                        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="details">
-                        <h2>Terreno JARDIM OLIMPICO</h2>
-                        <p class="location">Bauru, SP</p>
-                        <p class="description">Terreno .</p>
-                        <div class="info">
-                            <span>Área: <strong>500 m²</strong></span>
-                            <span>Preço: <strong>R$ 180.000,00</strong></span>
-                        </div>
-                        <button class="cta-button" data-nome="Oportunidade em Bauru">
-                            <i class="fa-brands fa-whatsapp"></i> Tenho Interesse
-                        </button>
-                    </div>
-                </div>
-                <div class="listing-card" data-region="Sul">
-                    <div class="carousel">
-                        <div class="carousel-images">
-                            <img src="Terrenos/JARDIM PETRÓPOLIS/financie terreno e construção pela caixa economica federal, faça ja sua simulação.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/JARDIM PETRÓPOLIS/Imagem do WhatsApp de 2025-03-27 à(s) 13.04.19_1525a1a4.jpg" alt="Foto 2 do Terreno" class="active">
-                            <img src="Terrenos/JARDIM PETRÓPOLIS/Imagem do WhatsApp de 2025-03-27 à(s) 13.04.19_86c744bf.jpg" alt="Foto 3 do Terreno" class="active">
-
-                        </div>
-                        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="details">
-                        <h2>JARDIM PETRÓPOLIS</h2>
-                        <p class="location">Bauru, SP</p>
-                        <p class="description">Terreno em  fo.</p>
-                        <div class="info">
-                            <span>Área: <strong>500 m²</strong></span>
-                            <span>Preço: <strong>R$ 180.000,00</strong></span>
-                        </div>
-                        <button class="cta-button" data-nome="Oportunidade em Bauru">
-                            <i class="fa-brands fa-whatsapp"></i> Tenho Interesse
-                        </button>
-                    </div>
-                </div>
-                                <div class="listing-card" data-region="Sul">
-                    <div class="carousel">
-                        <div class="carousel-images">
-                            <img src="Terrenos/JARDIM TV/268dd464-6d0c-4df6-8fa9-5f3ea21d5a3b.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/JARDIM TV/8396007a-6eaf-4f2e-9183-27e312fa0392.jpg" alt="Foto 2 do Terreno" class="active">
-                            <img src="Terrenos/JARDIM TV/d0729b38-1b68-4c02-81ee-b18e21c49f1b.jpg" alt="Foto 3 do Terreno" class="active">
-
-                        </div>
-                        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="details">
-                        <h2>Terreno JARDIM TV Bauru</h2>
-                        <p class="location">Bauru, SP</p>
-                        <p class="description">Terreno em condomínio fechado com vista para o lago.</p>
-                        <div class="info">
-                            <span>Área: <strong>500 m²</strong></span>
-                            <span>Preço: <strong>R$ 180.000,00</strong></span>
-                        </div>
-                        <button class="cta-button" data-nome="Oportunidade em Bauru">
-                            <i class="fa-brands fa-whatsapp"></i> Tenho Interesse
-                        </button>
-                    </div>
-                </div>
-                                <div class="listing-card" data-region="Sul">
-                    <div class="carousel">
-                        <div class="carousel-images">
-                            <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.47_7c867491.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.48_388e9451.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.51_e390a822.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.52_d85d4316.jpg" alt="Foto 1 do Terreno" class="active">
-
-                        </div>
-                        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="details">
-                        <h2>Terreno NOVA ESPERANÇA</h2>
-                        <p class="location">Bauru, SP</p>
-                        <p class="description">Terreno em condomínio fechado com vista para o lago.</p>
-                        <div class="info">
-                            <span>Área: <strong>500 m²</strong></span>
-                            <span>Preço: <strong>R$ 180.000,00</strong></span>
-                        </div>
-                        <button class="cta-button" data-nome="Oportunidade em Bauru">
-                            <i class="fa-brands fa-whatsapp"></i> Tenho Interesse
-                        </button>
-                    </div>
-                </div>
-                                <div class="listing-card" data-region="Sul">
-                    <div class="carousel">
-                        <div class="carousel-images">
-                            <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_092cc1b7.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_38105bc4.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_a36c9ea6.jpg" alt="Foto 1 do Terreno" class="active">
-
-                        </div>
-                        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="details">
-                        <h2>Terreno Parque Castelo</h2>
-                        <p class="location">Bauru, SP</p>
-                        <p class="description">Terreno em condomínio fechado com vista para o lago.</p>
-                        <div class="info">
-                            <span>Área: <strong>500 m²</strong></span>
-                            <span>Preço: <strong>R$ 180.000,00</strong></span>
-                        </div>
-                        <button class="cta-button" data-nome="Oportunidade em Bauru">
-                            <i class="fa-brands fa-whatsapp"></i> Tenho Interesse
-                        </button>
-                    </div>
-                </div>
-                                <div class="listing-card" data-region="Sul">
-                    <div class="carousel">
-                        <div class="carousel-images">
-                            <img src="Terrenos/PARQUE JARAGUÁ/Imagem do WhatsApp de 2025-03-27 à(s) 12.47.35_574cca35.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/PARQUE JARAGUÁ/Imagem do WhatsApp de 2025-03-27 à(s) 12.47.35_74a058fa.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/PARQUE JARAGUÁ/PRIMEIRA FOTO DO LOTE.jpg" alt="Foto 1 do Terreno" class="active">
-
-                        </div>
-                        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="details">
-                        <h2>Terreno PARQUE JARAGUÁ</h2>
-                        <p class="location">Bauru, SP</p>
-                        <p class="description">Terreno em condomínio fechado com vista para o lago.</p>
-                        <div class="info">
-                            <span>Área: <strong>500 m²</strong></span>
-                            <span>Preço: <strong>R$ 180.000,00</strong></span>
-                        </div>
-                        <button class="cta-button" data-nome="Oportunidade em Bauru">
-                            <i class="fa-brands fa-whatsapp"></i> Tenho Interesse
-                        </button>
-                    </div>
-                </div>
-                                <div class="listing-card" data-region="Sul">
-                    <div class="carousel">
-                        <div class="carousel-images">
-                            <img src="Terrenos/PARQUE TANGARAS/Imagem do WhatsApp de 2025-04-02 à(s) 10.34.17_ff85257d.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/PARQUE TANGARAS/PRIMEIRA IMAGEM.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/PARQUE TANGARAS/terreno a venda pq tangaras em bauru.jpg" alt="Foto 1 do Terreno" class="active">
-
-                        </div>
-                        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="details">
-                        <h2>terreno a venda pq tangaras em bauru</h2>
-                        <p class="location">Bauru, SP</p>
-                        <p class="description">Terreno em condomínio fechado com vista para o lago.</p>
-                        <div class="info">
-                            <span>Área: <strong>500 m²</strong></span>
-                            <span>Preço: <strong>R$ 180.000,00</strong></span>
-                        </div>
-                        <button class="cta-button" data-nome="Oportunidade em Bauru">
-                            <i class="fa-brands fa-whatsapp"></i> Tenho Interesse
-                        </button>
-                    </div>
-                </div>
-                                <div class="listing-card" data-region="Sul">
-                    <div class="carousel">
-                        <div class="carousel-images">
-                            <img src="Terrenos/VILA DUTRA/Imagem do WhatsApp de 2025-04-11 à(s) 11.55.29_6a1d57f6.jpg" alt="Foto 1 do Terreno" class="active">
-                            <img src="Terrenos/VILA DUTRA/IMG-20250411-WA0056.jpg" alt="Foto 1 do Terreno" class="active">
-
-                        </div>
-                        <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                    <div class="details">
-                        <h2>Terreno VILA DUTRA</h2>
-                        <p class="location">Bauru, SP</p>
-                        <p class="description">Terreno em condomínio fechado com vista para o lago.</p>
-                        <div class="info">
-                            <span>Área: <strong>500 m²</strong></span>
-                            <span>Preço: <strong>R$ 180.000,00</strong></span>
-                        </div>
-                        <button class="cta-button" data-nome="Oportunidade em Bauru">
-                            <i class="fa-brands fa-whatsapp"></i> Tenho Interesse
-                        </button>
-                    </div>
+            <div class="filter-group">
+                <label for="search-filter-input">Bairro</label>
+                <div class="input-with-icon">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="text" id="search-filter-input" placeholder="Ex: Terreno Jardim Olímpico">
                 </div>
             </div>
         </div>
-    </main>
+
+        <div id="filter-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+        <div class="mini-carousel carousel">
+            <div class="carousel-images">
+                <img src="Terrenos/JARDIM OLIMPICO/26c775d7-2ae3-4742-ab3d-d4165420b9cd.jpg" alt="Destaque 1: Terreno amplo no Jardim Olímpico" class="active">
+                <img src="Terrenos/ISAURA PITTA GARMS/7fbfc899-a74c-4837-9bd4-0052b9ff49e2.jpg" alt="Destaque 2: Lote residencial no bairro Isaura Pitta Garms">
+            </div>
+        </div>
+        
+        <div class="listings-container">
+            <div class="listing-card" data-region="Centro">
+                <div class="carousel">
+                    <div class="carousel-images">
+                        <img src="Terrenos/Chacaras Sao Joao/06dad334-a0f9-429c-9077-d4424103507b.jpg" alt="Vista do terreno na Chácara São João" class="active">
+                    </div>
+                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="details">
+                    <h2>Terreno Chácara São João</h2>
+                    <p class="location">Bauru, SP</p>
+                    <p class="description" id="desc-1">Excelente terreno plano de 300m² (12x25m) em ótima localização. Perfeito para quem busca tranquilidade e espaço para construir a casa dos sonhos, com fácil acesso ao centro da cidade e comércios locais.</p>
+                    <div class="info">
+                        <span>Área: <strong>300 m²</strong></span>
+                        <span>Preço: <strong>R$ 100.000,00</strong></span>
+                    </div>
+                    <button class="cta-button" data-nome="Terreno Chacara Sao Joao" type="button">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Tenho Interesse
+                    </button>
+                </div>
+            </div>
+
+            <div class="listing-card" data-region="Sudeste">
+                <div class="carousel">
+                    <div class="carousel-images">
+                        <img src="Terrenos/ISAURA PITTA GARMS/7fbfc899-a74c-4837-9bd4-0052b9ff49e2.jpg" alt="Foto 1 do Terreno em Isaura Pitta Garms" class="active">
+                        <img src="Terrenos/ISAURA PITTA GARMS/0695c115-12d6-485c-b752-fa9bf902396a.jpg" alt="Foto 2 do Terreno em Isaura Pitta Garms">
+                        <img src="Terrenos/ISAURA PITTA GARMS/2d73bb58-98f1-4af4-a7e2-83dad4a5a1b1.jpg" alt="Foto 3 do Terreno em Isaura Pitta Garms">
+                    </div>
+                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="details">
+                    <h2>Terreno Isaura Pitta Garms</h2>
+                    <p class="location">Bauru, SP</p>
+                    <p class="description">Amplo terreno residencial, pronto para construir.</p>
+                    <div class="info">
+                        <span>Área: <strong>250 m²</strong></span>
+                        <span>Preço: <strong>R$ 90.000,00</strong></span>
+                    </div>
+                    <button class="cta-button" data-nome="Terreno Isaura Pitta Garms" type="button">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Tenho Interesse
+                    </button>
+                </div>
+            </div>
+            
+            <div class="listing-card" data-region="Sul">
+                <div class="carousel">
+                    <div class="carousel-images">
+                        <img src="Terrenos/JARDIM OLIMPICO/26c775d7-2ae3-4742-ab3d-d4165420b9cd.jpg" alt="Foto 1 do Terreno no Jardim Olímpico" class="active">
+                        <img src="Terrenos/JARDIM OLIMPICO/71140f72-3770-425e-9f79-ba9a20300b54.jpg" alt="Foto 2 do Terreno no Jardim Olímpico">
+                    </div>
+                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="details">
+                    <h2>Terreno JARDIM OLIMPICO</h2>
+                    <p class="location">Bauru, SP</p>
+                    <p class="description">Terreno com ótima topografia em bairro valorizado.</p>
+                    <div class="info">
+                        <span>Área: <strong>500 m²</strong></span>
+                        <span>Preço: <strong>R$ 180.000,00</strong></span>
+                    </div>
+                    <button class="cta-button" data-nome="Terreno JARDIM OLIMPICO" type="button">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Tenho Interesse
+                    </button>
+                </div>
+            </div>
+
+            <div class="listing-card" data-region="Sul">
+                <div class="carousel">
+                    <div class="carousel-images">
+                        <img src="Terrenos/JARDIM PETRÓPOLIS/financie terreno e construção pela caixa economica federal, faça ja sua simulação.jpg" alt="Foto 1 do Terreno no Jardim Petrópolis" class="active">
+                        <img src="Terrenos/JARDIM PETRÓPOLIS/Imagem do WhatsApp de 2025-03-27 à(s) 13.04.19_1525a1a4.jpg" alt="Foto 2 do Terreno no Jardim Petrópolis">
+                        <img src="Terrenos/JARDIM PETRÓPOLIS/Imagem do WhatsApp de 2025-03-27 à(s) 13.04.19_86c744bf.jpg" alt="Foto 3 do Terreno no Jardim Petrópolis">
+                    </div>
+                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="details">
+                    <h2>JARDIM PETRÓPOLIS</h2>
+                    <p class="location">Bauru, SP</p>
+                    <p class="description">Terreno em excelente localização no Jardim Petrópolis.</p>
+                    <div class="info">
+                        <span>Área: <strong>500 m²</strong></span>
+                        <span>Preço: <strong>R$ 180.000,00</strong></span>
+                    </div>
+                    <button class="cta-button" data-nome="Terreno JARDIM PETRÓPOLIS" type="button">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Tenho Interesse
+                    </button>
+                </div>
+            </div>
+
+            <div class="listing-card" data-region="Sul">
+                <div class="carousel">
+                    <div class="carousel-images">
+                        <img src="Terrenos/JARDIM TV/268dd464-6d0c-4df6-8fa9-5f3ea21d5a3b.jpg" alt="Foto 1 do Terreno no Jardim TV" class="active">
+                        <img src="Terrenos/JARDIM TV/8396007a-6eaf-4f2e-9183-27e312fa0392.jpg" alt="Foto 2 do Terreno no Jardim TV">
+                        <img src="Terrenos/JARDIM TV/d0729b38-1b68-4c02-81ee-b18e21c49f1b.jpg" alt="Foto 3 do Terreno no Jardim TV">
+                    </div>
+                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="details">
+                    <h2>Terreno JARDIM TV Bauru</h2>
+                    <p class="location">Bauru, SP</p>
+                    <p class="description">Terreno em bairro tradicional com toda a infraestrutura.</p>
+                    <div class="info">
+                        <span>Área: <strong>500 m²</strong></span>
+                        <span>Preço: <strong>R$ 180.000,00</strong></span>
+                    </div>
+                    <button class="cta-button" data-nome="Terreno JARDIM TV Bauru" type="button">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Tenho Interesse
+                    </button>
+                </div>
+            </div>
+
+            <div class="listing-card" data-region="Sul">
+                <div class="carousel">
+                    <div class="carousel-images">
+                        <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.47_7c867491.jpg" alt="Foto 1 do Terreno no Nova Esperança" class="active">
+                        <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.48_388e9451.jpg" alt="Foto 2 do Terreno no Nova Esperança">
+                        <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.51_e390a822.jpg" alt="Foto 3 do Terreno no Nova Esperança">
+                        <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.52_d85d4316.jpg" alt="Foto 4 do Terreno no Nova Esperança">
+                    </div>
+                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="details">
+                    <h2>Terreno NOVA ESPERANÇA</h2>
+                    <p class="location">Bauru, SP</p>
+                    <p class="description">Oportunidade no bairro Nova Esperança, ideal para investimento.</p>
+                    <div class="info">
+                        <span>Área: <strong>500 m²</strong></span>
+                        <span>Preço: <strong>R$ 180.000,00</strong></span>
+                    </div>
+                    <button class="cta-button" data-nome="Terreno NOVA ESPERANÇA" type="button">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Tenho Interesse
+                    </button>
+                </div>
+            </div>
+
+            <div class="listing-card" data-region="Sul">
+                <div class="carousel">
+                    <div class="carousel-images">
+                        <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_092cc1b7.jpg" alt="Foto 1 do Terreno no Parque Castelo" class="active">
+                        <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_38105bc4.jpg" alt="Foto 2 do Terreno no Parque Castelo">
+                        <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_a36c9ea6.jpg" alt="Foto 3 do Terreno no Parque Castelo">
+                    </div>
+                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="details">
+                    <h2>Terreno Parque Castelo</h2>
+                    <p class="location">Bauru, SP</p>
+                    <p class="description">Lote bem localizado no Parque Castelo.</p>
+                    <div class="info">
+                        <span>Área: <strong>500 m²</strong></span>
+                        <span>Preço: <strong>R$ 180.000,00</strong></span>
+                    </div>
+                    <button class="cta-button" data-nome="Terreno Parque Castelo" type="button">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Tenho Interesse
+                    </button>
+                </div>
+            </div>
+
+            <div class="listing-card" data-region="Sul">
+                <div class="carousel">
+                    <div class="carousel-images">
+                        <img src="Terrenos/PARQUE JARAGUÁ/Imagem do WhatsApp de 2025-03-27 à(s) 12.47.35_574cca35.jpg" alt="Foto 1 do Terreno no Parque Jaraguá" class="active">
+                        <img src="Terrenos/PARQUE JARAGUÁ/Imagem do WhatsApp de 2025-03-27 à(s) 12.47.35_74a058fa.jpg" alt="Foto 2 do Terreno no Parque Jaraguá">
+                        <img src="Terrenos/PARQUE JARAGUÁ/PRIMEIRA FOTO DO LOTE.jpg" alt="Foto 3 do Terreno no Parque Jaraguá">
+                    </div>
+                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="details">
+                    <h2>Terreno PARQUE JARAGUÁ</h2>
+                    <p class="location">Bauru, SP</p>
+                    <p class="description">Terreno em área de expansão no Parque Jaraguá.</p>
+                    <div class="info">
+                        <span>Área: <strong>500 m²</strong></span>
+                        <span>Preço: <strong>R$ 180.000,00</strong></span>
+                    </div>
+                    <button class="cta-button" data-nome="Terreno PARQUE JARAGUÁ" type="button">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Tenho Interesse
+                    </button>
+                </div>
+            </div>
+
+            <div class="listing-card" data-region="Sul">
+                <div class="carousel">
+                    <div class="carousel-images">
+                        <img src="Terrenos/PARQUE TANGARAS/Imagem do WhatsApp de 2025-04-02 à(s) 10.34.17_ff85257d.jpg" alt="Foto 1 do Terreno no Parque Tangarás" class="active">
+                        <img src="Terrenos/PARQUE TANGARAS/PRIMEIRA IMAGEM.jpg" alt="Foto 2 do Terreno no Parque Tangarás">
+                        <img src="Terrenos/PARQUE TANGARAS/terreno a venda pq tangaras em bauru.jpg" alt="Foto 3 do Terreno no Parque Tangarás">
+                    </div>
+                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="details">
+                    <h2>terreno a venda pq tangaras em bauru</h2>
+                    <p class="location">Bauru, SP</p>
+                    <p class="description">Ótimo terreno à venda no Parque Tangarás.</p>
+                    <div class="info">
+                        <span>Área: <strong>500 m²</strong></span>
+                        <span>Preço: <strong>R$ 180.000,00</strong></span>
+                    </div>
+                    <button class="cta-button" data-nome="Terreno Parque Tangarás" type="button">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Tenho Interesse
+                    </button>
+                </div>
+            </div>
+
+            <div class="listing-card" data-region="Sul">
+                <div class="carousel">
+                    <div class="carousel-images">
+                        <img src="Terrenos/VILA DUTRA/Imagem do WhatsApp de 2025-04-11 à(s) 11.55.29_6a1d57f6.jpg" alt="Foto 1 do Terreno na Vila Dutra" class="active">
+                        <img src="Terrenos/VILA DUTRA/IMG-20250411-WA0056.jpg" alt="Foto 2 do Terreno na Vila Dutra">
+                    </div>
+                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="details">
+                    <h2>Terreno VILA DUTRA</h2>
+                    <p class="location">Bauru, SP</p>
+                    <p class="description">Terreno com excelente custo-benefício na Vila Dutra.</p>
+                    <div class="info">
+                        <span>Área: <strong>500 m²</strong></span>
+                        <span>Preço: <strong>R$ 180.000,00</strong></span>
+                    </div>
+                    <button class="cta-button" data-nome="Terreno VILA DUTRA" type="button">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Tenho Interesse
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
 <footer id="contato">
     <div class="container">
@@ -317,11 +316,11 @@
             </div>
             <div class="footer-section">
                 <h3>Contato e Redes Sociais</h3>
-                <p><i class="fa-solid fa-phone"></i> <a href="tel:+5514997456960">(14) 99745-6960</a></p>
-                <p><i class="fa-solid fa-envelope"></i> <a href="mailto:contatocentrodaconstrucaocivil@gmail.com">contatocentrodaconstrucaocivil@gmail.com</a></p>
-                <p><i class="fa-brands fa-instagram"></i> <a href="https://www.instagram.com/centrodaconstrucaocivil/" target="_blank">@centrodaconstrucaocivil</a></p>
-                <p><i class="fa-brands fa-facebook"></i> <a href="https://www.facebook.com/centrodaconstrucaocivil" target="_blank">/centrodaconstrucaocivil</a></p>
-                <p><i class="fa-solid fa-location-dot"></i> <span>R. Gustavo Maciel, 7-02 - Centro, Bauru - SP, 17010-180</span></p>
+                <p><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+5514997456960">(14) 99745-6960</a></p>
+                <p><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:contatocentrodaconstrucaocivil@gmail.com">contatocentrodaconstrucaocivil@gmail.com</a></p>
+                <p><i class="fa-brands fa-instagram" aria-hidden="true"></i> <a href="https://www.instagram.com/centrodaconstrucaocivil/" target="_blank" rel="noopener noreferrer">@centrodaconstrucaocivil</a></p>
+                <p><i class="fa-brands fa-facebook" aria-hidden="true"></i> <a href="https://www.facebook.com/centrodaconstrucaocivil" target="_blank" rel="noopener noreferrer">/centrodaconstrucaocivil</a></p>
+                <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span>R. Gustavo Maciel, 7-02 - Centro, Bauru - SP, 17010-180</span></p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -330,6 +329,17 @@
     </div>
 </footer>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+    </div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
 </body>
 </html>

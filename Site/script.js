@@ -1,5 +1,5 @@
-window.scrollTo(0, 0);
 document.addEventListener('DOMContentLoaded', function() {
+window.scrollTo(0, 0);
     
     // --- LÓGICA "VER MAIS" / "VER MENOS" PARA AS DESCRIÇÕES DOS CARDS ---
     const descriptions = document.querySelectorAll('.listing-card .details .description');
@@ -93,24 +93,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- LÓGICA PARA O MENU HAMBÚRGUER ---
-    const menuToggle = document.getElementById('menu-toggle');
-    const mainNav = document.getElementById('main-nav');
-    if (menuToggle && mainNav) {
-        const navLinks = mainNav.querySelectorAll('a');
-        menuToggle.addEventListener('click', function() {
-            mainNav.classList.toggle('active');
-            this.classList.toggle('active');
+// --- LÓGICA PARA O MENU HAMBÚRGUER ---
+const menuToggle = document.getElementById('menu-toggle');
+const mainNav = document.getElementById('main-nav');
+if (menuToggle && mainNav) {
+    const navLinks = mainNav.querySelectorAll('a');
+    menuToggle.addEventListener('click', function() {
+        mainNav.classList.toggle('active');
+        this.classList.toggle('active');
+        document.body.classList.toggle('menu-open'); // Adicione esta linha
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.classList.remove('menu-open'); // Adicione esta linha
+            }
         });
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                }
-            });
-        });
-    }
+    });
+}
 
     // --- LÓGICA UNIFICADA PARA TODOS OS CARROSSÉIS ---
     const carousels = document.querySelectorAll('.carousel');
@@ -185,7 +188,5 @@ document.addEventListener('DOMContentLoaded', function() {
             window.open(whatsappURL, '_blank');
         });
     });
-      if (window.innerWidth > 768) {
-    document.getElementById("search-input")?.focus();
-  }
+   
 });

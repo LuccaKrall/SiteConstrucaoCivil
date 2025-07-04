@@ -50,11 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const logoLink = document.getElementById('logo-link'); // Pega o link do logo
     let currentRegion = 'all';
 
-    // AJUSTADO: Textos para o placeholder da busca
     const originalPlaceholder = "Pesquise por descrição ou filtre por região";
     const shortPlaceholder = "Pesquisar ou filtrar por região";
 
-    // Função para ajustar o placeholder da busca
     function adjustPlaceholder() {
         if (window.innerWidth <= 500) {
             searchInput.placeholder = shortPlaceholder;
@@ -76,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const allRegionsBtn = document.createElement('button');
         allRegionsBtn.textContent = 'Todas as Regiões';
         allRegionsBtn.dataset.region = 'all';
+        allRegionsBtn.classList.add('active-region'); // Adiciona a classe ativa por padrão
         regionDropdown.appendChild(allRegionsBtn);
 
         regions.forEach(region => {
@@ -112,13 +111,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Função para resetar a busca e filtros
     function resetFiltersAndSearch(event) {
-        if(event) event.preventDefault(); // Impede o link de navegar
+        if(event) event.preventDefault();
         searchInput.value = '';
         currentRegion = 'all';
         applyFilters();
-        // Opcional: fechar o dropdown se estiver aberto
+        
+        // Atualiza a classe ativa no dropdown
+        regionDropdown.querySelectorAll('button').forEach(btn => {
+            btn.classList.remove('active-region');
+        });
+        const allRegionsBtn = regionDropdown.querySelector('button[data-region="all"]');
+        if (allRegionsBtn) {
+            allRegionsBtn.classList.add('active-region');
+        }
+
         if (regionDropdown.classList.contains('show')) {
             regionDropdown.classList.remove('show');
             regionFilterBtn.setAttribute('aria-expanded', 'false');
@@ -127,8 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (searchInput && regionFilterBtn && regionDropdown && listingCards.length > 0) {
         populateRegionDropdown();
-        adjustPlaceholder(); // Chama na inicialização
-        window.addEventListener('resize', adjustPlaceholder); // E no redimensionamento da tela
+        adjustPlaceholder();
+        window.addEventListener('resize', adjustPlaceholder);
 
         regionFilterBtn.addEventListener('click', () => {
             const isExpanded = regionFilterBtn.getAttribute('aria-expanded') === 'true';
@@ -138,6 +145,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         regionDropdown.addEventListener('click', (e) => {
             if (e.target.tagName === 'BUTTON') {
+                regionDropdown.querySelectorAll('button').forEach(btn => {
+                    btn.classList.remove('active-region');
+                });
+                e.target.classList.add('active-region');
+
                 currentRegion = e.target.dataset.region;
                 applyFilters();
                 regionDropdown.classList.remove('show');
@@ -147,12 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         searchInput.addEventListener('input', applyFilters);
 
-        // Adiciona o evento de reset ao clicar no logo
         if(logoLink) {
             logoLink.addEventListener('click', resetFiltersAndSearch);
         }
 
-        // Fecha o dropdown se clicar fora
         window.addEventListener('click', (e) => {
             if (!regionFilterBtn.contains(e.target) && !regionDropdown.contains(e.target)) {
                 if (regionDropdown.classList.contains('show')) {
@@ -229,14 +239,22 @@ document.addEventListener('DOMContentLoaded', function() {
         showImage(currentIndex);
     });
 
-    // --- LÓGICA PARA O BOTÃO "TENHO INTERESSE" (WHATSAPP) ---
+    // --- LÓGICA PARA O BOTÃO "Faça Simulação" (WHATSAPP) ---
     document.querySelectorAll('.cta-button').forEach(button => {
         button.addEventListener('click', function() {
             const nomeTerreno = this.dataset.nome;
             const numeroWhatsApp = '5514998001303'; 
-            const mensagem = encodeURIComponent(`Olá! Tenho interesse no terreno: "${nomeTerreno}". Poderia me dar mais informações?`);
+            const mensagem = encodeURIComponent(`Olá! Faça Simulação no terreno: "${nomeTerreno}". Poderia me dar mais informações?`);
             const whatsappURL = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
             window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+        });
+    });
+
+    // --- LÓGICA PARA O BOTÃO "SABER MAIS" (PLACEHOLDER) ---
+    document.querySelectorAll('.details-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const nomeTerreno = this.dataset.nome;
+            alert(`A funcionalidade "Saber Mais" para o terreno "${nomeTerreno}" será implementada em breve!`);
         });
     });
 
@@ -259,12 +277,8 @@ document.addEventListener('DOMContentLoaded', function() {
         hideButton.setAttribute('aria-label', 'Ocultar atalho de acessibilidade');
         document.body.appendChild(hideButton);
 
-        // AJUSTADO: Função para posicionar o botão corretamente
         const positionButton = () => {
             const rect = vlibrasAccessButton.getBoundingClientRect();
-            // Como o botão de fechar é 'position: fixed', usamos as coordenadas 
-            // do retângulo do botão VLibras (que são relativas à viewport) diretamente.
-            // Não é necessário somar window.scrollY ou window.scrollX.
             hideButton.style.top = `${rect.top - 6}px`;
             hideButton.style.left = `${rect.left + rect.width - 18}px`;
         };
@@ -277,11 +291,9 @@ document.addEventListener('DOMContentLoaded', function() {
             hideButton.style.display = 'none';
         });
         
-        // Observa mudanças no estilo do botão VLibras (caso seja arrastado)
         const observer = new MutationObserver(positionButton);
         observer.observe(vlibrasAccessButton, { attributes: true, attributeFilter: ['style'] });
 
-        // Reposiciona o botão ao rolar a página ou redimensionar a janela
         window.addEventListener('resize', positionButton);
         window.addEventListener('scroll', positionButton);
     }

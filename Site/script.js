@@ -61,8 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // ##### FUNÇÃO CORRIGIDA #####
-    // Garante que o data-attribute do botão seja salvo em minúsculas
     function populateRegionDropdown() {
         const regions = new Set();
         listingCards.forEach(card => {
@@ -81,12 +79,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         regions.forEach(region => {
             const regionBtn = document.createElement('button');
-            regionBtn.textContent = region; // Mostra o nome original (ex: "Mary Dota")
-            regionBtn.dataset.region = region.toLowerCase(); // Salva o dado em minúsculas (ex: "mary dota")
+            regionBtn.textContent = region;
+            regionBtn.dataset.region = region.toLowerCase();
             regionDropdown.appendChild(regionBtn);
         });
     }
-    // ###########################
 
     function applyFilters() {
         const searchTerm = searchInput.value.toLowerCase().trim();
@@ -143,8 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
             regionDropdown.classList.toggle('show');
         });
         
-        // ##### EVENTO DE CLIQUE CORRIGIDO #####
-        // Lê o data-attribute que já está em minúsculas
         regionDropdown.addEventListener('click', (e) => {
             if (e.target.tagName === 'BUTTON') {
                 regionDropdown.querySelectorAll('button').forEach(btn => {
@@ -152,14 +147,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 e.target.classList.add('active-region');
 
-                // A variável 'currentRegion' agora recebe o valor já em minúsculas
                 currentRegion = e.target.dataset.region; 
                 applyFilters();
                 regionDropdown.classList.remove('show');
                 regionFilterBtn.setAttribute('aria-expanded', 'false');
             }
         });
-        // #####################################
         
         searchInput.addEventListener('input', applyFilters);
 
@@ -242,25 +235,88 @@ document.addEventListener('DOMContentLoaded', function() {
         
         showImage(currentIndex);
     });
+    
+    // --- FUNÇÃO CENTRALIZADA PARA ABRIR WHATSAPP ---
+    function openWhatsAppSimulation(nomeTerreno) {
+        const numeroWhatsApp = '5514998001303'; 
+        const mensagem = encodeURIComponent(`Olá! Gostaria de fazer uma simulação para o terreno: "${nomeTerreno}". Poderia me dar mais informações?`);
+        const whatsappURL = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+        window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+    }
 
-    // --- LÓGICA PARA O BOTÃO "Faça Simulação" (WHATSAPP) ---
+    // --- LÓGICA PARA O BOTÃO "Faça Simulação" (WHATSAPP) NOS CARDS ---
     document.querySelectorAll('.cta-button').forEach(button => {
         button.addEventListener('click', function() {
             const nomeTerreno = this.dataset.nome;
-            const numeroWhatsApp = '5514998001303'; 
-            const mensagem = encodeURIComponent(`Olá! Faça Simulação no terreno: "${nomeTerreno}". Poderia me dar mais informações?`);
-            const whatsappURL = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
-            window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+            openWhatsAppSimulation(nomeTerreno);
         });
     });
 
-    // --- LÓGICA PARA O BOTÃO "SABER MAIS" (PLACEHOLDER) ---
+    // ==============================================================
+// === NOVA LÓGICA PARA O MODAL "SABER MAIS" (SUBSTITUI A ANTIGA) ===
+// ==============================================================
+const modal = document.getElementById('saber-mais-modal');
+if (modal) {
+    const modalTitle = document.getElementById('modal-title');
+    const modalImage = document.getElementById('modal-image');
+    const modalCtaButton = document.getElementById('modal-cta-button');
+    const closeModalBtn = document.getElementById('modal-close-btn');
+
     document.querySelectorAll('.details-button').forEach(button => {
         button.addEventListener('click', function() {
             const nomeTerreno = this.dataset.nome;
-            alert(`A funcionalidade "Saber Mais" para o terreno "${nomeTerreno}" será implementada em breve!`);
+            
+            // Preencher os dados do modal
+            modalTitle.textContent = nomeTerreno;
+            
+            // =================== INÍCIO DA CORREÇÃO ===================
+            //
+            // A linha abaixo agora define DIRETAMENTE a sua imagem, usando o caminho correto.
+            // A lógica antiga foi removida.
+            modalImage.src = 'Imagens/Captura de tela 2025-07-04 160523.png'; 
+            //
+            // ==================== FIM DA CORREÇÃO =====================
+            
+            modalImage.alt = `Imagem de divulgação do ${nomeTerreno}`;
+            modalCtaButton.dataset.nome = nomeTerreno;
+
+            // Exibir o modal
+            modal.removeAttribute('hidden');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Impede o scroll do fundo
         });
     });
+
+    // Função para fechar o modal
+    function closeModal() {
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // Restaura o scroll do fundo
+        setTimeout(() => {
+            modal.setAttribute('hidden', 'true');
+        }, 300);
+    }
+
+    // Eventos para fechar o modal (mantidos como estavam)
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
+        }
+    });
+
+    // Evento para o botão de simulação DENTRO do modal
+    modalCtaButton.addEventListener('click', function() {
+        const nomeTerreno = this.dataset.nome;
+        openWhatsAppSimulation(nomeTerreno);
+    });
+}
+// =================== FIM DA LÓGICA DO MODAL ===================
+
 
     // --- CÓDIGO PARA ADICIONAR BOTÃO DE OCULTAR AO VLIBRAS ---
     function setupVlirasHider() {

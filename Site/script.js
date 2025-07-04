@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Restaurar a posição do scroll para o topo ao carregar a página
     if (history.scrollRestoration) {
         history.scrollRestoration = 'manual';
     }
@@ -9,30 +10,36 @@ document.addEventListener('DOMContentLoaded', function() {
     listingCardsForDesc.forEach((card, index) => {
         const desc = card.querySelector('.details .description');
         if (!desc) return;
-        const maxLines = 3;
-        const lineHeight = 1.6;
-        const maxHeight = (parseFloat(getComputedStyle(desc).fontSize) * lineHeight) * maxLines;
 
-        if (desc.scrollHeight > maxHeight) {
+        // Verifica se o conteúdo da descrição excede a altura máxima definida no CSS
+        // A classe 'description-collapsed' já define a altura máxima
+        const isOverflowing = desc.scrollHeight > desc.clientHeight;
+        
+        // Adiciona o botão apenas se houver overflow ou se a classe já estiver presente
+        if (desc.scrollHeight > parseFloat(getComputedStyle(desc).fontSize) * 1.6 * 3) {
             desc.classList.add('description-collapsed');
+            
             const toggleButton = document.createElement('button');
             toggleButton.innerText = 'Ver mais';
             toggleButton.className = 'read-more-btn';
-            const descId = desc.id || `desc-${index}`;
+            const descId = `desc-${index}`;
             desc.id = descId;
             toggleButton.setAttribute('aria-expanded', 'false');
             toggleButton.setAttribute('aria-controls', descId);
-            desc.after(toggleButton);
+            desc.after(toggleButton); // Insere o botão logo após a descrição
             
             toggleButton.addEventListener('click', function() {
                 const isCollapsed = desc.classList.contains('description-collapsed');
+                
                 if (isCollapsed) {
-                    desc.style.maxHeight = desc.scrollHeight + 'px'; 
                     desc.classList.remove('description-collapsed');
+                    // Define a max-height para o scrollHeight para uma transição suave
+                    desc.style.maxHeight = desc.scrollHeight + 'px';
                     this.innerText = 'Ver menos';
                     this.setAttribute('aria-expanded', 'true');
                 } else {
-                    desc.style.maxHeight = null; 
+                    // Remove a max-height inline para que o CSS possa reassumir o controle
+                    desc.style.maxHeight = null;
                     desc.classList.add('description-collapsed');
                     this.innerText = 'Ver mais';
                     this.setAttribute('aria-expanded', 'false');
@@ -77,11 +84,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let visibleCount = 0;
 
         listingCards.forEach(card => {
-            const cardRegion = card.dataset.region || '';
-            const cardDescription = card.querySelector('.description').textContent.toLowerCase(); 
+            const cardRegion = card.dataset.region ? card.dataset.region.toLowerCase() : '';
+            const cardTitle = card.querySelector('h2').textContent.toLowerCase();
+            const cardDescription = card.querySelector('.description').textContent.toLowerCase();
+            const cardContent = `${cardTitle} ${cardDescription}`;
 
             const regionMatch = (currentRegion === 'all' || cardRegion === currentRegion);
-            const searchMatch = cardDescription.includes(searchTerm);
+            const searchMatch = cardContent.includes(searchTerm);
 
             if (regionMatch && searchMatch) {
                 card.classList.remove('hidden');
@@ -108,6 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
         regionDropdown.addEventListener('click', (e) => {
             if (e.target.tagName === 'BUTTON') {
                 currentRegion = e.target.dataset.region;
+                // Atualiza o texto do botão de filtro (opcional)
+                // regionFilterBtn.querySelector('span').textContent = e.target.textContent;
                 applyFilters();
                 regionDropdown.classList.remove('show');
                 regionFilterBtn.setAttribute('aria-expanded', 'false');
@@ -116,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         searchInput.addEventListener('input', applyFilters);
 
+        // Fecha o dropdown se clicar fora
         window.addEventListener('click', (e) => {
             if (!regionFilterBtn.contains(e.target) && !regionDropdown.contains(e.target)) {
                 if (regionDropdown.classList.contains('show')) {
@@ -130,116 +142,119 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menu-toggle');
     const mainNav = document.getElementById('main-nav');
     if (menuToggle && mainNav) {
+        const header = document.querySelector('header');
         const navLinks = mainNav.querySelectorAll('a');
+
+        const setNavTop = () => {
+            const headerHeight = header.offsetHeight;
+            mainNav.style.top = `${headerHeight}px`;
+            mainNav.style.height = `calc(100vh - ${headerHeight}px)`;
+        };
+
         menuToggle.addEventListener('click', function() {
+            setNavTop(); // Garante que a posição está correta ao abrir
             const isActive = mainNav.classList.toggle('active');
             this.classList.toggle('active');
             this.setAttribute('aria-expanded', isActive);
-            this.setAttribute('aria-label', isActive ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+            document.body.style.overflow = isActive ? 'hidden' : ''; // Impede o scroll do body
         });
+
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                     menuToggle.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
-                    menuToggle.setAttribute('aria-label', 'Abrir menu de navegação');
-                    menuToggle.focus();
+                    document.body.style.overflow = '';
                 }
             });
         });
     }
 
     // --- LÓGICA UNIFICADA PARA TODOS OS CARROSSÉIS ---
-    const carousels = document.querySelectorAll('.carousel');
-    carousels.forEach(carousel => {
+    document.querySelectorAll('.carousel').forEach(carousel => {
         const images = carousel.querySelectorAll('.carousel-images img');
+        const prevButton = carousel.querySelector('.carousel-button.prev');
+        const nextButton = carousel.querySelector('.carousel-button.next');
+        let currentIndex = 0;
+
         if (images.length <= 1) {
-             const prevButton = carousel.querySelector('.carousel-button.prev');
-             const nextButton = carousel.querySelector('.carousel-button.next');
              if(prevButton) prevButton.style.display = 'none';
              if(nextButton) nextButton.style.display = 'none';
              return; 
         }
-        const prevButton = carousel.querySelector('.carousel-button.prev');
-        const nextButton = carousel.querySelector('.carousel-button.next');
-        let currentIndex = 0;
+
         function showImage(index) {
             images.forEach((img, i) => {
                 img.classList.toggle('active', i === index);
                 img.setAttribute('aria-hidden', i !== index);
             });
         }
-        function next() {
-            currentIndex = (currentIndex + 1) % images.length;
-            showImage(currentIndex);
-        }
-        function prev() {
+        
+        prevButton.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + images.length) % images.length;
             showImage(currentIndex);
-        }
-        if (prevButton && nextButton) {
-            prevButton.addEventListener('click', () => { prev(); });
-            nextButton.addEventListener('click', () => { next(); });
-        }
-        showImage(currentIndex);
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+        
+        showImage(currentIndex); // Mostra a primeira imagem
     });
 
     // --- LÓGICA PARA O BOTÃO "TENHO INTERESSE" (WHATSAPP) ---
-    const interesseButtons = document.querySelectorAll('.cta-button');
-    interesseButtons.forEach(button => {
+    document.querySelectorAll('.cta-button').forEach(button => {
         button.addEventListener('click', function() {
             const nomeTerreno = this.dataset.nome;
-            const numeroWhatsApp = '5514998001303';
+            const numeroWhatsApp = '5514998001303'; 
             const mensagem = encodeURIComponent(`Olá! Tenho interesse no terreno: "${nomeTerreno}". Poderia me dar mais informações?`);
             const whatsappURL = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
             window.open(whatsappURL, '_blank', 'noopener,noreferrer');
         });
     });
 
-    // --- CÓDIGO CORRIGIDO PARA ADICIONAR BOTÃO DE OCULTAR AO VLIBRAS ---
+    // --- CÓDIGO PARA ADICIONAR BOTÃO DE OCULTAR AO VLIBRAS ---
     function setupVlirasHider() {
         const vlibrasWidgetContainer = document.querySelector('div[vw]');
         const vlibrasAccessButton = document.querySelector('div[vw-access-button]');
 
-        // Verifica se os elementos do VLibras já foram carregados na página
-        if (vlibrasWidgetContainer && vlibrasAccessButton) {
-            
-            // 1. Cria o botão de ocultar
-            const hideButton = document.createElement('button');
-            hideButton.id = 'vlibras-hide-btn';
-            hideButton.innerHTML = '&times;'; // Adiciona o caractere "X"
-            hideButton.title = 'Ocultar atalho de acessibilidade';
-            hideButton.setAttribute('aria-label', 'Ocultar atalho de acessibilidade');
-            document.body.appendChild(hideButton);
-
-            // 2. Função para posicionar o botão
-            const positionButton = () => {
-                // Pega a localização e tamanho do ícone VLibras
-                const rect = vlibrasAccessButton.getBoundingClientRect();
-                // Posiciona nosso botão "X" no canto superior direito do ícone
-                hideButton.style.top = `${rect.top - 4}px`;
-                hideButton.style.left = `${rect.left + rect.width - 20}px`;
-            };
-            
-            positionButton(); // Posiciona o botão pela primeira vez
-
-            // 3. Adiciona o evento de clique para ocultar tudo
-            hideButton.addEventListener('click', () => {
-                vlibrasWidgetContainer.style.display = 'none';
-                hideButton.style.display = 'none';
-            });
-            
-            // Reposiciona o botão caso a janela seja redimensionada
-            window.addEventListener('resize', positionButton);
-
-        } else {
-            // Se o widget ainda não carregou, tenta novamente em meio segundo
-            setTimeout(setupVlirasHider, 500);
+        if (!vlibrasWidgetContainer || !vlibrasAccessButton) {
+            setTimeout(setupVlirasHider, 500); // Tenta novamente se o widget não carregou
+            return;
         }
-    }
+        
+        if (document.getElementById('vlibras-hide-btn')) return; // Botão já existe
 
-    // Inicia a função para configurar o botão de ocultar
-    setupVlirasHider();
+        const hideButton = document.createElement('button');
+        hideButton.id = 'vlibras-hide-btn';
+        hideButton.innerHTML = '&times;';
+        hideButton.title = 'Ocultar atalho de acessibilidade';
+        hideButton.setAttribute('aria-label', 'Ocultar atalho de acessibilidade');
+        document.body.appendChild(hideButton);
+
+        const positionButton = () => {
+            const rect = vlibrasAccessButton.getBoundingClientRect();
+            // Posiciona o botão no canto superior direito do ícone VLibras
+            hideButton.style.top = `${window.scrollY + rect.top - 6}px`;
+            hideButton.style.left = `${window.scrollX + rect.left + rect.width - 18}px`;
+        };
+        
+        positionButton();
+
+        hideButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            vlibrasWidgetContainer.style.display = 'none';
+            hideButton.style.display = 'none';
+        });
+        
+        // Usa um observador para reposicionar o botão se o atributo de estilo do VLibras mudar
+        const observer = new MutationObserver(positionButton);
+        observer.observe(vlibrasAccessButton, { attributes: true, attributeFilter: ['style'] });
+        window.addEventListener('resize', positionButton);
+        window.addEventListener('scroll', positionButton);
+    }
     
-}); // <-- FIM DO ÚNICO 'DOMContentLoaded'
+    setupVlirasHider();
+});

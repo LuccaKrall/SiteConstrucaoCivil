@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const regionDropdown = document.getElementById('region-dropdown');
     const listingCards = document.querySelectorAll('.listing-card');
     const filterStatus = document.getElementById('filter-status');
-    const logoLink = document.getElementById('logo-link'); // Pega o link do logo
+    const logoLink = document.getElementById('logo-link');
     let currentRegion = 'all';
 
     const originalPlaceholder = "Pesquise por descrição ou filtre por região";
@@ -61,6 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // ##### FUNÇÃO CORRIGIDA #####
+    // Garante que o data-attribute do botão seja salvo em minúsculas
     function populateRegionDropdown() {
         const regions = new Set();
         listingCards.forEach(card => {
@@ -74,16 +76,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const allRegionsBtn = document.createElement('button');
         allRegionsBtn.textContent = 'Todas as Regiões';
         allRegionsBtn.dataset.region = 'all';
-        allRegionsBtn.classList.add('active-region'); // Adiciona a classe ativa por padrão
+        allRegionsBtn.classList.add('active-region');
         regionDropdown.appendChild(allRegionsBtn);
 
         regions.forEach(region => {
             const regionBtn = document.createElement('button');
-            regionBtn.textContent = region;
-            regionBtn.dataset.region = region;
+            regionBtn.textContent = region; // Mostra o nome original (ex: "Mary Dota")
+            regionBtn.dataset.region = region.toLowerCase(); // Salva o dado em minúsculas (ex: "mary dota")
             regionDropdown.appendChild(regionBtn);
         });
     }
+    // ###########################
 
     function applyFilters() {
         const searchTerm = searchInput.value.toLowerCase().trim();
@@ -91,12 +94,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         listingCards.forEach(card => {
             const cardRegion = card.dataset.region ? card.dataset.region.toLowerCase() : '';
-            const cardTitle = card.querySelector('h2').textContent.toLowerCase();
-            const cardDescription = card.querySelector('.description').textContent.toLowerCase();
-            const cardContent = `${cardTitle} ${cardDescription}`;
-
             const regionMatch = (currentRegion === 'all' || cardRegion === currentRegion);
-            const searchMatch = cardContent.includes(searchTerm);
+
+            const cardDescription = card.querySelector('.description').textContent.toLowerCase();
+            const searchMatch = cardDescription.includes(searchTerm);
 
             if (regionMatch && searchMatch) {
                 card.classList.remove('hidden');
@@ -117,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
         currentRegion = 'all';
         applyFilters();
         
-        // Atualiza a classe ativa no dropdown
         regionDropdown.querySelectorAll('button').forEach(btn => {
             btn.classList.remove('active-region');
         });
@@ -142,7 +142,9 @@ document.addEventListener('DOMContentLoaded', function() {
             regionFilterBtn.setAttribute('aria-expanded', !isExpanded);
             regionDropdown.classList.toggle('show');
         });
-
+        
+        // ##### EVENTO DE CLIQUE CORRIGIDO #####
+        // Lê o data-attribute que já está em minúsculas
         regionDropdown.addEventListener('click', (e) => {
             if (e.target.tagName === 'BUTTON') {
                 regionDropdown.querySelectorAll('button').forEach(btn => {
@@ -150,12 +152,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 e.target.classList.add('active-region');
 
-                currentRegion = e.target.dataset.region;
+                // A variável 'currentRegion' agora recebe o valor já em minúsculas
+                currentRegion = e.target.dataset.region; 
                 applyFilters();
                 regionDropdown.classList.remove('show');
                 regionFilterBtn.setAttribute('aria-expanded', 'false');
             }
         });
+        // #####################################
         
         searchInput.addEventListener('input', applyFilters);
 

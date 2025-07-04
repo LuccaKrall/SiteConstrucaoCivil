@@ -11,11 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const desc = card.querySelector('.details .description');
         if (!desc) return;
 
-        // Verifica se o conteúdo da descrição excede a altura máxima definida no CSS
-        // A classe 'description-collapsed' já define a altura máxima
-        const isOverflowing = desc.scrollHeight > desc.clientHeight;
-        
-        // Adiciona o botão apenas se houver overflow ou se a classe já estiver presente
         if (desc.scrollHeight > parseFloat(getComputedStyle(desc).fontSize) * 1.6 * 3) {
             desc.classList.add('description-collapsed');
             
@@ -26,19 +21,17 @@ document.addEventListener('DOMContentLoaded', function() {
             desc.id = descId;
             toggleButton.setAttribute('aria-expanded', 'false');
             toggleButton.setAttribute('aria-controls', descId);
-            desc.after(toggleButton); // Insere o botão logo após a descrição
+            desc.after(toggleButton);
             
             toggleButton.addEventListener('click', function() {
                 const isCollapsed = desc.classList.contains('description-collapsed');
                 
                 if (isCollapsed) {
                     desc.classList.remove('description-collapsed');
-                    // Define a max-height para o scrollHeight para uma transição suave
                     desc.style.maxHeight = desc.scrollHeight + 'px';
                     this.innerText = 'Ver menos';
                     this.setAttribute('aria-expanded', 'true');
                 } else {
-                    // Remove a max-height inline para que o CSS possa reassumir o controle
                     desc.style.maxHeight = null;
                     desc.classList.add('description-collapsed');
                     this.innerText = 'Ver mais';
@@ -54,8 +47,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const regionDropdown = document.getElementById('region-dropdown');
     const listingCards = document.querySelectorAll('.listing-card');
     const filterStatus = document.getElementById('filter-status');
+    const logoLink = document.getElementById('logo-link'); // Pega o link do logo
     let currentRegion = 'all';
 
+    const originalPlaceholder = "Pesquise por descrição ou filtre por região...";
+    const shortPlaceholder = "Pesquisar ou filtrar...";
+
+    // Função para ajustar o placeholder da busca
+    function adjustPlaceholder() {
+        if (window.innerWidth <= 500) {
+            searchInput.placeholder = shortPlaceholder;
+        } else {
+            searchInput.placeholder = originalPlaceholder;
+        }
+    }
+    
     function populateRegionDropdown() {
         const regions = new Set();
         listingCards.forEach(card => {
@@ -64,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        regionDropdown.innerHTML = ''; // Limpa opções existentes
+        regionDropdown.innerHTML = '';
 
         const allRegionsBtn = document.createElement('button');
         allRegionsBtn.textContent = 'Todas as Regiões';
@@ -105,8 +111,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Função para resetar a busca e filtros
+    function resetFiltersAndSearch(event) {
+        if(event) event.preventDefault(); // Impede o link de navegar
+        searchInput.value = '';
+        currentRegion = 'all';
+        applyFilters();
+        // Opcional: fechar o dropdown se estiver aberto
+        if (regionDropdown.classList.contains('show')) {
+            regionDropdown.classList.remove('show');
+            regionFilterBtn.setAttribute('aria-expanded', 'false');
+        }
+    }
+
     if (searchInput && regionFilterBtn && regionDropdown && listingCards.length > 0) {
         populateRegionDropdown();
+        adjustPlaceholder(); // Chama na inicialização
+        window.addEventListener('resize', adjustPlaceholder); // E no redimensionamento da tela
 
         regionFilterBtn.addEventListener('click', () => {
             const isExpanded = regionFilterBtn.getAttribute('aria-expanded') === 'true';
@@ -117,8 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
         regionDropdown.addEventListener('click', (e) => {
             if (e.target.tagName === 'BUTTON') {
                 currentRegion = e.target.dataset.region;
-                // Atualiza o texto do botão de filtro (opcional)
-                // regionFilterBtn.querySelector('span').textContent = e.target.textContent;
                 applyFilters();
                 regionDropdown.classList.remove('show');
                 regionFilterBtn.setAttribute('aria-expanded', 'false');
@@ -126,6 +145,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         searchInput.addEventListener('input', applyFilters);
+
+        // Adiciona o evento de reset ao clicar no logo
+        if(logoLink) {
+            logoLink.addEventListener('click', resetFiltersAndSearch);
+        }
 
         // Fecha o dropdown se clicar fora
         window.addEventListener('click', (e) => {
@@ -152,11 +176,11 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         menuToggle.addEventListener('click', function() {
-            setNavTop(); // Garante que a posição está correta ao abrir
+            setNavTop();
             const isActive = mainNav.classList.toggle('active');
             this.classList.toggle('active');
             this.setAttribute('aria-expanded', isActive);
-            document.body.style.overflow = isActive ? 'hidden' : ''; // Impede o scroll do body
+            document.body.style.overflow = isActive ? 'hidden' : '';
         });
 
         navLinks.forEach(link => {
@@ -201,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
             showImage(currentIndex);
         });
         
-        showImage(currentIndex); // Mostra a primeira imagem
+        showImage(currentIndex);
     });
 
     // --- LÓGICA PARA O BOTÃO "TENHO INTERESSE" (WHATSAPP) ---
@@ -221,11 +245,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const vlibrasAccessButton = document.querySelector('div[vw-access-button]');
 
         if (!vlibrasWidgetContainer || !vlibrasAccessButton) {
-            setTimeout(setupVlirasHider, 500); // Tenta novamente se o widget não carregou
+            setTimeout(setupVlirasHider, 500);
             return;
         }
         
-        if (document.getElementById('vlibras-hide-btn')) return; // Botão já existe
+        if (document.getElementById('vlibras-hide-btn')) return;
 
         const hideButton = document.createElement('button');
         hideButton.id = 'vlibras-hide-btn';
@@ -236,7 +260,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const positionButton = () => {
             const rect = vlibrasAccessButton.getBoundingClientRect();
-            // Posiciona o botão no canto superior direito do ícone VLibras
             hideButton.style.top = `${window.scrollY + rect.top - 6}px`;
             hideButton.style.left = `${window.scrollX + rect.left + rect.width - 18}px`;
         };
@@ -249,7 +272,6 @@ document.addEventListener('DOMContentLoaded', function() {
             hideButton.style.display = 'none';
         });
         
-        // Usa um observador para reposicionar o botão se o atributo de estilo do VLibras mudar
         const observer = new MutationObserver(positionButton);
         observer.observe(vlibrasAccessButton, { attributes: true, attributeFilter: ['style'] });
         window.addEventListener('resize', positionButton);

@@ -50,8 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const logoLink = document.getElementById('logo-link'); // Pega o link do logo
     let currentRegion = 'all';
 
-    const originalPlaceholder = "Pesquise por descrição ou filtre por região...";
-    const shortPlaceholder = "Pesquisar ou filtrar...";
+    // AJUSTADO: Textos para o placeholder da busca
+    const originalPlaceholder = "Pesquise por descrição ou filtre por região";
+    const shortPlaceholder = "Pesquisar ou filtrar por região";
 
     // Função para ajustar o placeholder da busca
     function adjustPlaceholder() {
@@ -258,10 +259,14 @@ document.addEventListener('DOMContentLoaded', function() {
         hideButton.setAttribute('aria-label', 'Ocultar atalho de acessibilidade');
         document.body.appendChild(hideButton);
 
+        // AJUSTADO: Função para posicionar o botão corretamente
         const positionButton = () => {
             const rect = vlibrasAccessButton.getBoundingClientRect();
-            hideButton.style.top = `${window.scrollY + rect.top - 6}px`;
-            hideButton.style.left = `${window.scrollX + rect.left + rect.width - 18}px`;
+            // Como o botão de fechar é 'position: fixed', usamos as coordenadas 
+            // do retângulo do botão VLibras (que são relativas à viewport) diretamente.
+            // Não é necessário somar window.scrollY ou window.scrollX.
+            hideButton.style.top = `${rect.top - 6}px`;
+            hideButton.style.left = `${rect.left + rect.width - 18}px`;
         };
         
         positionButton();
@@ -272,8 +277,11 @@ document.addEventListener('DOMContentLoaded', function() {
             hideButton.style.display = 'none';
         });
         
+        // Observa mudanças no estilo do botão VLibras (caso seja arrastado)
         const observer = new MutationObserver(positionButton);
         observer.observe(vlibrasAccessButton, { attributes: true, attributeFilter: ['style'] });
+
+        // Reposiciona o botão ao rolar a página ou redimensionar a janela
         window.addEventListener('resize', positionButton);
         window.addEventListener('scroll', positionButton);
     }

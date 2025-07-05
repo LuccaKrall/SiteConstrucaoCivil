@@ -236,15 +236,28 @@ document.addEventListener('DOMContentLoaded', function() {
         showImage(currentIndex);
     });
     
-    // --- FUNÇÃO CENTRALIZADA PARA ABRIR WHATSAPP ---
+    // --- FUNÇÃO CENTRALIZADA PARA ABRIR WHATSAPP (VERSÃO ATUALIZADA) ---
     function openWhatsAppSimulation(nomeTerreno) {
-        const numeroWhatsApp = '5514998001303'; 
+        // 1. Cria um objeto para gerenciar os parâmetros da URL atual.
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // 2. Tenta obter o número do parâmetro 'vendedor' da URL.
+        const numeroDoVendedor = urlParams.get('vendedor');
+        
+        // 3. Define o número padrão, caso nenhum vendedor seja especificado na URL.
+        const numeroPadrao = '5514997456960'; // Use o número de contato principal aqui.
+
+        // 4. Determina qual número usar: o do vendedor (se existir) ou o padrão.
+        const numeroWhatsApp = numeroDoVendedor || numeroPadrao;
+
+        // O resto da função permanece igual.
         const mensagem = encodeURIComponent(`Olá! Gostaria de fazer uma simulação para o terreno: "${nomeTerreno}". Poderia me dar mais informações?`);
         const whatsappURL = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
         window.open(whatsappURL, '_blank', 'noopener,noreferrer');
     }
 
     // --- LÓGICA PARA O BOTÃO "Faça Simulação" (WHATSAPP) NOS CARDS ---
+    // Esta parte não precisa de alteração, pois ela chama a função que acabamos de modificar.
     document.querySelectorAll('.cta-button').forEach(button => {
         button.addEventListener('click', function() {
             const nomeTerreno = this.dataset.nome;
@@ -253,70 +266,57 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==============================================================
-// === NOVA LÓGICA PARA O MODAL "SABER MAIS" (SUBSTITUI A ANTIGA) ===
-// ==============================================================
-const modal = document.getElementById('saber-mais-modal');
-if (modal) {
-    const modalTitle = document.getElementById('modal-title');
-    const modalImage = document.getElementById('modal-image');
-    const modalCtaButton = document.getElementById('modal-cta-button');
-    const closeModalBtn = document.getElementById('modal-close-btn');
+    // === NOVA LÓGICA PARA O MODAL "SABER MAIS" (SUBSTITUI A ANTIGA) ===
+    // ==============================================================
+    const modal = document.getElementById('saber-mais-modal');
+    if (modal) {
+        const modalTitle = document.getElementById('modal-title');
+        const modalImage = document.getElementById('modal-image');
+        const modalCtaButton = document.getElementById('modal-cta-button');
+        const closeModalBtn = document.getElementById('modal-close-btn');
 
-    document.querySelectorAll('.details-button').forEach(button => {
-        button.addEventListener('click', function() {
-            const nomeTerreno = this.dataset.nome;
-            
-            // Preencher os dados do modal
-            modalTitle.textContent = nomeTerreno;
-            
-            // =================== INÍCIO DA CORREÇÃO ===================
-            //
-            // A linha abaixo agora define DIRETAMENTE a sua imagem, usando o caminho correto.
-            // A lógica antiga foi removida.
-            modalImage.src = 'Imagens/Captura de tela 2025-07-04 160523.png'; 
-            //
-            // ==================== FIM DA CORREÇÃO =====================
-            
-            modalImage.alt = `Imagem de divulgação do ${nomeTerreno}`;
-            modalCtaButton.dataset.nome = nomeTerreno;
+        document.querySelectorAll('.details-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const nomeTerreno = this.dataset.nome;
+                
+                modalTitle.textContent = nomeTerreno;
+                modalImage.src = 'Imagens/Captura de tela 2025-07-04 160523.png'; 
+                modalImage.alt = `Imagem de divulgação do ${nomeTerreno}`;
+                modalCtaButton.dataset.nome = nomeTerreno;
 
-            // Exibir o modal
-            modal.removeAttribute('hidden');
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Impede o scroll do fundo
+                modal.removeAttribute('hidden');
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
         });
-    });
 
-    // Função para fechar o modal
-    function closeModal() {
-        modal.classList.remove('show');
-        document.body.style.overflow = ''; // Restaura o scroll do fundo
-        setTimeout(() => {
-            modal.setAttribute('hidden', 'true');
-        }, 300);
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                modal.setAttribute('hidden', 'true');
+            }, 300);
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('show')) {
+                closeModal();
+            }
+        });
+
+        // O botão de simulação dentro do modal já chama a função 'openWhatsAppSimulation',
+        // que agora é dinâmica, então não precisamos mexer aqui.
+        modalCtaButton.addEventListener('click', function() {
+            const nomeTerreno = this.dataset.nome;
+            openWhatsAppSimulation(nomeTerreno);
+        });
     }
-
-    // Eventos para fechar o modal (mantidos como estavam)
-    closeModalBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-    window.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
-            closeModal();
-        }
-    });
-
-    // Evento para o botão de simulação DENTRO do modal
-    modalCtaButton.addEventListener('click', function() {
-        const nomeTerreno = this.dataset.nome;
-        openWhatsAppSimulation(nomeTerreno);
-    });
-}
-// =================== FIM DA LÓGICA DO MODAL ===================
-
 
     // --- CÓDIGO PARA ADICIONAR BOTÃO DE OCULTAR AO VLIBRAS ---
     function setupVlirasHider() {

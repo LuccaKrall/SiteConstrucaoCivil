@@ -238,26 +238,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // --- FUNÇÃO CENTRALIZADA PARA ABRIR WHATSAPP (VERSÃO ATUALIZADA) ---
     function openWhatsAppSimulation(nomeTerreno) {
-        // 1. Cria um objeto para gerenciar os parâmetros da URL atual.
         const urlParams = new URLSearchParams(window.location.search);
-        
-        // 2. Tenta obter o número do parâmetro 'vendedor' da URL.
         const numeroDoVendedor = urlParams.get('vendedor');
-        
-        // 3. Define o número padrão, caso nenhum vendedor seja especificado na URL.
-        const numeroPadrao = '5514997456960'; // Use o número de contato principal aqui.
-
-        // 4. Determina qual número usar: o do vendedor (se existir) ou o padrão.
+        const numeroPadrao = '5514997456960';
         const numeroWhatsApp = numeroDoVendedor || numeroPadrao;
-
-        // O resto da função permanece igual.
         const mensagem = encodeURIComponent(`Olá! Gostaria de fazer uma simulação para o terreno: "${nomeTerreno}". Poderia me dar mais informações?`);
         const whatsappURL = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
         window.open(whatsappURL, '_blank', 'noopener,noreferrer');
     }
 
     // --- LÓGICA PARA O BOTÃO "Faça Simulação" (WHATSAPP) NOS CARDS ---
-    // Esta parte não precisa de alteração, pois ela chama a função que acabamos de modificar.
     document.querySelectorAll('.cta-button').forEach(button => {
         button.addEventListener('click', function() {
             const nomeTerreno = this.dataset.nome;
@@ -266,12 +256,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==============================================================
-    // === NOVA LÓGICA PARA O MODAL "SABER MAIS" (SUBSTITUI A ANTIGA) ===
+    // ===  LÓGICA ATUALIZADA PARA O MODAL "SABER MAIS" ===
     // ==============================================================
     const modal = document.getElementById('saber-mais-modal');
     if (modal) {
         const modalTitle = document.getElementById('modal-title');
-        const modalImage = document.getElementById('modal-image');
         const modalCtaButton = document.getElementById('modal-cta-button');
         const closeModalBtn = document.getElementById('modal-close-btn');
 
@@ -280,8 +269,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const nomeTerreno = this.dataset.nome;
                 
                 modalTitle.textContent = nomeTerreno;
-                modalImage.src = 'Imagens/Captura de tela 2025-07-04 160523.png'; 
-                modalImage.alt = `Imagem de divulgação do ${nomeTerreno}`;
+                
+                // As linhas que adicionavam a imagem foram removidas.
+                // A nova estrutura HTML será exibida automaticamente.
+                
                 modalCtaButton.dataset.nome = nomeTerreno;
 
                 modal.removeAttribute('hidden');
@@ -310,8 +301,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // O botão de simulação dentro do modal já chama a função 'openWhatsAppSimulation',
-        // que agora é dinâmica, então não precisamos mexer aqui.
+        // Ação do botão de simulação DENTRO do modal
         modalCtaButton.addEventListener('click', function() {
             const nomeTerreno = this.dataset.nome;
             openWhatsAppSimulation(nomeTerreno);

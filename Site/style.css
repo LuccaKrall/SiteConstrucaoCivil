@@ -880,9 +880,15 @@ footer {
         padding: 0 12px;
     }
 
-    /* Empilha os botões de ação verticalmente */
+    /* Empilha os botões de ação verticalmente e inverte a ordem */
     .card-actions {
-        flex-direction: column;
+        flex-direction: column-reverse; /* Inverte a ordem: "Saber Mais" vem primeiro */
+    }
+
+    /* Deixa o botão "Saber Mais" com o estilo de destaque no mobile */
+    .card-actions .details-button {
+        background-color: var(--color-accent);
+        color: var(--color-light);
     }
 }
 

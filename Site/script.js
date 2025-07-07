@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- LÓGICA UNIFICADA PARA TODOS OS CARROSSÉIS ---
+    // --- LÓGICA UNIFICADA PARA TODOS OS CARROSSEIS ---
     document.querySelectorAll('.carousel').forEach(carousel => {
         const images = carousel.querySelectorAll('.carousel-images img');
         const prevButton = carousel.querySelector('.carousel-button.prev');
@@ -263,23 +263,60 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalTitle = document.getElementById('modal-title');
         const modalCtaButton = document.getElementById('modal-cta-button');
         const closeModalBtn = document.getElementById('modal-close-btn');
+        const infoBoxes = modal.querySelectorAll('.modal-info-container .info-box'); // Get all info boxes
+        const modalInfoContainer = modal.querySelector('.modal-info-container'); // Get the container for the line fill
 
+        // Reset modal state when opened
         document.querySelectorAll('.details-button').forEach(button => {
             button.addEventListener('click', function() {
                 const nomeTerreno = this.dataset.nome;
                 
-                modalTitle.textContent = nomeTerreno;
+                modalTitle.textContent = nomeTerreno; // Sets the main modal title
                 
-                // As linhas que adicionavam a imagem foram removidas.
-                // A nova estrutura HTML será exibida automaticamente.
+                // Update the content of the first info-box paragraph
+                infoBoxes[0].querySelector('p').innerHTML = `Parabéns! Você selecionou o <strong>"${nomeTerreno}"</strong>. Agora é só seguir os próximos passos para realizar seu sonho.`;
                 
                 modalCtaButton.dataset.nome = nomeTerreno;
+
+                // Reset all info-boxes and button animation
+                infoBoxes.forEach(box => box.classList.remove('clicked'));
+                modalCtaButton.classList.remove('pulse-animation');
+                modalCtaButton.style.backgroundColor = ''; // Reset to default green
+                document.documentElement.style.setProperty('--line-fill-percentage', '0%'); // Reset line fill
 
                 modal.removeAttribute('hidden');
                 modal.classList.add('show');
                 document.body.style.overflow = 'hidden';
             });
         });
+
+        infoBoxes.forEach((box, index) => {
+            box.addEventListener('click', () => {
+                // Add 'clicked' class to the current box
+                box.classList.add('clicked');
+
+                // Calculate fill percentage based on clicked boxes
+                const totalBoxes = infoBoxes.length;
+                const clickedBoxesCount = modal.querySelectorAll('.info-box.clicked').length;
+                let fillPercentage = (clickedBoxesCount / totalBoxes) * 100;
+                
+                // Ensure the line fills up to the middle of the last clicked box
+                // Each step effectively represents a third of the total line length
+                if (index === 0) fillPercentage = 0; // First step is just a starting point, no actual fill needed yet from it
+                else if (index === 1) fillPercentage = 50; // Fill to half for the second step
+                else if (index === 2) fillPercentage = 100; // Fill completely for the third step
+
+                document.documentElement.style.setProperty('--line-fill-percentage', `${fillPercentage}%`);
+
+                // If the third step is clicked, trigger button animation
+                if (index === 2) {
+                    modalCtaButton.classList.add('pulse-animation');
+                } else {
+                    modalCtaButton.classList.remove('pulse-animation');
+                }
+            });
+        });
+
 
         function closeModal() {
             modal.classList.remove('show');

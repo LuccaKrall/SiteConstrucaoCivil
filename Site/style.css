@@ -14,6 +14,9 @@
     --font-size-subtitle: clamp(1rem, 3vw, 1.2rem);
     --font-size-body: clamp(0.9rem, 2.5vw, 1rem);
     --font-size-small: clamp(0.85rem, 2vw, 0.95rem);
+
+    /* Custom property for the line fill percentage */
+    --line-fill-percentage: 0%;
 }
 
 /* ============================================== */
@@ -36,7 +39,7 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: var(--font-size-body);
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 .container {
@@ -271,7 +274,7 @@ h1 {
     z-index: 10;
     border: 1px solid #e0e0e0;
     overflow: hidden; /* Garante que os filhos respeitem o border-radius */
-    
+
     /* Animação de entrada */
     opacity: 0;
     visibility: hidden;
@@ -716,18 +719,21 @@ footer {
 }
 
 /* Linha vertical principal do mapa mental */
-/* ======================================================= */
-/* ====== MUDANÇA: Linha com gradiente para efeito de progresso ====== */
-/* ======================================================= */
 .modal-info-container::before {
     content: '';
     position: absolute;
     left: 10px;
-    top: 20px;
-    bottom: 20px;
+    top: 28px; /* Adjusted to align with circle vertical center */
+    bottom: 28px; /* Adjusted to align with circle vertical center */
     width: 3px;
-    background: linear-gradient(to bottom, #25D366 0%, #25D366 35px, #e0e0e0 35px, #e0e0e0 100%);
+    background: linear-gradient(to bottom,
+        #25D366 0%,
+        #25D366 var(--line-fill-percentage),
+        #e0e0e0 var(--line-fill-percentage),
+        #e0e0e0 100%
+    );
     border-radius: 3px;
+    transition: background 0.5s ease-out; /* Smooth transition for the gradient */
 }
 
 .info-box {
@@ -758,6 +764,7 @@ footer {
     border: 3px solid var(--color-light);
     border-radius: 50%;
     z-index: 1;
+    transition: background-color 0.3s ease, content 0.3s ease; /* Add transition */
 }
 
 /* Linha conectora do nó para a caixa */
@@ -769,24 +776,57 @@ footer {
     width: 14px; /* Comprimento da linha */
     height: 3px;
     background: #e0e0e0;
+    transition: background-color 0.3s ease; /* Add transition */
 }
 
-/* ======================================================= */
-/* === MUDANÇA: Primeira etapa com fundo verde e checkmark === */
-/* ======================================================= */
+/* First info-box specific styles (always "completed") */
 .info-box:first-child::before {
-    content: '\f00c'; /* Código do ícone de check do Font Awesome */
+    content: '\f00c'; /* Checkmark icon */
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     color: var(--color-light);
     font-size: 9px;
-    background-color: #25D366; /* Fundo verde de "concluído" */
-
-    /* Para centralizar o ícone dentro do círculo */
+    background-color: #25D366; /* Green background for "completed" */
     display: flex;
     align-items: center;
     justify-content: center;
 }
+.info-box:first-child::after {
+    background-color: #25D366;
+}
+
+/* Styles for clicked info-boxes (persistent green fill) */
+.info-box.clicked::before {
+    content: '\f00c'; /* Checkmark icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--color-light);
+    font-size: 9px;
+    background-color: #25D366; /* Green background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-box.clicked::after {
+    background-color: #25D366; /* Green connector line */
+}
+
+
+/* Hover effects for all info-boxes (temporary visual feedback) */
+.info-box:hover::before {
+    background-color: #25D366; /* Change circle to green on hover */
+    content: '\f00c'; /* Display checkmark on hover */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--color-light);
+    font-size: 9px;
+}
+
+.info-box:hover::after {
+    background-color: #25D366; /* Change connector line to green on hover */
+}
+
 
 .info-box h3 {
     margin: 0 0 8px 0;
@@ -818,6 +858,30 @@ footer {
 .modal-content .cta-button:hover {
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); /* Sombra mais forte no hover */
     transform: translateY(-3px); /* Efeito de elevação */
+}
+
+/* Keyframes for the pulsing animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        background-color: #25D366; /* Original color */
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.7);
+        background-color: #20b859; /* Slightly darker for pulse peak */
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        background-color: #25D366; /* Original color */
+    }
+}
+
+/* Apply pulsing animation when the class is added */
+.modal-content .cta-button.pulse-animation {
+    animation: pulse 1.2s infinite;
 }
 
 
@@ -862,7 +926,7 @@ footer {
     body {
         line-height: 1.5; /* Ajuste para telas menores */
     }
-    
+
     .container {
         padding: 0 15px;
     }
@@ -887,7 +951,7 @@ footer {
         left: 0;
         right: auto; /* Sobrescreve o alinhamento à direita do desktop */
     }
-    
+
     header {
         padding: 10px 0;
     }
@@ -921,7 +985,7 @@ footer {
         transition: right 0.4s ease-in-out;
         overflow-y: auto;
     }
-    
+
     nav#main-nav.active {
         right: 0;
     }
@@ -947,15 +1011,15 @@ footer {
         border-radius: 0;
         margin: 0;
     }
-    
+
     nav#main-nav li:first-child a {
         border-top: 1px solid #f0f0f0;
     }
-    
+
     header nav a::after {
         display: none;
     }
-    
+
     #menu-toggle.active .bar:nth-child(1) {
         transform: rotate(45deg) translate(8px, 8px);
     }
@@ -972,7 +1036,7 @@ footer {
     .details {
         padding: 20px;
     }
-    
+
     .logo {
         height: 45px;
     }

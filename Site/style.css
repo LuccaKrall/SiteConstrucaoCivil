@@ -432,8 +432,8 @@ h1 {
 .details .info {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; /* Permite quebrar a linha em telas pequenas */
-    gap: 10px; /* Espaçamento entre os itens se quebrar */
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+    gap: 10px; /* Spacing between items */
     padding: 15px 0;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
@@ -443,6 +443,29 @@ h1 {
 .details .info span {
     font-size: var(--font-size-body);
     color: #666;
+    display: flex;
+    align-items: center; /* Alinha o ícone e o texto verticalmente */
+    gap: 8px; /* Espaçamento entre o ícone e o texto */
+    background-color: var(--color-light); /* Fundo leve para cada span */
+    padding: 8px 12px;
+    border-radius: 6px;
+    flex: 1 1 auto; /* Permite que os itens cresçam e diminuam, ocupando espaço */
+    min-width: 120px; /* Garante que os itens não fiquem muito pequenos */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Sombra sutil para destacar */
+}
+
+/* Estilo para os ícones dentro do span */
+.details .info span i {
+    color: var(--color-accent-darker); /* Cor escura para os ícones */
+    font-size: 1rem; /* Tamanho do ícone */
+}
+
+/* Estilo para os valores importantes dentro do span */
+.details .info span strong {
+    color: var(--color-dark); /* Torna o valor mais escuro e proeminente */
+    font-weight: 700;
+    flex-grow: 1; /* Permite que o strong ocupe o espaço restante */
+    text-align: right; /* Alinha o valor à direita dentro do span */
 }
 
 /* --- NOVOS ESTILOS PARA OS BOTÕES DE AÇÃO --- */
@@ -1067,8 +1090,19 @@ footer {
 
     .details .info {
         flex-direction: column; /* Empilha as informações de área e preço */
-        align-items: flex-start;
-        gap: 8px;
+        align-items: flex-start; /* Mantém o alinhamento à esquerda para o span inteiro */
+        gap: 12px; /* Aumenta o espaçamento entre os itens empilhados */
+    }
+
+    .details .info span {
+        width: 100%; /* Faz com que cada item ocupe a largura total */
+        /* Centraliza o conteúdo dentro de cada span para que "Área: 150m²" fique centralizado */
+        justify-content: space-between; /* Mantém a distribuição do texto com o valor */
+        /* Não precisamos de text-align aqui, pois flexbox lida com isso */
+    }
+    /* Estiliza especificamente o strong para alinhar à direita dentro do span */
+    .details .info span strong {
+        text-align: right;
     }
 }
 
@@ -1108,4 +1142,3 @@ footer {
         font-size: 0.9rem; /* Ou até 0.7rem, dependendo da legibilidade */
     }
 }
-

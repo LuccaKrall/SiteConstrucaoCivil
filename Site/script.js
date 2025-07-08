@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
             button.addEventListener('click', function() {
                 const nomeTerreno = this.dataset.nome;
                 
-                modalTitle.textContent = nomeTerreno; // Sets the main modal title
+                modalTitle.textContent = "Três Passos para realizar o Sonho Da Casa Própria"; // Sets the main modal title
                 
                 // Update the content of the first info-box paragraph
                 infoBoxes[0].querySelector('p').innerHTML = `Parabéns! Você selecionou o <strong>"${nomeTerreno}"</strong>. Agora é só seguir os próximos passos para realizar seu sonho.`;

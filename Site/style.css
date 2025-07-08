@@ -1138,7 +1138,7 @@ footer {
 }
 @media (max-width: 480px) {
     .logo-container h4 {
-        /* Define um tamanho de fonte fixo ou ainda menor para telas muito pequenas */
+        
         font-size: 1.0rem; /* Ou até 0.7rem, dependendo da legibilidade */
     }
 }

@@ -1054,6 +1054,33 @@ footer {
     #menu-toggle.active .bar:nth-child(3) {
         transform: rotate(-45deg) translate(8px, -8px);
     }
+
+    /* New/Adjusted styles for modal on small screens */
+    .modal-content {
+        padding: 20px; /* Reduce padding for smaller screens */
+    }
+
+    .modal-title-text {
+        font-size: clamp(1.2rem, 6vw, 1.6rem); /* Adjust modal title font size */
+        margin-bottom: 20px;
+    }
+
+    .info-box {
+        padding: 18px; /* Slightly reduce info box padding */
+    }
+
+    .info-box h3 {
+        font-size: clamp(1rem, 4.5vw, 1.2rem); /* Adjust info box title font size */
+    }
+
+    .info-box p {
+        font-size: clamp(0.85rem, 4vw, 0.95rem); /* Adjust info box paragraph font size */
+    }
+
+    .modal-content .cta-button {
+        font-size: 0.95rem; /* Slightly smaller font for the CTA button in the modal */
+        padding: 12px 15px; /* Adjust padding for the CTA button */
+    }
 }
 
 /* Telas extra pequenas */
@@ -1080,6 +1107,33 @@ footer {
         background-color: var(--color-accent);
         color: var(--color-light);
     }
+
+    /* New/Adjusted styles for modal on very small screens */
+    .modal-content {
+        padding: 20px; /* Keep padding consistent with 768px breakpoint for clarity */
+    }
+
+    .modal-title-text {
+        font-size: clamp(1.2rem, 6vw, 1.6rem); /* Keep font size consistent */
+        margin-bottom: 20px;
+    }
+
+    .info-box {
+        padding: 18px; /* Keep padding consistent */
+    }
+
+    .info-box h3 {
+        font-size: clamp(1rem, 4.5vw, 1.2rem); /* Keep font size consistent */
+    }
+
+    .info-box p {
+        font-size: clamp(0.85rem, 4vw, 0.95rem); /* Keep font size consistent */
+    }
+
+    .modal-content .cta-button {
+        font-size: 0.95rem; /* Keep font size consistent */
+        padding: 12px 15px; /* Keep padding consistent */
+    }
 }
 
 /* Telas muito pequenas */
@@ -1103,6 +1157,41 @@ footer {
     /* Estiliza especificamente o strong para alinhar à direita dentro do span */
     .details .info span strong {
         text-align: right;
+    }
+
+    /* Further refine modal styles for very small screens */
+    .modal-content {
+        padding: 15px; /* Further reduce padding for very small screens */
+    }
+
+    .modal-info-container {
+        padding-left: 30px; /* Adjust left padding to keep the line visible */
+        gap: 20px; /* Slightly reduce gap between info boxes */
+    }
+
+    .info-box::before {
+        left: -25px; /* Adjust circle position */
+    }
+
+    .info-box::after {
+        left: -10px; /* Adjust line position */
+    }
+
+    .modal-title-text {
+        font-size: clamp(1rem, 5vw, 1.4rem); /* Smaller font for title on smallest screens */
+    }
+
+    .info-box h3 {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+    }
+
+    .info-box p {
+        font-size: clamp(0.8rem, 3.5vw, 0.9rem);
+    }
+    
+    .modal-content .cta-button {
+        font-size: 0.9rem; /* Even smaller font for button if needed */
+        padding: 10px 10px;
     }
 }
 

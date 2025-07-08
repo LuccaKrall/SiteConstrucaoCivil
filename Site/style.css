@@ -99,7 +99,8 @@ header .container {
     margin: 0;
     font-weight: 700;
     color: var(--color-dark);
-    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    /* Modified font-size for larger and responsive text */
+    font-size: clamp(1.4rem, 4vw, 1.8rem); /* Increased minimum, viewport, and maximum sizes */
 }
 
 header nav ul {
@@ -1101,3 +1102,10 @@ footer {
     opacity: 1;
     transform: scale(1.1);
 }
+@media (max-width: 480px) {
+    .logo-container h4 {
+        /* Define um tamanho de fonte fixo ou ainda menor para telas muito pequenas */
+        font-size: 0.9rem; /* Ou até 0.7rem, dependendo da legibilidade */
+    }
+}
+

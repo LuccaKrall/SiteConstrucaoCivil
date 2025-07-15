@@ -348,6 +348,17 @@ h1 {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
+/* Adicionando delay para a animação dos cards */
+.listing-card.animate__animated {
+    --animate-duration: 0.8s;
+}
+
+.listing-card.animate__animated:nth-child(2) { --animate-delay: 0.1s; }
+.listing-card.animate__animated:nth-child(3) { --animate-delay: 0.2s; }
+.listing-card.animate__animated:nth-child(4) { --animate-delay: 0.3s; }
+/* etc... */
+
+
 .details {
     padding: 25px;
     display: flex;
@@ -1050,7 +1061,8 @@ footer {
         border-radius: 0;
         box-shadow: -5px 5px 15px rgba(0,0,0,0.15);
         z-index: 1999;
-        transition: right 0.4s ease-in-out;
+        /* TRANSIÇÃO DO MENU ATUALIZADA */
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         overflow-y: auto;
     }
 
@@ -1150,6 +1162,12 @@ footer {
     .card-actions .details-button {
         background-color: var(--color-accent);
         color: var(--color-light);
+    }
+
+    /* PADDING DOS BOTÕES AUMENTADO */
+    .card-actions .cta-button,
+    .card-actions .details-button {
+        padding: 14px 20px;
     }
 
     .open-map-btn {
@@ -1268,4 +1286,18 @@ footer {
     background-color: #000;
     opacity: 1;
     transform: scale(1.1);
+}
+
+/* ============================================== */
+/* ===== MELHORIAS DE FEEDBACK DE TOQUE (:active) ===== */
+/* ============================================== */
+.cta-button:active,
+.details-button:active,
+.carousel-button:active,
+.open-map-btn:active,
+#menu-toggle:active,
+.modal-close:active,
+.region-dropdown-content button:active {
+    transform: scale(0.96);
+    transition: transform 0.1s ease;
 }

@@ -375,15 +375,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 mapModal.removeAttribute('hidden');
                 mapModal.classList.add('show');
                 document.body.style.overflow = 'hidden';
-
-                // ===============================================================
-                // AQUI ESTÁ A CORREÇÃO PRINCIPAL
-                // Substitua o e-mail pelo seu próprio e-mail ou um e-mail de contato do projeto.
+                
                 const userEmail = "luccasiniciati@gmail.com"; 
                 const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&email=${userEmail}`;
-                // ===============================================================
-
-                console.log("Enviando requisição para a API:", apiUrl);
 
                 setTimeout(() => {
                     fetch(apiUrl)
@@ -394,7 +388,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             return response.json();
                         })
                         .then(data => {
-                            console.log("Dados recebidos da API:", data);
                             if (data && data.length > 0) {
                                 const lat = data[0].lat;
                                 const lon = data[0].lon;
@@ -450,4 +443,32 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('scroll', positionButton);
     }
     setupVlirasHider();
+
+
+    // ==============================================================
+    // ===  NOVO: LÓGICA PARA ANIMAR ELEMENTOS AO ROLAR A PÁGINA   ====
+    // ==============================================================
+    const animatedElements = document.querySelectorAll('.listing-card');
+
+    if (animatedElements.length > 0) {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Se o elemento está intersectando (visível na tela)
+                if (entry.isIntersecting) {
+                    // Adiciona as classes de animação
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    // Para de observar o elemento para a animação não repetir
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1 // A animação começa quando 10% do elemento estiver visível
+        });
+
+        // Inicia a observação para cada card
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+
 });

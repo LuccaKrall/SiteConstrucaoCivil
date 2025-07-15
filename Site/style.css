@@ -337,6 +337,8 @@ h1 {
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Cards ficam invisíveis por padrão, antes da animação */
+    opacity: 0; 
 }
 
 .listing-card.hidden {
@@ -348,16 +350,11 @@ h1 {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Adicionando delay para a animação dos cards */
+/* Estilos para quando a animação é aplicada via JS */
 .listing-card.animate__animated {
-    --animate-duration: 0.8s;
+    opacity: 1; /* Torna o card visível quando a animação começa */
+    --animate-duration: 0.7s;
 }
-
-.listing-card.animate__animated:nth-child(2) { --animate-delay: 0.1s; }
-.listing-card.animate__animated:nth-child(3) { --animate-delay: 0.2s; }
-.listing-card.animate__animated:nth-child(4) { --animate-delay: 0.3s; }
-/* etc... */
-
 
 .details {
     padding: 25px;

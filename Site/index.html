@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
 </head>
 <body>
 
@@ -55,13 +58,19 @@
         <div id="filter-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
 
         <div class="listings-container">
-            <div class="listing-card" data-region="Mary Dota">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/Chacaras Sao Joao/06dad334-a0f9-429c-9077-d4424103507b.jpg" alt="Vista do terreno na Chácara São João" class="active">
+
+            <div class="listing-card" data-region="Mary Dota" data-address="Rua Padre Nobrega, 24-1, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/Chacaras Sao Joao/06dad334-a0f9-429c-9077-d4424103507b.jpg" alt="Vista do terreno na Chácara São João" class="active">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno na Chácara São João</h2>
@@ -81,15 +90,20 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Mary Dota">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/ISAURA PITTA GARMS/7fbfc899-a74c-4837-9bd4-0052b9ff49e2.jpg" alt="Foto 1 do Terreno em Isaura Pitta Garms" class="active">
-                        <img src="Terrenos/ISAURA PITTA GARMS/0695c115-12d6-485c-b752-fa9bf902396a.jpg" alt="Foto 2 do Terreno em Isaura Pitta Garms">
-                        <img src="Terrenos/ISAURA PITTA GARMS/2d73bb58-98f1-4af4-a7e2-83dad4a5a1b1.jpg" alt="Foto 3 do Terreno em Isaura Pitta Garms">
+            <div class="listing-card" data-region="Mary Dota" data-address="Rua Sargento José dos Santos, 1-1, Isaura Pitta Garms, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/ISAURA PITTA GARMS/7fbfc899-a74c-4837-9bd4-0052b9ff49e2.jpg" alt="Foto 1 do Terreno em Isaura Pitta Garms" class="active">
+                            <img src="Terrenos/ISAURA PITTA GARMS/0695c115-12d6-485c-b752-fa9bf902396a.jpg" alt="Foto 2 do Terreno em Isaura Pitta Garms">
+                            <img src="Terrenos/ISAURA PITTA GARMS/2d73bb58-98f1-4af4-a7e2-83dad4a5a1b1.jpg" alt="Foto 3 do Terreno em Isaura Pitta Garms">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno no Isaura Pitta Garms</h2>
@@ -109,15 +123,20 @@
                 </div>
             </div>
             
-            <div class="listing-card" data-region="Bela Vista">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/JARDIM PETRÓPOLIS/financie terreno e construção pela caixa economica federal, faça ja sua simulação.jpg" alt="Foto 1 do Terreno no Jardim Petrópolis" class="active">
-                        <img src="Terrenos/JARDIM PETRÓPOLIS/Imagem do WhatsApp de 2025-03-27 à(s) 13.04.19_1525a1a4.jpg" alt="Foto 2 do Terreno no Jardim Petrópolis">
-                        <img src="Terrenos/JARDIM PETRÓPOLIS/Imagem do WhatsApp de 2025-03-27 à(s) 13.04.19_86c744bf.jpg" alt="Foto 3 do Terreno no Jardim Petrópolis">
+            <div class="listing-card" data-region="Bela Vista" data-address="Rua Tuffy Anis, 12-110, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/JARDIM PETRÓPOLIS/financie terreno e construção pela caixa economica federal, faça ja sua simulação.jpg" alt="Foto 1 do Terreno no Jardim Petrópolis" class="active">
+                            <img src="Terrenos/JARDIM PETRÓPOLIS/Imagem do WhatsApp de 2025-03-27 à(s) 13.04.19_1525a1a4.jpg" alt="Foto 2 do Terreno no Jardim Petrópolis">
+                            <img src="Terrenos/JARDIM PETRÓPOLIS/Imagem do WhatsApp de 2025-03-27 à(s) 13.04.19_86c744bf.jpg" alt="Foto 3 do Terreno no Jardim Petrópolis">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno no Jardim Petrópolis</h2>
@@ -137,16 +156,21 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Vila Garcia">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/JARDIM TV/268dd464-6d0c-4df6-8fa9-5f3ea21d5a3b.jpg" alt="Foto 1 do Terreno no Jardim TV" class="active">
-                        <img src="Terrenos/JARDIM TV/8396007a-6eaf-4f2e-9183-27e312fa0392.jpg" alt="Foto 2 do Terreno no Jardim TV">
-                        <img src="Terrenos/JARDIM TV/dentro.jpg" alt="Foto 2 do Terreno no Jardim TV">
-                        <img src="Terrenos/JARDIM TV/d0729b38-1b68-4c02-81ee-b18e21c49f1b.jpg" alt="Foto 3 do Terreno no Jardim TV">
+            <div class="listing-card" data-region="Vila Garcia" data-address="Rua Lindolpho Silva Sobrinho, 1-1, Jardim TV, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/JARDIM TV/268dd464-6d0c-4df6-8fa9-5f3ea21d5a3b.jpg" alt="Foto 1 do Terreno no Jardim TV" class="active">
+                            <img src="Terrenos/JARDIM TV/8396007a-6eaf-4f2e-9183-27e312fa0392.jpg" alt="Foto 2 do Terreno no Jardim TV">
+                            <img src="Terrenos/JARDIM TV/dentro.jpg" alt="Foto 2 do Terreno no Jardim TV">
+                            <img src="Terrenos/JARDIM TV/d0729b38-1b68-4c02-81ee-b18e21c49f1b.jpg" alt="Foto 3 do Terreno no Jardim TV">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno no Jardim TV</h2>
@@ -166,16 +190,21 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Nova Esperança">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.47_7c867491.jpg" alt="Foto 1 do Terreno no Nova Esperança" class="active">
-                        <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.48_388e9451.jpg" alt="Foto 2 do Terreno no Nova Esperança">
-                        <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.51_e390a822.jpg" alt="Foto 3 do Terreno no Nova Esperança">
-                        <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.52_d85d4316.jpg" alt="Foto 4 do Terreno no Nova Esperança">
+            <div class="listing-card" data-region="Nova Esperança" data-address="Rua Lázaro Rodrigues, 8-1, Jardim Eldorado, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.47_7c867491.jpg" alt="Foto 1 do Terreno no Nova Esperança" class="active">
+                            <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.48_388e9451.jpg" alt="Foto 2 do Terreno no Nova Esperança">
+                            <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.51_e390a822.jpg" alt="Foto 3 do Terreno no Nova Esperança">
+                            <img src="Terrenos/NOVA ESPERANÇA/Imagem do WhatsApp de 2025-04-09 à(s) 15.03.52_d85d4316.jpg" alt="Foto 4 do Terreno no Nova Esperança">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno no Jardim Eldorado 2</h2>
@@ -195,16 +224,20 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Parque Paulista">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/ParquePaulista/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.54_35c8e816.jpg" alt="Vista do terreno na Chácara São João" class="active">
-                        <img src="Terrenos/ParquePaulista/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.55_37a0278e.jpg" alt="Vista do terreno na Chácara São João" class="active">
-                        <img src="Terrenos/ParquePaulista/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.55_750726f1.jpg" alt="Vista do terreno na Chácara São João" class="active">
-
+            <div class="listing-card" data-region="Parque Paulista" data-address="Supermercado Panelão, R. Benedito de Abreu, 1-55, Parque Paulista, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/ParquePaulista/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.54_35c8e816.jpg" alt="Vista do terreno no Parque Paulista" class="active">
+                            <img src="Terrenos/ParquePaulista/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.55_37a0278e.jpg" alt="Vista do terreno no Parque Paulista">
+                            <img src="Terrenos/ParquePaulista/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.55_750726f1.jpg" alt="Vista do terreno no Parque Paulista">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno Parque Paulista</h2>
@@ -216,24 +249,28 @@
                         <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>R$ 210.400,00</strong></span>
                     </div>
                     <div class="card-actions">
-                        <button class="cta-button" data-nome="Terreno Chacara Sao Joao" type="button">
+                        <button class="cta-button" data-nome="Terreno Parque Paulista" type="button">
                             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Faça Simulação
                         </button>
-                        <button class="details-button" data-nome="Terreno Chacara Sao Joao" type="button">Saber Mais</button>
+                        <button class="details-button" data-nome="Terreno Parque Paulista" type="button">Saber Mais</button>
                     </div>
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Ouro Verde">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/OuroVerde/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.39_34210503.jpg" alt="Vista do terreno na Chácara São João" class="active">
-                        <img src="Terrenos/OuroVerde/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.39_6d061d78.jpg" alt="Vista do terreno na Chácara São João" class="active">
-                        <img src="Terrenos/OuroVerde/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.39_c082708e.jpg" alt="Vista do terreno na Chácara São João" class="active">
-
+            <div class="listing-card" data-region="Ouro Verde" data-address="Rua Marcondes Salgado, 11-39, Chácara das Flores, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/OuroVerde/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.39_34210503.jpg" alt="Vista do terreno no Ouro Verde" class="active">
+                            <img src="Terrenos/OuroVerde/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.39_6d061d78.jpg" alt="Vista do terreno no Ouro Verde">
+                            <img src="Terrenos/OuroVerde/Imagem do WhatsApp de 2025-07-10 à(s) 19.08.39_c082708e.jpg" alt="Vista do terreno no Ouro Verde">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno Ouro Verde</h2>
@@ -245,23 +282,27 @@
                         <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>R$ 220.400,00</strong></span>
                     </div>
                     <div class="card-actions">
-                        <button class="cta-button" data-nome="Terreno Chacara Sao Joao" type="button">
+                        <button class="cta-button" data-nome="Terreno Ouro Verde" type="button">
                             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Faça Simulação
                         </button>
-                        <button class="details-button" data-nome="Terreno Chacara Sao Joao" type="button">Saber Mais</button>
+                        <button class="details-button" data-nome="Terreno Ouro Verde" type="button">Saber Mais</button>
                     </div>
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Mary Dota">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/JardimMendonca/Imagem do WhatsApp de 2025-07-10 à(s) 11.17.11_6ed88dcb.jpg" alt="Vista do terreno na Chácara São João" class="active">
-                        <img src="Terrenos/JardimMendonca/Imagem do WhatsApp de 2025-07-10 à(s) 11.17.11_9a95e3e7.jpg" alt="Vista do terreno na Chácara São João" class="active">
-
+            <div class="listing-card" data-region="Mary Dota" data-address="Rua Sargento José dos Santos, 14-1, Jardim Mendonça, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/JardimMendonca/Imagem do WhatsApp de 2025-07-10 à(s) 11.17.11_6ed88dcb.jpg" alt="Vista do terreno no Jardim Mendonça" class="active">
+                            <img src="Terrenos/JardimMendonca/Imagem do WhatsApp de 2025-07-10 à(s) 11.17.11_9a95e3e7.jpg" alt="Vista do terreno no Jardim Mendonça">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno Jardim Mendonça</h2>
@@ -273,24 +314,28 @@
                         <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>R$ 220.400,00</strong></span>
                     </div>
                     <div class="card-actions">
-                        <button class="cta-button" data-nome="Terreno Chacara Sao Joao" type="button">
+                        <button class="cta-button" data-nome="Terreno Jardim Mendonça" type="button">
                             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Faça Simulação
                         </button>
-                        <button class="details-button" data-nome="Terreno Chacara Sao Joao" type="button">Saber Mais</button>
+                        <button class="details-button" data-nome="Terreno Jardim Mendonça" type="button">Saber Mais</button>
                     </div>
                 </div>
             </div>
 
-
-            <div class="listing-card" data-region="Jardim Godoy">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_092cc1b7.jpg" alt="Foto 1 do Terreno no Parque Castelo" class="active">
-                        <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_38105bc4.jpg" alt="Foto 2 do Terreno no Parque Castelo">
-                        <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_a36c9ea6.jpg" alt="Foto 3 do Terreno no Parque Castelo">
+            <div class="listing-card" data-region="Jardim Godoy" data-address="Rua Luiz Bleriot, 12-50, Jardim Godoy, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_092cc1b7.jpg" alt="Foto 1 do Terreno no Parque Castelo" class="active">
+                            <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_38105bc4.jpg" alt="Foto 2 do Terreno no Parque Castelo">
+                            <img src="Terrenos/Parque Castelo/Imagem do WhatsApp de 2025-04-09 à(s) 14.31.26_a36c9ea6.jpg" alt="Foto 3 do Terreno no Parque Castelo">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno no Parque Castelo</h2>
@@ -310,15 +355,20 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Nova Esperança">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/PARQUE JARAGUÁ/Imagem do WhatsApp de 2025-03-27 à(s) 12.47.35_574cca35.jpg" alt="Foto 1 do Terreno no Parque Jaraguá" class="active">
-                        <img src="Terrenos/PARQUE JARAGUÁ/Imagem do WhatsApp de 2025-03-27 à(s) 12.47.35_74a058fa.jpg" alt="Foto 2 do Terreno no Parque Jaraguá">
-                        <img src="Terrenos/PARQUE JARAGUÁ/PRIMEIRA FOTO DO LOTE.jpg" alt="Foto 3 do Terreno no Parque Jaraguá">
+            <div class="listing-card" data-region="Nova Esperança" data-address="Rua Manoel Fradique, 6-1, Parque Jaraguá, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/PARQUE JARAGUÁ/Imagem do WhatsApp de 2025-03-27 à(s) 12.47.35_574cca35.jpg" alt="Foto 1 do Terreno no Parque Jaraguá" class="active">
+                            <img src="Terrenos/PARQUE JARAGUÁ/Imagem do WhatsApp de 2025-03-27 à(s) 12.47.35_74a058fa.jpg" alt="Foto 2 do Terreno no Parque Jaraguá">
+                            <img src="Terrenos/PARQUE JARAGUÁ/PRIMEIRA FOTO DO LOTE.jpg" alt="Foto 3 do Terreno no Parque Jaraguá">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno no Parque Jaraguá</h2>
@@ -338,15 +388,20 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Geisel">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/PARQUE TANGARAS/Imagem do WhatsApp de 2025-04-02 à(s) 10.34.17_ff85257d.jpg" alt="Foto 1 do Terreno no Parque Tangarás" class="active">
-                        <img src="Terrenos/PARQUE TANGARAS/PRIMEIRA IMAGEM.jpg" alt="Foto 2 do Terreno no Parque Tangarás">
-                        <img src="Terrenos/PARQUE TANGARAS/terreno a venda pq tangaras em bauru.jpg" alt="Foto 3 do Terreno no Parque Tangarás">
+            <div class="listing-card" data-region="Geisel" data-address="Rodovia Comandante João Ribeiro de Barros, km 225/226, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/PARQUE TANGARAS/Imagem do WhatsApp de 2025-04-02 à(s) 10.34.17_ff85257d.jpg" alt="Foto 1 do Terreno no Parque Tangarás" class="active">
+                            <img src="Terrenos/PARQUE TANGARAS/PRIMEIRA IMAGEM.jpg" alt="Foto 2 do Terreno no Parque Tangarás">
+                            <img src="Terrenos/PARQUE TANGARAS/terreno a venda pq tangaras em bauru.jpg" alt="Foto 3 do Terreno no Parque Tangarás">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno no Parque Tangarás</h2>
@@ -365,15 +420,21 @@
                     </div>
                 </div>
             </div>
-            <div class="listing-card" data-region="Mary Dota">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/Jardim Silvestre/Imagem do WhatsApp de 2025-07-14 à(s) 15.22.49_0b806f34.jpg" alt="Foto 1 do Terreno no Parque Tangarás" class="active">
-                        <img src="Terrenos/Jardim Silvestre/Imagem do WhatsApp de 2025-07-14 à(s) 15.22.49_19d5ec26.jpg" alt="Foto 1 do Terreno no Parque Tangarás" class="active">
-                        <img src="Terrenos/Jardim Silvestre/Imagem do WhatsApp de 2025-07-14 à(s) 15.22.48_cb693f3e.jpg" alt="Foto 1 do Terreno no Parque Tangarás" class="active">
+
+            <div class="listing-card" data-region="Mary Dota" data-address="Rua Hélio Senger, 2-1, Jardim Silvestre, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/Jardim Silvestre/Imagem do WhatsApp de 2025-07-14 à(s) 15.22.49_0b806f34.jpg" alt="Foto 1 do Terreno no Jardim Silvestre" class="active">
+                            <img src="Terrenos/Jardim Silvestre/Imagem do WhatsApp de 2025-07-14 à(s) 15.22.49_19d5ec26.jpg" alt="Foto 2 do Terreno no Jardim Silvestre">
+                            <img src="Terrenos/Jardim Silvestre/Imagem do WhatsApp de 2025-07-14 à(s) 15.22.48_cb693f3e.jpg" alt="Foto 3 do Terreno no Jardim Silvestre">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno no Jardim Silvestre</h2>
@@ -385,20 +446,26 @@
                         <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>R$ 220.400,00</strong></span>
                     </div>
                     <div class="card-actions">
-                        <button class="cta-button" data-nome="Terreno Parque Tangarás" type="button">
+                        <button class="cta-button" data-nome="Terreno Jardim Silvestre" type="button">
                             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Faça Simulação
                         </button>
-                        <button class="details-button" data-nome="Terreno Parque Tangarás" type="button">Saber Mais</button>
+                        <button class="details-button" data-nome="Terreno Jardim Silvestre" type="button">Saber Mais</button>
                     </div>
                 </div>
             </div>
-                        <div class="listing-card" data-region="Mary Dota">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/JARDIM OLIMPICO/Imagem do WhatsApp de 2025-07-14 à(s) 15.20.27_918543eb.jpg" alt="Foto 1 do Terreno no Parque Tangarás" class="active">
+
+            <div class="listing-card" data-region="Mary Dota" data-address="Rua Inocêncio Apoitia, 1-1, Jardim Olimpico, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/JARDIM OLIMPICO/Imagem do WhatsApp de 2025-07-14 à(s) 15.20.27_918543eb.jpg" alt="Foto 1 do Terreno no Jardim Olimpico" class="active">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno no Jardim Olimpico</h2>
@@ -410,22 +477,27 @@
                         <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>R$ 240.400,00</strong></span>
                     </div>
                     <div class="card-actions">
-                        <button class="cta-button" data-nome="Terreno Parque Tangarás" type="button">
+                        <button class="cta-button" data-nome="Terreno Jardim Olimpico" type="button">
                             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Faça Simulação
                         </button>
-                        <button class="details-button" data-nome="Terreno Parque Tangarás" type="button">Saber Mais</button>
+                        <button class="details-button" data-nome="Terreno Jardim Olimpico" type="button">Saber Mais</button>
                     </div>
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Vila Dutra">
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="Terrenos/VILA DUTRA/Borrada.jpg" alt="Foto 1 do Terreno na Vila Dutra" class="active">
-                        <img src="Terrenos/VILA DUTRA/IMG-20250411-WA0056.jpg" alt="Foto 2 do Terreno na Vila Dutra">
+            <div class="listing-card" data-region="Vila Dutra" data-address="Rua Luiz Alembert, 3-45, Vila Dutra, Bauru, SP">
+                <div class="visual-container">
+                    <div class="carousel">
+                        <div class="carousel-images">
+                            <img src="Terrenos/VILA DUTRA/Borrada.jpg" alt="Foto 1 do Terreno na Vila Dutra" class="active">
+                            <img src="Terrenos/VILA DUTRA/IMG-20250411-WA0056.jpg" alt="Foto 2 do Terreno na Vila Dutra">
+                        </div>
+                        <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                     </div>
-                    <button type="button" class="carousel-button prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                    <button type="button" class="carousel-button next" aria-label="Próxima imagem"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <button type="button" class="open-map-btn" aria-label="Ver no mapa">
+                        <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                    </button>
                 </div>
                 <div class="details">
                     <h2>Terreno na Vila Dutra</h2>
@@ -444,6 +516,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </main>
@@ -493,6 +566,14 @@
         <button id="modal-cta-button" class="cta-button" type="button" data-nome="">
             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Faça Simulação
         </button>
+    </div>
+</div>
+
+<div id="map-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="map-modal-title" hidden>
+    <div class="modal-content">
+        <button id="map-modal-close-btn" class="modal-close" type="button" aria-label="Fechar mapa">&times;</button>
+        <h2 id="map-modal-title" class="modal-title-text">Localização do Terreno</h2>
+        <div id="map-modal-container"></div>
     </div>
 </div>
 

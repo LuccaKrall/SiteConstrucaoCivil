@@ -99,8 +99,7 @@ header .container {
     margin: 0;
     font-weight: 700;
     color: var(--color-dark);
-    /* Modified font-size for larger and responsive text */
-    font-size: clamp(1.4rem, 4vw, 1.8rem); /* Increased minimum, viewport, and maximum sizes */
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
 }
 
 header nav ul {
@@ -166,7 +165,7 @@ h1 {
 }
 
 /* ============================================== */
-/* ===== ESTILOS DOS CONTROLES DE FILTRO V3.0 ===== */
+/* ===== ESTILOS DOS CONTROLES DE FILTRO ===== */
 /* ============================================== */
 .filter-controls {
     padding: 15px;
@@ -177,10 +176,10 @@ h1 {
 }
 
 .unified-search-container {
-    position: relative; /* Mantido para o dropdown */
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 8px; /* Espaçamento entre input e botão */
+    gap: 8px;
     width: 100%;
     background-color: #fcfcfc;
     border-radius: 10px;
@@ -209,15 +208,13 @@ h1 {
 }
 
 #unified-search-input {
-    flex: 1; /* Ocupa o espaço disponível */
+    flex: 1;
     padding: 12px 15px 12px 50px;
     border: none;
     border-radius: 10px;
     font-family: var(--font-family);
     font-size: 1rem;
     background-color: transparent;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     width: 100%;
 }
@@ -231,13 +228,12 @@ h1 {
     font-weight: 400;
 }
 
-/* Estilos atualizados para o botão de filtro */
 #region-filter-btn {
-    flex-shrink: 0; /* Impede que o botão seja esmagado */
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    align-self: stretch; /* Faz o botão esticar na altura do container */
+    align-self: stretch;
     padding: 0 18px;
     background: transparent;
     border: none;
@@ -260,29 +256,21 @@ h1 {
     transform: rotate(180deg);
 }
 
-/* * ==========================================================
- * ESTILOS APRIMORADOS PARA O DROPDOWN DE REGIÕES (INÍCIO)
- * ==========================================================
- */
 .region-dropdown-content {
     position: absolute;
-    top: calc(100% + 8px); /* Espaçamento abaixo da barra */
-    right: 0; /* Alinhado à direita para desktop */
-    width: 280px; /* Largura fixa para desktop */
+    top: calc(100% + 8px);
+    right: 0;
+    width: 280px;
     background-color: var(--color-light);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* Sombra mais suave */
-    border-radius: 10px; /* Bordas alinhadas com o container */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-radius: 10px;
     z-index: 10;
     border: 1px solid #e0e0e0;
-    overflow: hidden; /* Garante que os filhos respeitem o border-radius */
-
-    /* Animação de entrada */
+    overflow: hidden;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-5px);
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-
-    /* Para o caso de muitas regiões */
     max-height: 280px;
     overflow-y: auto;
 }
@@ -295,7 +283,7 @@ h1 {
 
 .region-dropdown-content button {
     color: var(--color-dark);
-    padding: 14px 20px; /* Mais espaçamento vertical */
+    padding: 14px 20px;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -303,7 +291,7 @@ h1 {
     text-align: left;
     background: none;
     border: none;
-    border-bottom: 1px solid #f0f0f0; /* Divisor sutil */
+    border-bottom: 1px solid #f0f0f0;
     cursor: pointer;
     font-family: var(--font-family);
     font-size: var(--font-size-small);
@@ -311,15 +299,14 @@ h1 {
 }
 
 .region-dropdown-content button:last-child {
-    border-bottom: none; /* Remove o divisor do último item */
+    border-bottom: none;
 }
 
 .region-dropdown-content button:hover {
-    background-color: #f5f5f5; /* Cor de hover um pouco mais escura */
+    background-color: #f5f5f5;
     color: var(--color-dark);
 }
 
-/* Estilo para o item focado com o teclado */
 .region-dropdown-content button:focus-visible {
     background-color: #f0f0f0;
     outline: 2px solid var(--color-accent);
@@ -327,17 +314,11 @@ h1 {
     color: var(--color-dark);
 }
 
-/* Estilo para a região atualmente selecionada */
 .region-dropdown-content button.active-region {
     color: var(--color-accent);
     font-weight: 600;
-    background-color: rgba(217, 169, 26, 0.08); /* Fundo sutil para o item ativo */
+    background-color: rgba(217, 169, 26, 0.08);
 }
-/* * ==========================================================
- * ESTILOS APRIMORADOS PARA O DROPDOWN DE REGIÕES (FIM)
- * ==========================================================
- */
-
 
 /* ============================================== */
 /* =========== CARDS DE TERRENOS ================ */
@@ -397,7 +378,7 @@ h1 {
 }
 
 .description-collapsed {
-    max-height: 4.8em; /* 3 linhas de 1.6em */
+    max-height: 4.8em;
     overflow: hidden;
 }
 
@@ -432,8 +413,8 @@ h1 {
 .details .info {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; /* Allows items to wrap to the next line */
-    gap: 10px; /* Spacing between items */
+    flex-wrap: wrap;
+    gap: 10px;
     padding: 15px 0;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
@@ -444,36 +425,33 @@ h1 {
     font-size: var(--font-size-body);
     color: #666;
     display: flex;
-    align-items: center; /* Alinha o ícone e o texto verticalmente */
-    gap: 8px; /* Espaçamento entre o ícone e o texto */
-    background-color: var(--color-light); /* Fundo leve para cada span */
+    align-items: center;
+    gap: 8px;
+    background-color: var(--color-light);
     padding: 8px 12px;
     border-radius: 6px;
-    flex: 1 1 auto; /* Permite que os itens cresçam e diminuam, ocupando espaço */
-    min-width: 120px; /* Garante que os itens não fiquem muito pequenos */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Sombra sutil para destacar */
+    flex: 1 1 auto;
+    min-width: 120px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-/* Estilo para os ícones dentro do span */
 .details .info span i {
-    color: var(--color-accent-darker); /* Cor escura para os ícones */
-    font-size: 1rem; /* Tamanho do ícone */
+    color: var(--color-accent-darker);
+    font-size: 1rem;
 }
 
-/* Estilo para os valores importantes dentro do span */
 .details .info span strong {
-    color: var(--color-dark); /* Torna o valor mais escuro e proeminente */
+    color: var(--color-dark);
     font-weight: 700;
-    flex-grow: 1; /* Permite que o strong ocupe o espaço restante */
-    text-align: right; /* Alinha o valor à direita dentro do span */
+    flex-grow: 1;
+    text-align: right;
 }
 
-/* --- NOVOS ESTILOS PARA OS BOTÕES DE AÇÃO --- */
 .card-actions {
     display: flex;
     gap: 10px;
     width: 100%;
-     margin-top: auto;
+    margin-top: auto;
 }
 
 .card-actions .cta-button,
@@ -525,15 +503,21 @@ h1 {
     box-shadow: 0 4px 15px rgba(217, 169, 26, 0.4);
 }
 
-
-/* ============================================== */
-/* =========== CARROSSEL DE IMAGENS ============== */
-/* ============================================== */
-.carousel {
+/* ================================================= */
+/* === ESTILOS FINAIS PARA CARROSSEL E BOTÃO MAPA ==== */
+/* ================================================= */
+.visual-container {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 10;
     background-color: #e9e9e9;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 .carousel-images {
@@ -572,6 +556,7 @@ h1 {
     justify-content: center;
     transition: background-color 0.3s ease;
     backdrop-filter: blur(2px);
+    z-index: 5;
 }
 
 .carousel-button:hover {
@@ -588,6 +573,32 @@ h1 {
 
 .carousel-button i {
     font-size: 0.9rem;
+}
+
+.open-map-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 6;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--color-dark);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+    font-size: 1.1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.open-map-btn:hover {
+    background-color: white;
+    transform: scale(1.1);
 }
 
 /* ============================================== */
@@ -610,7 +621,7 @@ footer {
 
 .footer-section {
     flex: 1;
-    min-width: 280px; /* Aumentado para melhor layout */
+    min-width: 280px;
     word-break: break-word;
 }
 
@@ -627,7 +638,7 @@ footer {
     color: #ccc;
     line-height: 1.7;
     display: flex;
-    align-items: flex-start; /* Alinha ícone e texto no topo */
+    align-items: flex-start;
     gap: 12px;
 }
 
@@ -650,8 +661,8 @@ footer {
     font-size: 1.1rem;
     width: 20px;
     text-align: center;
-    flex-shrink: 0; /* Impede que o ícone seja esmagado */
-    padding-top: 2px; /* Pequeno ajuste vertical */
+    flex-shrink: 0;
+    padding-top: 2px;
 }
 
 .footer-bottom {
@@ -673,7 +684,7 @@ footer {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 2000;
-    display: flex; /* Usando flex para centralizar o conteúdo */
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -698,8 +709,6 @@ footer {
     text-align: center;
     max-height: 90vh;
     overflow-y: auto;
-
-    /* Animação de entrada */
     transform: scale(0.9);
     transition: transform 0.3s ease;
 }
@@ -729,27 +738,25 @@ footer {
 .modal-title-text {
     font-size: var(--font-size-h2);
     color: var(--color-dark);
-    margin-bottom: 30px; /* Mais espaço */
+    margin-bottom: 30px;
     font-weight: 700;
 }
 
-/* --- ESTILOS DO MODAL "MAPA MENTAL" --- */
 .modal-info-container {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 25px; /* Aumenta o espaço vertical entre os retângulos */
+    gap: 25px;
     margin-bottom: 40px;
-    padding-left: 35px; /* Cria espaço para a linha e conectores */
+    padding-left: 35px;
 }
 
-/* Linha vertical principal do mapa mental */
 .modal-info-container::before {
     content: '';
     position: absolute;
     left: 10px;
-    top: 28px; /* Adjusted to align with circle vertical center */
-    bottom: 28px; /* Adjusted to align with circle vertical center */
+    top: 28px;
+    bottom: 28px;
     width: 3px;
     background: linear-gradient(to bottom,
         #25D366 0%,
@@ -758,7 +765,7 @@ footer {
         #e0e0e0 100%
     );
     border-radius: 3px;
-    transition: background 0.5s ease-out; /* Smooth transition for the gradient */
+    transition: background 0.5s ease-out;
 }
 
 .info-box {
@@ -766,7 +773,7 @@ footer {
     background-color: var(--color-light);
     border: 1px solid #eee;
     box-shadow: 0 5px 15px rgba(0,0,0,0.07);
-    padding: 25px; /* Mais espaço interno para os retângulos */
+    padding: 25px;
     border-radius: 12px;
     text-align: left;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -777,41 +784,38 @@ footer {
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
-/* Nó (círculo) na linha vertical - ESTILO PADRÃO */
 .info-box::before {
     content: '';
     position: absolute;
-    left: -28px; /* Posição do círculo no eixo X */
-    top: 28px;   /* Posição do círculo no eixo Y */
+    left: -28px;
+    top: 28px;
     width: 15px;
     height: 15px;
     background: var(--color-accent);
     border: 3px solid var(--color-light);
     border-radius: 50%;
     z-index: 1;
-    transition: background-color 0.3s ease, content 0.3s ease; /* Add transition */
+    transition: background-color 0.3s ease, content 0.3s ease;
 }
 
-/* Linha conectora do nó para a caixa */
 .info-box::after {
     content: '';
     position: absolute;
-    left: -13px; /* Início da linha */
-    top: 35px;   /* Alinhamento vertical da linha */
-    width: 14px; /* Comprimento da linha */
+    left: -13px;
+    top: 35px;
+    width: 14px;
     height: 3px;
     background: #e0e0e0;
-    transition: background-color 0.3s ease; /* Add transition */
+    transition: background-color 0.3s ease;
 }
 
-/* First info-box specific styles (always "completed") */
 .info-box:first-child::before {
-    content: '\f00c'; /* Checkmark icon */
+    content: '\f00c';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     color: var(--color-light);
     font-size: 9px;
-    background-color: #25D366; /* Green background for "completed" */
+    background-color: #25D366;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -820,28 +824,25 @@ footer {
     background-color: #25D366;
 }
 
-/* Styles for clicked info-boxes (persistent green fill) */
 .info-box.clicked::before {
-    content: '\f00c'; /* Checkmark icon */
+    content: '\f00c';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     color: var(--color-light);
     font-size: 9px;
-    background-color: #25D366; /* Green background */
+    background-color: #25D366;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .info-box.clicked::after {
-    background-color: #25D366; /* Green connector line */
+    background-color: #25D366;
 }
 
-
-/* Hover effects for all info-boxes (temporary visual feedback) */
 .info-box:hover::before {
-    background-color: #25D366; /* Change circle to green on hover */
-    content: '\f00c'; /* Display checkmark on hover */
+    background-color: #25D366;
+    content: '\f00c';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     color: var(--color-light);
@@ -849,9 +850,8 @@ footer {
 }
 
 .info-box:hover::after {
-    background-color: #25D366; /* Change connector line to green on hover */
+    background-color: #25D366;
 }
-
 
 .info-box h3 {
     margin: 0 0 8px 0;
@@ -866,9 +866,6 @@ footer {
     font-size: var(--font-size-small);
 }
 
-/* ======================================================= */
-/* ====== MUDANÇA: Estilização aprimorada para o botão no modal ====== */
-/* ======================================================= */
 .modal-content .cta-button {
     width: 100%;
     max-width: 350px;
@@ -881,32 +878,82 @@ footer {
 }
 
 .modal-content .cta-button:hover {
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); /* Sombra mais forte no hover */
-    transform: translateY(-3px); /* Efeito de elevação */
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    transform: translateY(-3px);
 }
 
-/* Keyframes for the pulsing animation */
 @keyframes pulse {
     0% {
         transform: scale(1);
         box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-        background-color: #25D366; /* Original color */
+        background-color: #25D366;
     }
     50% {
         transform: scale(1.03);
         box-shadow: 0 8px 25px rgba(37, 211, 102, 0.7);
-        background-color: #20b859; /* Slightly darker for pulse peak */
+        background-color: #20b859;
     }
     100% {
         transform: scale(1);
         box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-        background-color: #25D366; /* Original color */
+        background-color: #25D366;
     }
 }
 
-/* Apply pulsing animation when the class is added */
 .modal-content .cta-button.pulse-animation {
     animation: pulse 1.2s infinite;
+}
+
+/* ============================================== */
+/* ============= ESTILOS PARA O MODAL DO MAPA ===== */
+/* ============================================== */
+#map-modal .modal-content {
+    width: 95vw;
+    height: 90vh;
+    max-width: 1400px; /* Limite em telas muito grandes */
+    padding: 0;
+    overflow: hidden; /* Garante que o mapa não vaze */
+    position: relative;
+}
+
+#map-modal-container {
+    width: 100%;
+    height: 100%;
+    background-color: #e9e9e9; /* Fundo enquanto o mapa carrega */
+}
+
+#map-modal-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1001; /* Acima do mapa */
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--color-light);
+    padding: 10px 20px;
+    border-radius: 0 0 8px 0;
+    margin: 0;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    max-width: calc(100% - 80px); /* Para não colidir com o botão de fechar */
+}
+
+#map-modal-close-btn {
+    z-index: 1001; /* Acima do mapa */
+    color: var(--color-light);
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#map-modal-close-btn:hover {
+    color: var(--color-dark);
+    background-color: var(--color-light);
 }
 
 
@@ -934,22 +981,19 @@ footer {
     transition: all 0.3s ease-in-out;
 }
 
-/* Telas médias e pequenas (Tablets e celulares em modo paisagem) */
 @media (max-width: 992px) {
     .footer-content {
         gap: 30px;
     }
 }
 
-
-/* Telas pequenas (Celulares) */
 @media (max-width: 768px) {
     html {
-        scroll-padding-top: 70px; /* Altura do header fixo */
+        scroll-padding-top: 70px;
     }
 
     body {
-        line-height: 1.5; /* Ajuste para telas menores */
+        line-height: 1.5;
     }
 
     .container {
@@ -970,11 +1014,10 @@ footer {
         font-size: 0.9rem;
     }
 
-    /* AJUSTE RESPONSIVO PARA O DROPDOWN DE REGIÕES */
     .region-dropdown-content {
-        width: 100%; /* Ocupa a largura total em telas menores */
+        width: 100%;
         left: 0;
-        right: auto; /* Sobrescreve o alinhamento à direita do desktop */
+        right: auto;
     }
 
     header {
@@ -997,7 +1040,7 @@ footer {
 
     nav#main-nav {
         position: fixed;
-        top: 70px; /* Alinhado com a altura do header */
+        top: 70px;
         right: -100%;
         background-color: var(--color-light);
         width: 80%;
@@ -1055,35 +1098,33 @@ footer {
         transform: rotate(-45deg) translate(8px, -8px);
     }
 
-    /* New/Adjusted styles for modal on small screens */
     .modal-content {
-        padding: 20px; /* Reduce padding for smaller screens */
+        padding: 20px;
     }
 
     .modal-title-text {
-        font-size: clamp(1.2rem, 6vw, 1.6rem); /* Adjust modal title font size */
+        font-size: clamp(1.2rem, 6vw, 1.6rem);
         margin-bottom: 20px;
     }
 
     .info-box {
-        padding: 18px; /* Slightly reduce info box padding */
+        padding: 18px;
     }
 
     .info-box h3 {
-        font-size: clamp(1rem, 4.5vw, 1.2rem); /* Adjust info box title font size */
+        font-size: clamp(1rem, 4.5vw, 1.2rem);
     }
 
     .info-box p {
-        font-size: clamp(0.85rem, 4vw, 0.95rem); /* Adjust info box paragraph font size */
+        font-size: clamp(0.85rem, 4vw, 0.95rem);
     }
 
     .modal-content .cta-button {
-        font-size: 0.95rem; /* Slightly smaller font for the CTA button in the modal */
-        padding: 12px 15px; /* Adjust padding for the CTA button */
+        font-size: 0.95rem;
+        padding: 12px 15px;
     }
 }
 
-/* Telas extra pequenas */
 @media (max-width: 480px) {
     .details {
         padding: 20px;
@@ -1093,92 +1134,96 @@ footer {
         height: 45px;
     }
 
+    .logo-container h4 {
+        
+        font-size: 1.0rem;
+    }
+
     #region-filter-btn {
         padding: 0 12px;
     }
 
-    /* Empilha os botões de ação verticalmente e inverte a ordem */
     .card-actions {
-        flex-direction: column-reverse; /* Inverte a ordem: "Saber Mais" vem primeiro */
+        flex-direction: column-reverse;
     }
 
-    /* Deixa o botão "Saber Mais" com o estilo de destaque no mobile */
     .card-actions .details-button {
         background-color: var(--color-accent);
         color: var(--color-light);
     }
 
-    /* New/Adjusted styles for modal on very small screens */
+    .open-map-btn {
+        top: 5px;
+        right: 5px;
+        width: 35px;
+        height: 35px;
+    }
+
     .modal-content {
-        padding: 20px; /* Keep padding consistent with 768px breakpoint for clarity */
+        padding: 20px;
     }
 
     .modal-title-text {
-        font-size: clamp(1.2rem, 6vw, 1.6rem); /* Keep font size consistent */
+        font-size: clamp(1.2rem, 6vw, 1.6rem);
         margin-bottom: 20px;
     }
 
     .info-box {
-        padding: 18px; /* Keep padding consistent */
+        padding: 18px;
     }
 
     .info-box h3 {
-        font-size: clamp(1rem, 4.5vw, 1.2rem); /* Keep font size consistent */
+        font-size: clamp(1rem, 4.5vw, 1.2rem);
     }
 
     .info-box p {
-        font-size: clamp(0.85rem, 4vw, 0.95rem); /* Keep font size consistent */
+        font-size: clamp(0.85rem, 4vw, 0.95rem);
     }
 
     .modal-content .cta-button {
-        font-size: 0.95rem; /* Keep font size consistent */
-        padding: 12px 15px; /* Keep padding consistent */
+        font-size: 0.95rem;
+        padding: 12px 15px;
     }
 }
 
-/* Telas muito pequenas */
 @media (max-width: 360px) {
      .logo-container h4 {
-        display: none; /* Oculta o texto para ganhar espaço */
+        display: none;
     }
 
     .details .info {
-        flex-direction: column; /* Empilha as informações de área e preço */
-        align-items: flex-start; /* Mantém o alinhamento à esquerda para o span inteiro */
-        gap: 12px; /* Aumenta o espaçamento entre os itens empilhados */
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
     }
 
     .details .info span {
-        width: 100%; /* Faz com que cada item ocupe a largura total */
-        /* Centraliza o conteúdo dentro de cada span para que "Área: 150m²" fique centralizado */
-        justify-content: space-between; /* Mantém a distribuição do texto com o valor */
-        /* Não precisamos de text-align aqui, pois flexbox lida com isso */
+        width: 100%;
+        justify-content: space-between;
     }
-    /* Estiliza especificamente o strong para alinhar à direita dentro do span */
     .details .info span strong {
         text-align: right;
     }
 
-    /* Further refine modal styles for very small screens */
     .modal-content {
-        padding: 15px; /* Further reduce padding for very small screens */
+        padding: 15px;
     }
 
     .modal-info-container {
-        padding-left: 30px; /* Adjust left padding to keep the line visible */
-        gap: 20px; /* Slightly reduce gap between info boxes */
+        padding-left: 30px;
+        gap: 20px;
     }
 
     .info-box::before {
-        left: -25px; /* Adjust circle position */
+        left: -25px;
     }
 
     .info-box::after {
-        left: -10px; /* Adjust line position */
+        left: -10px;
     }
 
     .modal-title-text {
-        font-size: clamp(1rem, 5vw, 1.4rem); /* Smaller font for title on smallest screens */
+        font-size: clamp(1rem, 5vw, 1.4rem);
     }
 
     .info-box h3 {
@@ -1190,11 +1235,10 @@ footer {
     }
     
     .modal-content .cta-button {
-        font-size: 0.9rem; /* Even smaller font for button if needed */
+        font-size: 0.9rem;
         padding: 10px 10px;
     }
 }
-
 
 /* ============================================== */
 /* ===== ESTILOS PARA O BOTÃO DE OCULTAR VLIBRAS ===== */
@@ -1214,7 +1258,7 @@ footer {
     line-height: 22px;
     text-align: center;
     box-shadow: 0 1px 3px rgba(0,0,0,0.4);
-    z-index: 2147483647; /* Z-index MUITO alto para garantir que fique na frente */
+    z-index: 2147483647;
     transition: all 0.2s ease;
     padding: 0;
     opacity: 0.7;
@@ -1224,10 +1268,4 @@ footer {
     background-color: #000;
     opacity: 1;
     transform: scale(1.1);
-}
-@media (max-width: 480px) {
-    .logo-container h4 {
-        
-        font-size: 1.0rem; /* Ou até 0.7rem, dependendo da legibilidade */
-    }
 }

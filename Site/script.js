@@ -54,14 +54,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const shortPlaceholder = "Pesquisar ou filtrar por região";
 
     function adjustPlaceholder() {
-        if (window.innerWidth <= 500) {
+        if (searchInput && window.innerWidth <= 500) {
             searchInput.placeholder = shortPlaceholder;
-        } else {
+        } else if (searchInput) {
             searchInput.placeholder = originalPlaceholder;
         }
     }
     
     function populateRegionDropdown() {
+        if (!regionDropdown) return;
         const regions = new Set();
         listingCards.forEach(card => {
             if (card.dataset.region) {
@@ -86,14 +87,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function applyFilters() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
+        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
         let visibleCount = 0;
 
         listingCards.forEach(card => {
             const cardRegion = card.dataset.region ? card.dataset.region.toLowerCase() : '';
             const regionMatch = (currentRegion === 'all' || cardRegion === currentRegion);
-
-            const cardDescription = card.querySelector('.description').textContent.toLowerCase();
+            const cardDescription = card.querySelector('.description')?.textContent.toLowerCase() || '';
             const searchMatch = cardDescription.includes(searchTerm);
 
             if (regionMatch && searchMatch) {
@@ -111,21 +111,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function resetFiltersAndSearch(event) {
         if(event) event.preventDefault();
-        searchInput.value = '';
+        if (searchInput) searchInput.value = '';
         currentRegion = 'all';
         applyFilters();
         
-        regionDropdown.querySelectorAll('button').forEach(btn => {
-            btn.classList.remove('active-region');
-        });
-        const allRegionsBtn = regionDropdown.querySelector('button[data-region="all"]');
-        if (allRegionsBtn) {
-            allRegionsBtn.classList.add('active-region');
-        }
+        if (regionDropdown) {
+            regionDropdown.querySelectorAll('button').forEach(btn => {
+                btn.classList.remove('active-region');
+            });
+            const allRegionsBtn = regionDropdown.querySelector('button[data-region="all"]');
+            if (allRegionsBtn) {
+                allRegionsBtn.classList.add('active-region');
+            }
 
-        if (regionDropdown.classList.contains('show')) {
-            regionDropdown.classList.remove('show');
-            regionFilterBtn.setAttribute('aria-expanded', 'false');
+            if (regionDropdown.classList.contains('show')) {
+                regionDropdown.classList.remove('show');
+                if (regionFilterBtn) regionFilterBtn.setAttribute('aria-expanded', 'false');
+            }
         }
     }
 
@@ -161,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         window.addEventListener('click', (e) => {
-            if (!regionFilterBtn.contains(e.target) && !regionDropdown.contains(e.target)) {
+            if (regionFilterBtn && !regionFilterBtn.contains(e.target) && !regionDropdown.contains(e.target)) {
                 if (regionDropdown.classList.contains('show')) {
                     regionDropdown.classList.remove('show');
                     regionFilterBtn.setAttribute('aria-expanded', 'false');
@@ -223,12 +225,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        prevButton.addEventListener('click', () => {
+        prevButton?.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + images.length) % images.length;
             showImage(currentIndex);
         });
 
-        nextButton.addEventListener('click', () => {
+        nextButton?.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % images.length;
             showImage(currentIndex);
         });
@@ -236,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showImage(currentIndex);
     });
     
-    // --- FUNÇÃO CENTRALIZADA PARA ABRIR WHATSAPP (VERSÃO ATUALIZADA) ---
+    // --- FUNÇÃO CENTRALIZADA PARA ABRIR WHATSAPP ---
     function openWhatsAppSimulation(nomeTerreno) {
         const urlParams = new URLSearchParams(window.location.search);
         const numeroDoVendedor = urlParams.get('vendedor');
@@ -248,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- LÓGICA PARA O BOTÃO "Faça Simulação" (WHATSAPP) NOS CARDS ---
-    document.querySelectorAll('.cta-button').forEach(button => {
+    document.querySelectorAll('.card-actions .cta-button').forEach(button => {
         button.addEventListener('click', function() {
             const nomeTerreno = this.dataset.nome;
             openWhatsAppSimulation(nomeTerreno);
@@ -256,59 +258,46 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==============================================================
-    // ===  LÓGICA ATUALIZADA PARA O MODAL "SABER MAIS" ===
+    // ===  LÓGICA DO MODAL "SABER MAIS" (VERSÃO COMPLETA RESTAURADA) ===
     // ==============================================================
-    const modal = document.getElementById('saber-mais-modal');
-    if (modal) {
+    const saberMaisModal = document.getElementById('saber-mais-modal');
+    if (saberMaisModal) {
         const modalTitle = document.getElementById('modal-title');
         const modalCtaButton = document.getElementById('modal-cta-button');
         const closeModalBtn = document.getElementById('modal-close-btn');
-        const infoBoxes = modal.querySelectorAll('.modal-info-container .info-box'); // Get all info boxes
-        const modalInfoContainer = modal.querySelector('.modal-info-container'); // Get the container for the line fill
+        const infoBoxes = saberMaisModal.querySelectorAll('.modal-info-container .info-box');
 
-        // Reset modal state when opened
         document.querySelectorAll('.details-button').forEach(button => {
             button.addEventListener('click', function() {
                 const nomeTerreno = this.dataset.nome;
                 
-                modalTitle.textContent = "Três Passos para realizar o Sonho Da Casa Própria"; // Sets the main modal title
+                modalTitle.textContent = "Três Passos para realizar o Sonho Da Casa Própria";
                 
-                // Update the content of the first info-box paragraph
                 infoBoxes[0].querySelector('p').innerHTML = `Parabéns! Você selecionou o <strong>"${nomeTerreno}"</strong>. Agora é só seguir os próximos passos para realizar seu sonho.`;
                 
                 modalCtaButton.dataset.nome = nomeTerreno;
 
-                // Reset all info-boxes and button animation
+                // Reseta o estado do modal ao abrir
                 infoBoxes.forEach(box => box.classList.remove('clicked'));
                 modalCtaButton.classList.remove('pulse-animation');
-                modalCtaButton.style.backgroundColor = ''; // Reset to default green
-                document.documentElement.style.setProperty('--line-fill-percentage', '0%'); // Reset line fill
+                document.documentElement.style.setProperty('--line-fill-percentage', '0%');
 
-                modal.removeAttribute('hidden');
-                modal.classList.add('show');
+                saberMaisModal.removeAttribute('hidden');
+                saberMaisModal.classList.add('show');
                 document.body.style.overflow = 'hidden';
             });
         });
 
         infoBoxes.forEach((box, index) => {
             box.addEventListener('click', () => {
-                // Add 'clicked' class to the current box
                 box.classList.add('clicked');
 
-                // Calculate fill percentage based on clicked boxes
-                const totalBoxes = infoBoxes.length;
-                const clickedBoxesCount = modal.querySelectorAll('.info-box.clicked').length;
-                let fillPercentage = (clickedBoxesCount / totalBoxes) * 100;
-                
-                // Ensure the line fills up to the middle of the last clicked box
-                // Each step effectively represents a third of the total line length
-                if (index === 0) fillPercentage = 0; // First step is just a starting point, no actual fill needed yet from it
-                else if (index === 1) fillPercentage = 50; // Fill to half for the second step
-                else if (index === 2) fillPercentage = 100; // Fill completely for the third step
+                let fillPercentage = 0;
+                if (index === 1) fillPercentage = 50;
+                else if (index === 2) fillPercentage = 100;
 
                 document.documentElement.style.setProperty('--line-fill-percentage', `${fillPercentage}%`);
 
-                // If the third step is clicked, trigger button animation
                 if (index === 2) {
                     modalCtaButton.classList.add('pulse-animation');
                 } else {
@@ -317,73 +306,148 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-
         function closeModal() {
-            modal.classList.remove('show');
+            saberMaisModal.classList.remove('show');
             document.body.style.overflow = '';
             setTimeout(() => {
-                modal.setAttribute('hidden', 'true');
+                saberMaisModal.setAttribute('hidden', 'true');
             }, 300);
         }
 
         closeModalBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
+        saberMaisModal.addEventListener('click', function(e) {
+            if (e.target === saberMaisModal) {
                 closeModal();
             }
         });
         window.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('show')) {
+            if (e.key === 'Escape' && saberMaisModal.classList.contains('show')) {
                 closeModal();
             }
         });
 
-        // Ação do botão de simulação DENTRO do modal
+        // Ação do botão de simulação DENTRO do modal "Saber Mais"
         modalCtaButton.addEventListener('click', function() {
             const nomeTerreno = this.dataset.nome;
             openWhatsAppSimulation(nomeTerreno);
         });
+    }
+    
+    // ========================================================================
+    // === LÓGICA PARA O MODAL DO MAPA (COM CORREÇÃO DE CORS) ===============
+    // ========================================================================
+    const mapModal = document.getElementById('map-modal');
+    const mapModalContainer = document.getElementById('map-modal-container');
+    const mapModalTitle = document.getElementById('map-modal-title');
+    const closeMapBtn = document.getElementById('map-modal-close-btn');
+    let mapInstance = null;
+
+    const closeMapModal = () => {
+        if (!mapModal) return;
+        mapModal.classList.remove('show');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            mapModal.setAttribute('hidden', 'true');
+            if (mapInstance) {
+                mapInstance.remove();
+                mapInstance = null;
+            }
+            if (mapModalContainer) mapModalContainer.innerHTML = '';
+        }, 300);
+    };
+
+    if (mapModal && mapModalContainer && mapModalTitle && closeMapBtn) {
+        document.querySelectorAll('.open-map-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.listing-card');
+                if (!card) return;
+
+                const address = card.dataset.address;
+                const title = card.querySelector('h2').textContent;
+
+                if (!address) {
+                    alert('Endereço não disponível para este terreno.');
+                    return;
+                }
+
+                mapModalTitle.textContent = title;
+                mapModalContainer.innerHTML = '<p style="text-align:center; padding-top: 45vh; font-size: 1.2rem; color: #666;">Buscando localização...</p>';
+                mapModal.removeAttribute('hidden');
+                mapModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+
+                // ===============================================================
+                // AQUI ESTÁ A CORREÇÃO PRINCIPAL
+                // Substitua o e-mail pelo seu próprio e-mail ou um e-mail de contato do projeto.
+                const userEmail = "luccasiniciati@gmail.com"; 
+                const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&email=${userEmail}`;
+                // ===============================================================
+
+                console.log("Enviando requisição para a API:", apiUrl);
+
+                setTimeout(() => {
+                    fetch(apiUrl)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`Erro de rede: ${response.statusText} (Status: ${response.status})`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log("Dados recebidos da API:", data);
+                            if (data && data.length > 0) {
+                                const lat = data[0].lat;
+                                const lon = data[0].lon;
+                                const location = [lat, lon];
+                                
+                                mapModalContainer.innerHTML = '';
+
+                                mapInstance = L.map('map-modal-container', {
+                                    scrollWheelZoom: true
+                                }).setView(location, 16);
+
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                }).addTo(mapInstance);
+
+                                L.marker(location).addTo(mapInstance)
+                                    .bindPopup(title)
+                                    .openPopup();
+                            } else {
+                                mapModalContainer.innerHTML = '<p style="text-align:center; padding-top: 45vh; font-size: 1.2rem; color: #d9534f;">Endereço não encontrado no mapa.</p>';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Falha na requisição fetch:', error);
+                            mapModalContainer.innerHTML = '<p style="text-align:center; padding-top: 45vh; font-size: 1.2rem; color: #d9534f;">Erro ao carregar o mapa. Verifique o console para detalhes.</p>';
+                        });
+                }, 150);
+            });
+        });
+
+        closeMapBtn.addEventListener('click', closeMapModal);
+        mapModal.addEventListener('click', e => e.target === mapModal && closeMapModal());
+        window.addEventListener('keydown', e => e.key === 'Escape' && mapModal.classList.contains('show') && closeMapModal());
     }
 
     // --- CÓDIGO PARA ADICIONAR BOTÃO DE OCULTAR AO VLIBRAS ---
     function setupVlirasHider() {
         const vlibrasWidgetContainer = document.querySelector('div[vw]');
         const vlibrasAccessButton = document.querySelector('div[vw-access-button]');
-
-        if (!vlibrasWidgetContainer || !vlibrasAccessButton) {
-            setTimeout(setupVlirasHider, 500);
-            return;
-        }
-        
+        if (!vlibrasWidgetContainer || !vlibrasAccessButton) { setTimeout(setupVlirasHider, 500); return; }
         if (document.getElementById('vlibras-hide-btn')) return;
-
         const hideButton = document.createElement('button');
         hideButton.id = 'vlibras-hide-btn';
         hideButton.innerHTML = '&times;';
         hideButton.title = 'Ocultar atalho de acessibilidade';
         hideButton.setAttribute('aria-label', 'Ocultar atalho de acessibilidade');
         document.body.appendChild(hideButton);
-
-        const positionButton = () => {
-            const rect = vlibrasAccessButton.getBoundingClientRect();
-            hideButton.style.top = `${rect.top - 6}px`;
-            hideButton.style.left = `${rect.left + rect.width - 18}px`;
-        };
-        
+        const positionButton = () => { if (!vlibrasAccessButton.getBoundingClientRect) return; const rect = vlibrasAccessButton.getBoundingClientRect(); hideButton.style.top = `${rect.top - 6}px`; hideButton.style.left = `${rect.left + rect.width - 18}px`; };
         positionButton();
-
-        hideButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            vlibrasWidgetContainer.style.display = 'none';
-            hideButton.style.display = 'none';
-        });
-        
-        const observer = new MutationObserver(positionButton);
-        observer.observe(vlibrasAccessButton, { attributes: true, attributeFilter: ['style'] });
-
+        hideButton.addEventListener('click', (e) => { e.stopPropagation(); vlibrasWidgetContainer.style.display = 'none'; hideButton.style.display = 'none'; });
+        new MutationObserver(positionButton).observe(vlibrasAccessButton, { attributes: true, attributeFilter: ['style'] });
         window.addEventListener('resize', positionButton);
         window.addEventListener('scroll', positionButton);
     }
-    
     setupVlirasHider();
 });

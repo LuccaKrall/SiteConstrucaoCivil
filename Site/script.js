@@ -471,4 +471,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+
+    // ==============================================================
+    // ===  NOVO: LÓGICA PARA O BOTÃO FLUTUANTE DO WHATSAPP      ====
+    // ==============================================================
+    const floatingContainer = document.getElementById('floating-whatsapp-container');
+    const floatingBtn = document.getElementById('floating-whatsapp-btn');
+    const closeFloatingBtn = document.getElementById('close-floating-btn');
+
+    if (floatingContainer && floatingBtn && closeFloatingBtn) {
+        // Ação para o botão flutuante principal
+        floatingBtn.addEventListener('click', function() {
+            // Reutiliza a função já existente, mas com uma mensagem genérica
+            const numeroPadrao = '5514997456960';
+            const mensagem = encodeURIComponent('Olá! Visitei o site e gostaria de mais informações sobre os terrenos.');
+            const whatsappURL = `https://wa.me/${numeroPadrao}?text=${mensagem}`;
+            window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+        });
+
+        // Ação para o botão de fechar
+        closeFloatingBtn.addEventListener('click', function(event) {
+            event.stopPropagation(); // Impede que o clique no 'x' acione o botão principal
+            floatingContainer.classList.add('hidden');
+        });
+    }
+
 });

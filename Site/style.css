@@ -1298,3 +1298,95 @@ footer {
     transform: scale(0.96);
     transition: transform 0.1s ease;
 }
+
+/* ============================================== */
+/* ===== ESTILOS PARA O BOTÃO FLUTUANTE DE WHATSAPP ===== */
+/* ============================================== */
+#floating-whatsapp-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1050;
+    display: flex;
+    align-items: flex-start; /* Alinha o 'x' no topo */
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+#floating-whatsapp-btn {
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#floating-whatsapp-btn:hover {
+    transform: scale(1.1);
+    background-color: #128C7E;
+}
+
+#floating-whatsapp-btn i {
+    font-size: 2rem;
+}
+
+#close-floating-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #333;
+    color: white;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 22px;
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#close-floating-btn:hover {
+    transform: scale(1.15);
+    background-color: #c0392b;
+}
+
+/* Animação para esconder o botão */
+#floating-whatsapp-container.hidden {
+    transform: scale(0);
+    opacity: 0;
+}
+
+
+/* Ajustes de responsividade para o botão flutuante */
+@media (max-width: 480px) {
+    #floating-whatsapp-container {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    #floating-whatsapp-btn {
+        width: 55px;
+        height: 55px;
+    }
+
+    #floating-whatsapp-btn i {
+        font-size: 1.8rem;
+    }
+
+    #close-floating-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 1.1rem;
+        line-height: 20px;
+    }
+}

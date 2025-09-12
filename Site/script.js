@@ -5,6 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     window.scrollTo(0, 0);
 
+// Adicione esta lista no início do arquivo, após o DOMContentLoaded
+const vendedoresAutorizados = [
+    '5514999999999', // Exemplo - substitua pelos números reais
+    '5514888888888',
+    '5514777777777'
+    // Adicione outros números autorizados aqui
+];
+
+
+
+
+
     // --- LÓGICA "VER MAIS" / "VER MENOS" PARA AS DESCRIÇÕES ---
     const listingCardsForDesc = document.querySelectorAll('.listing-card');
     listingCardsForDesc.forEach((card, index) => {
@@ -239,15 +251,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // --- FUNÇÃO CENTRALIZADA PARA ABRIR WHATSAPP ---
-    function openWhatsAppSimulation(nomeTerreno) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const numeroDoVendedor = urlParams.get('vendedor');
-        const numeroPadrao = '5514997456960';
-        const numeroWhatsApp = numeroDoVendedor || numeroPadrao;
-        const mensagem = encodeURIComponent(`Olá! Gostaria de fazer uma simulação para o terreno: "${nomeTerreno}". Poderia me dar mais informações?`);
-        const whatsappURL = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
-        window.open(whatsappURL, '_blank', 'noopener,noreferrer');
-    }
+function openWhatsAppSimulation(nomeTerreno) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const numeroDoVendedor = urlParams.get('vendedor');
+    const numeroPadrao = '5514997456960';
+    
+    // Verificar se o número está na lista de autorizados
+    const numeroWhatsApp = (numeroDoVendedor && vendedoresAutorizados.includes(numeroDoVendedor)) 
+        ? numeroDoVendedor 
+        : numeroPadrao;
+        
+    const mensagem = encodeURIComponent(`Olá! Gostaria de fazer uma simulação para o terreno: "${nomeTerreno}". Poderia me dar mais informações?`);
+    const whatsappURL = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+    window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+}
 
     // --- LÓGICA PARA O BOTÃO "Faça Simulação" (WHATSAPP) NOS CARDS ---
     document.querySelectorAll('.card-actions .cta-button').forEach(button => {

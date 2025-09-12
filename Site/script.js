@@ -7,9 +7,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Adicione esta lista no início do arquivo, após o DOMContentLoaded
 const vendedoresAutorizados = [
-    '5514999999999', // Exemplo - substitua pelos números reais
-    '5514888888888',
-    '5514777777777'
+    '5514998001303', //Lucca Krall
+    '5514996097357', //Roberto
+    '5514998110015', //Ana
+    '5514997313826', //Gabriel
+    '5514998133326', //Miliane
+    '5514997456960', //Vanessa
+
     // Adicione outros números autorizados aqui
 ];
 

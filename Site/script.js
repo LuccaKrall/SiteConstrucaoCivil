@@ -13,6 +13,7 @@ const vendedoresAutorizados = [
     '5514997313826', //Gabriel
     '5514998133326', //Miliane
     '5514997456960', //Vanessa
+    '554891832051'//Luiza
 
     // Adicione outros números autorizados aqui
 ];

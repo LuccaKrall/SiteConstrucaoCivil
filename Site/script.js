@@ -517,5 +517,40 @@ function openWhatsAppSimulation(nomeTerreno) {
             floatingContainer.classList.add('hidden');
         });
     }
+// =================================================================
+    // === NOVO: LÓGICA PARA ATIVAR DESCRIÇÃO EXTRA VIA URL (?desc)  ===
+    // =================================================================
+    
+    // Função para pedir a senha e mostrar as descrições
+    function ativarModoAdmin() {
+        // =================================================
+        // ===   TROQUE 'SENHA123' PELA SUA SENHA REAL   ====
+        // =================================================
+        const senhaCorreta = 'SENHA123'; 
 
+        const senhaDigitada = prompt('Por favor, digite a senha de administrador:');
+
+        if (senhaDigitada === senhaCorreta) {
+            const descricoesExtras = document.querySelectorAll('.descricao-extra');
+            let reveladas = 0;
+            descricoesExtras.forEach(function(descricao) {
+                descricao.style.display = 'block';
+                reveladas++;
+            });
+            
+            if (reveladas > 0) {
+                alert('Senha correta! ' + reveladas + ' descrições extras foram reveladas.');
+            } else {
+                alert('Senha correta, mas nenhuma descrição extra foi encontrada para exibir.');
+            }
+        } else if (senhaDigitada !== null) {
+            alert('Senha incorreta. Acesso negado.');
+        }
+    }
+
+    // Verifica se a URL contém o parâmetro '?desc' assim que a página carrega
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('desc')) {
+        ativarModoAdmin();
+    }
 });

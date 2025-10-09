@@ -218,7 +218,22 @@ h1 {
     appearance: none;
     width: 100%;
 }
+.descricao-extra {
+    background-color: #f8f9fa; /* Um fundo cinza bem claro para destacar */
+    border-left: 5px solid #0056b3; /* Uma borda colorida à esquerda para chamar a atenção */
+    padding: 15px; /* Espaçamento interno para o texto não ficar colado nas bordas */
+    margin-top: 15px; /* Espaço acima para separar do conteúdo anterior */
+    border-radius: 0 8px 8px 0; /* Cantos arredondados, exceto o superior esquerdo */
+    font-size: 0.9em; /* Tamanho da fonte um pouco menor que o texto principal */
+    line-height: 1.6; /* Altura da linha para melhor legibilidade */
+    color: #343a40; /* Cor do texto mais escura, mas não preto puro */
+}
 
+/* Estiliza o texto em negrito dentro da descrição extra */
+.descricao-extra strong {
+    color: #0056b3; /* Usa a mesma cor da borda para dar consistência */
+    font-weight: 600;
+}
 #unified-search-input:focus {
     outline: none;
 }

@@ -1404,4 +1404,46 @@ footer {
         font-size: 1.1rem;
         line-height: 20px;
     }
+
+}
+/* Estilo para a descrição extra (agora uma div) */
+.descricao-extra {
+    background-color: #f8f9fa;
+    border-left: 5px solid #0056b3;
+    padding: 15px 20px; /* Aumentei o padding lateral */
+    margin-top: 15px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.9em;
+    line-height: 1.6;
+    color: #343a40;
+}
+
+/* Estilo para os parágrafos dentro da descrição */
+.descricao-extra p {
+    margin: 8px 0; /* Espaçamento entre as linhas */
+}
+
+/* Estilo para o texto em negrito (títulos) */
+.descricao-extra strong {
+    color: #0056b3;
+    font-weight: 600;
+    display: inline-block;
+    min-width: 150px; /* Alinha os valores, dando um espaço mínimo */
+}
+
+/* Estilo específico para a lista de gastos */
+.gastos-lista {
+    list-style-type: none; /* Remove as bolinhas da lista */
+    padding-left: 25px; /* Adiciona um recuo para os itens da lista */
+    margin: 5px 0 15px 0; /* Espaçamento da lista */
+}
+
+/* Adiciona um marcador personalizado (um traço) antes de cada item da lista */
+.gastos-lista li::before {
+    content: "-"; /* Adiciona um hífen */
+    color: #0056b3; /* Cor do marcador */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em; /* Espaço para o marcador */
+    margin-left: -1em; /* Alinha o texto corretamente */
 }

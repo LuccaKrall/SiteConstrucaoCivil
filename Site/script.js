@@ -10,8 +10,22 @@ document.addEventListener('DOMContentLoaded', function() {
             const descricaoExtra = card.querySelector('.descricao-extra');
             if (!descricaoExtra) return;
             
-            // Encontrar o valor de venda na descrição extra
-            const valorVendaText = descricaoExtra.querySelector('p:nth-child(3)')?.textContent || '';
+            // Buscar TODOS os parágrafos da descrição extra
+            const paragraphs = descricaoExtra.querySelectorAll('p');
+            let valorVendaText = '';
+            
+            // Procurar especificamente pelo parágrafo que contém "Valor Venda"
+            paragraphs.forEach(p => {
+                if (p.textContent.includes('Valor Venda')) {
+                    valorVendaText = p.textContent;
+                }
+            });
+            
+            // Se não encontrou, usar fallback para o terceiro parágrafo
+            if (!valorVendaText && paragraphs[2]) {
+                valorVendaText = paragraphs[2].textContent;
+            }
+            
             const valorVendaMatch = valorVendaText.match(/R\$\s*([\d.,]+)/);
             
             if (valorVendaMatch) {
@@ -19,9 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const valorString = valorVendaMatch[1].replace(/\./g, '').replace(',', '.');
                 const valorVenda = parseFloat(valorString);
                 
+                console.log(`Processando: ${card.querySelector('h2').textContent}`);
+                console.log(`Valor Venda encontrado: R$ ${valorVenda.toFixed(2)}`);
+                
                 if (!isNaN(valorVenda)) {
                     // FÓRMULA CORRIGIDA: Valor Venda + (2.400 × quantidade de m²)
-                    // Considerando:
                     // - Casa 1 quarto: ~23 m²
                     // - Casa 2 quartos: ~38 m²
                     const casa1Quarto = valorVenda + (2400 * 23);
@@ -42,22 +58,44 @@ document.addEventListener('DOMContentLoaded', function() {
                     const infoSection = card.querySelector('.info');
                     if (infoSection) {
                         const infoSpans = infoSection.querySelectorAll('span');
+                        let atualizado1 = false;
+                        let atualizado2 = false;
+                        
                         infoSpans.forEach(span => {
                             if (span.textContent.includes('Casa 1 Quarto:')) {
                                 span.innerHTML = `<i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 1 Quarto: <strong>${casa1Formatado}</strong>`;
+                                atualizado1 = true;
                             }
                             if (span.textContent.includes('Casa 2 Quartos:')) {
                                 span.innerHTML = `<i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>${casa2Formatado}</strong>`;
+                                atualizado2 = true;
                             }
                         });
+                        
+                        // Se não encontrou os spans, criar novos
+                        if (!atualizado1 || !atualizado2) {
+                            if (!atualizado1) {
+                                const novoSpan1 = document.createElement('span');
+                                novoSpan1.innerHTML = `<i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 1 Quarto: <strong>${casa1Formatado}</strong>`;
+                                infoSection.appendChild(novoSpan1);
+                            }
+                            if (!atualizado2) {
+                                const novoSpan2 = document.createElement('span');
+                                novoSpan2.innerHTML = `<i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>${casa2Formatado}</strong>`;
+                                infoSection.appendChild(novoSpan2);
+                            }
+                        }
                     }
                     
-                    console.log(`Terreno: ${card.querySelector('h2').textContent}`);
-                    console.log(`Valor Venda: R$ ${valorVenda.toFixed(2)}`);
-                    console.log(`Casa 1 Quarto: ${casa1Formatado}`);
-                    console.log(`Casa 2 Quartos: ${casa2Formatado}`);
+                    console.log(`Casa 1 Quarto calculado: ${casa1Formatado}`);
+                    console.log(`Casa 2 Quartos calculado: ${casa2Formatado}`);
                     console.log('---');
+                } else {
+                    console.log(`❌ ERRO: Valor de venda inválido para ${card.querySelector('h2').textContent}`);
                 }
+            } else {
+                console.log(`❌ ERRO: Não encontrou Valor Venda em ${card.querySelector('h2').textContent}`);
+                console.log(`Texto analisado: "${valorVendaText}"`);
             }
         });
     }
@@ -68,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     window.scrollTo(0, 0);
 
-    // Adicione esta lista no início do arquivo, após o DOMContentLoaded
+    // Lista de vendedores autorizados
     const vendedoresAutorizados = [
         '5514998001303', //Lucca Krall
         '5514996097357', //Roberto
@@ -337,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==============================================================
-    // ===  LÓGICA DO MODAL "SABER MAIS" (VERSÃO COMPLETA RESTAURADA) ===
+    // ===  LÓGICA DO MODAL "SABER MAIS" ===
     // ==============================================================
     const saberMaisModal = document.getElementById('saber-mais-modal');
     if (saberMaisModal) {
@@ -413,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ========================================================================
-    // === LÓGICA PARA O MODAL DO MAPA (COM CORREÇÃO DE CORS) ===============
+    // === LÓGICA PARA O MODAL DO MAPA ===
     // ========================================================================
     const mapModal = document.getElementById('map-modal');
     const mapModalContainer = document.getElementById('map-modal-container');
@@ -524,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupVlirasHider();
 
     // ==============================================================
-    // ===  NOVO: LÓGICA PARA ANIMAR ELEMENTOS AO ROLAR A PÁGINA   ====
+    // ===  LÓGICA PARA ANIMAR ELEMENTOS AO ROLAR A PÁGINA   ====
     // ==============================================================
     const animatedElements = document.querySelectorAll('.listing-card');
 
@@ -550,7 +588,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ==============================================================
-    // ===  NOVO: LÓGICA PARA O BOTÃO FLUTUANTE DO WHATSAPP      ====
+    // ===  LÓGICA PARA O BOTÃO FLUTUANTE DO WHATSAPP      ====
     // ==============================================================
     const floatingContainer = document.getElementById('floating-whatsapp-container');
     const floatingBtn = document.getElementById('floating-whatsapp-btn');

@@ -621,4 +621,5 @@ function openWhatsAppSimulation(nomeTerreno) {
     if (urlParams.has('desc')) {
         ativarModoAdmin();
     }
+     calcularValoresCasas();
 });

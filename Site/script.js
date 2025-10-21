@@ -38,23 +38,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     const casa1Formatado = formatarMoeda(casa1Quarto);
                     const casa2Formatado = formatarMoeda(casa2Quartos);
                     
-                    // ATUALIZAR APENAS A DESCRIÇÃO EXTRA (área do admin)
-                    const descricaoExtraParagrafos = descricaoExtra.querySelectorAll('p');
-                    
-                    // Encontrar os parágrafos corretos (Casa 1 Quarto e Casa 2 Quartos)
-                    let casa1Index = -1;
-                    let casa2Index = -1;
-                    
-                    descricaoExtraParagrafos.forEach((p, index) => {
-                        if (p.textContent.includes('Casa 1 Quarto:')) casa1Index = index;
-                        if (p.textContent.includes('Casa 2 Quartos:')) casa2Index = index;
-                    });
-                    
-                    if (casa1Index !== -1) {
-                        descricaoExtraParagrafos[casa1Index].innerHTML = `<strong>Casa 1 Quarto:</strong> ${casa1Formatado}`;
-                    }
-                    if (casa2Index !== -1) {
-                        descricaoExtraParagrafos[casa2Index].innerHTML = `<strong>Casa 2 Quartos:</strong> ${casa2Formatado}`;
+                    // ATUALIZAR APENAS A ÁREA VISÍVEL PARA CLIENTES (.info)
+                    const infoSection = card.querySelector('.info');
+                    if (infoSection) {
+                        const infoSpans = infoSection.querySelectorAll('span');
+                        infoSpans.forEach(span => {
+                            if (span.textContent.includes('Casa 1 Quarto:')) {
+                                span.innerHTML = `<i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 1 Quarto: <strong>${casa1Formatado}</strong>`;
+                            }
+                            if (span.textContent.includes('Casa 2 Quartos:')) {
+                                span.innerHTML = `<i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>${casa2Formatado}</strong>`;
+                            }
+                        });
                     }
                     
                     console.log(`Terreno: ${card.querySelector('h2').textContent}`);
@@ -82,8 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
         '5514998133326', //Miliane
         '5514997456960', //Vanessa
         '554891832051'//Luiza
-
-        // Adicione outros números autorizados aqui
     ];
 
     // --- LÓGICA "VER MAIS" / "VER MENOS" PARA AS DESCRIÇÕES ---

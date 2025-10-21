@@ -1,4 +1,72 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // =================================================================
+// === FUNÇÃO PARA CALCULAR VALORES DAS CASAS AUTOMATICAMENTE ===
+// =================================================================
+function calcularValoresCasas() {
+    const listingCards = document.querySelectorAll('.listing-card');
+    
+    listingCards.forEach(card => {
+        // Encontrar a descrição extra dentro do card
+        const descricaoExtra = card.querySelector('.descricao-extra');
+        if (!descricaoExtra) return;
+        
+        // Encontrar o valor de venda na descrição extra
+        const valorVendaText = descricaoExtra.querySelector('p:nth-child(3)')?.textContent || ''; // Terceiro parágrafo é "Valor Venda"
+        const valorVendaMatch = valorVendaText.match(/R\$\s*([\d.,]+)/);
+        
+        if (valorVendaMatch) {
+            const valorVenda = parseFloat(valorVendaMatch[1].replace('.', '').replace(',', '.'));
+            
+            if (!isNaN(valorVenda)) {
+                // Calcular novos valores conforme as fórmulas
+                const casa1Quarto = valorVenda + (2400 * 23);
+                const casa2Quartos = valorVenda + (2400 * 38);
+                
+                // Formatando para moeda brasileira
+                const formatarMoeda = (valor) => {
+                    return 'R$ ' + valor.toLocaleString('pt-BR', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                };
+                
+                const casa1Formatado = formatarMoeda(casa1Quarto);
+                const casa2Formatado = formatarMoeda(casa2Quartos);
+                
+                // Atualizar os valores na descrição extra
+                const casa1Element = descricaoExtra.querySelector('p:nth-child(5)'); // Quinto parágrafo é "Casa 1 Quarto"
+                const casa2Element = descricaoExtra.querySelector('p:nth-child(6)'); // Sexto parágrafo é "Casa 2 Quartos"
+                
+                if (casa1Element) {
+                    casa1Element.innerHTML = `<strong>Casa 1 Quarto:</strong> ${casa1Formatado}`;
+                }
+                if (casa2Element) {
+                    casa2Element.innerHTML = `<strong>Casa 2 Quartos:</strong> ${casa2Formatado}`;
+                }
+                
+                // Atualizar os valores na seção info (visível)
+                const infoSection = card.querySelector('.info');
+                if (infoSection) {
+                    const infoSpans = infoSection.querySelectorAll('span');
+                    infoSpans.forEach(span => {
+                        if (span.textContent.includes('Casa 1 Quarto:')) {
+                            span.innerHTML = `<i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 1 Quarto: <strong>${casa1Formatado}</strong>`;
+                        }
+                        if (span.textContent.includes('Casa 2 Quartos:')) {
+                            span.innerHTML = `<i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>${casa2Formatado}</strong>`;
+                        }
+                    });
+                }
+            }
+        }
+    });
+}
+    
+    
+    
+    
+    
+    
     // Restaurar a posição do scroll para o topo ao carregar a página
     if (history.scrollRestoration) {
         history.scrollRestoration = 'manual';

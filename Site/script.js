@@ -10,8 +10,23 @@ function calcularValoresCasas() {
         const descricaoExtra = card.querySelector('.descricao-extra');
         if (!descricaoExtra) return;
         
-        // Encontrar o valor de venda na descrição extra
-        const valorVendaText = descricaoExtra.querySelector('p:nth-child(3)')?.textContent || ''; // Terceiro parágrafo é "Valor Venda"
+        // =================================================================
+        // === [MODIFICAÇÃO] - Procura pelo texto "Valor Venda" ===
+        // =================================================================
+        
+        // Em vez de pegar o 'nth-child(3)', vamos procurar pelo parágrafo correto
+        let valorVendaText = '';
+        const paragrafos = descricaoExtra.querySelectorAll('p');
+        
+        paragrafos.forEach(p => {
+            if (p.textContent.includes('Valor Venda:')) {
+                valorVendaText = p.textContent;
+            }
+        });
+        // =================================================================
+        // === Fim da Modificação ===
+        // =================================================================
+
         const valorVendaMatch = valorVendaText.match(/R\$\s*([\d.,]+)/);
         
         if (valorVendaMatch) {
@@ -20,8 +35,8 @@ function calcularValoresCasas() {
             
             if (!isNaN(valorVenda)) {
                 // Calcular novos valores conforme as fórmulas
-                const casa1Quarto = valorVenda + (2400 * 23);
-                const casa2Quartos = valorVenda + (2400 * 38);
+                const casa1Quarto = valorVenda + (2400 * 23); // Adiciona R$ 55.200,00
+                const casa2Quartos = valorVenda + (2400 * 38); // Adiciona R$ 91.200,00
                 
                 // Formatando para moeda brasileira
                 const formatarMoeda = (valor) => {
@@ -34,7 +49,7 @@ function calcularValoresCasas() {
                 const casa1Formatado = formatarMoeda(casa1Quarto);
                 const casa2Formatado = formatarMoeda(casa2Quartos);
                 
-                // [MODIFICADO] Bloco que atualizava a .descricao-extra foi REMOVIDO
+                // Bloco que atualizava a .descricao-extra foi REMOVIDO (Correto!)
                 
                 // Atualizar os valores na seção info (visível) - ESTA PARTE PERMANECE
                 const infoSection = card.querySelector('.info');
@@ -277,7 +292,7 @@ const vendedoresAutorizados = [
                     menuToggle.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
                     document.body.style.overflow = '';
-                }
+               }
             });
         });
     }
@@ -371,7 +386,7 @@ function openWhatsAppSimulation(nomeTerreno) {
         });
 
         infoBoxes.forEach((box, index) => {
-            box.addEventListener('click', () => {
+           box.addEventListener('click', () => {
                 box.classList.add('clicked');
 
                 let fillPercentage = 0;
@@ -382,7 +397,7 @@ function openWhatsAppSimulation(nomeTerreno) {
 
                 if (index === 2) {
                     modalCtaButton.classList.add('pulse-animation');
-                } else {
+section               } else {
                     modalCtaButton.classList.remove('pulse-animation');
                 }
             });
@@ -390,7 +405,7 @@ function openWhatsAppSimulation(nomeTerreno) {
 
         function closeModal() {
             saberMaisModal.classList.remove('show');
-            document.body.style.overflow = '';
+           document.body.style.overflow = '';
             setTimeout(() => {
                 saberMaisModal.setAttribute('hidden', 'true');
             }, 300);
@@ -435,7 +450,7 @@ function openWhatsAppSimulation(nomeTerreno) {
                 mapInstance = null;
             }
             if (mapModalContainer) mapModalContainer.innerHTML = '';
-        }, 300);
+section         }, 300);
     };
 
     if (mapModal && mapModalContainer && mapModalTitle && closeMapBtn) {
@@ -447,7 +462,7 @@ function openWhatsAppSimulation(nomeTerreno) {
                 const address = card.dataset.address;
                 const title = card.querySelector('h2').textContent;
 
-                if (!address) {
+                 if (!address) {
                     alert('Endereço não disponível para este terreno.');
                     return;
                 }
@@ -472,14 +487,14 @@ function openWhatsAppSimulation(nomeTerreno) {
                         .then(data => {
                             if (data && data.length > 0) {
                                 const lat = data[0].lat;
-                                const lon = data[0].lon;
+                                 const lon = data[0].lon;
                                 const location = [lat, lon];
                                 
                                 mapModalContainer.innerHTML = '';
 
                                 mapInstance = L.map('map-modal-container', {
                                     scrollWheelZoom: true
-                                }).setView(location, 16);
+                                 }).setView(location, 16);
 
                                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -488,22 +503,22 @@ function openWhatsAppSimulation(nomeTerreno) {
                                 L.marker(location).addTo(mapInstance)
                                     .bindPopup(title)
                                     .openPopup();
-                            } else {
+                     } else {
                                 mapModalContainer.innerHTML = '<p style="text-align:center; padding-top: 45vh; font-size: 1.2rem; color: #d9534f;">Endereço não encontrado no mapa.</p>';
                             }
                         })
-                        .catch(error => {
+s                         .catch(error => {
                             console.error('Falha na requisição fetch:', error);
                             mapModalContainer.innerHTML = '<p style="text-align:center; padding-top: 45vh; font-size: 1.2rem; color: #d9534f;">Erro ao carregar o mapa. Verifique o console para detalhes.</p>';
                         });
-              _B_R_       }, 150);
+                  }, 150);
             });
         });
 
         closeMapBtn.addEventListener('click', closeMapModal);
         mapModal.addEventListener('click', e => e.target === mapModal && closeMapModal());
         window.addEventListener('keydown', e => e.key === 'Escape' && mapModal.classList.contains('show') && closeMapModal());
-    }
+section     }
 
     // --- CÓDIGO PARA ADICIONAR BOTÃO DE OCULTAR AO VLIBRAS ---
     function setupVlirasHider() {
@@ -537,7 +552,7 @@ function openWhatsAppSimulation(nomeTerreno) {
             entries.forEach(entry => {
                 // Se o elemento está intersectando (visível na tela)
                 if (entry.isIntersecting) {
-                    // Adiciona as classes de animação
+  section                   // Adiciona as classes de animação
                     entry.target.classList.add('animate__animated', 'animate__fadeInUp');
                     // Para de observar o elemento para a animação não repetir
                     observer.unobserve(entry.target);
@@ -550,7 +565,7 @@ function openWhatsAppSimulation(nomeTerreno) {
         // Inicia a observação para cada card
         animatedElements.forEach(element => {
             observer.observe(element);
-        });
+section         });
     }
 
 
@@ -563,16 +578,16 @@ function openWhatsAppSimulation(nomeTerreno) {
 
     if (floatingContainer && floatingBtn && closeFloatingBtn) {
         // Ação para o botão flutuante principal
-        floatingBtn.addEventListener('click', function() {
+         floatingBtn.addEventListener('click', function() {
             // Reutiliza a função já existente, mas com uma mensagem genérica
             const numeroPadrao = '5514997456960';
-            const mensagem = encodeURIComponent('Olá! Visitei o site e gostaria de mais informações sobre os terrenos.');
+           const mensagem = encodeURIComponent('Olá! Visitei o site e gostaria de mais informações sobre os terrenos.');
             const whatsappURL = `https://wa.me/${numeroPadrao}?text=${mensagem}`;
             window.open(whatsappURL, '_blank', 'noopener,noreferrer');
         });
 
         // Ação para o botão de fechar
-        closeFloatingBtn.addEventListener('click', function(event) {
+         closeFloatingBtn.addEventListener('click', function(event) {
             event.stopPropagation(); // Impede que o clique no 'x' acione o botão principal
             floatingContainer.classList.add('hidden');
         });
@@ -590,18 +605,18 @@ function openWhatsAppSimulation(nomeTerreno) {
 
         const senhaDigitada = prompt('Por favor, digite a senha de administrador:');
 
-        if (senhaDigitada === senhaCorreta) {
+         if (senhaDigitada === senhaCorreta) {
             const descricoesExtras = document.querySelectorAll('.descricao-extra');
             let reveladas = 0;
-            descricoesExtras.forEach(function(descricao) {
+               descricoesExtras.forEach(function(descricao) {
                 descricao.style.display = 'block';
                 reveladas++;
             });
             
             if (reveladas > 0) {
-                alert('Senha correta! ' + reveladas + ' descrições extras foram reveladas.');
+                 alert('Senha correta! ' + reveladas + ' descrições extras foram reveladas.');
             } else {
-                alert('Senha correta, mas nenhuma descrição extra foi encontrada para exibir.');
+                     alert('Senha correta, mas nenhuma descrição extra foi encontrada para exibir.');
             }
         } else if (senhaDigitada !== null) {
             alert('Senha incorreta. Acesso negado.');
@@ -613,5 +628,7 @@ function openWhatsAppSimulation(nomeTerreno) {
     if (urlParams.has('desc')) {
         ativarModoAdmin();
     }
-     calcularValoresCasas(); 
+    
+    // Chama a função de cálculo DEPOIS de todas as outras funções serem definidas
+    calcularValoresCasas(); 
 });

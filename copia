@@ -61,7 +61,7 @@
 
         <div class="listings-container">
 
-            <div class="listing-card" data-region="Mary Dota" data-address="" data-rating="4">
+            <div class="listing-card" data-region="Mary Dota" data-address="">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -77,20 +77,19 @@
                     </button>
                 </div>
                 <div class="details">
-                    <h2>Terreno no Vista Bela</h2>
+                    <h2>Terreno no Vista Bela </h2>
                     <p class="location">Bauru, SP</p>
-                    <p class="description">Lote com medidas acima do padrão (10x20), localizado na parte alta do bairro. Proximidades: Casa Portugal Material de Construção, Capela Santo Expedito e Parque Giansante.</p>
+                    <p class="description">Lote com medidas acima do padrão (10x20), localizado na parte alta do bairro. Proximidades:Mary Dotta, Casa Portugal Material de Construção, Capela Santo Expedito e Parque Giansante.</p>
                     <div class="descricao-extra" style="display:none;">
-                        <p><strong>Valor Limpeza:</strong> R$ 00</p>
-                        <p><strong>Valor Venda:</strong> R$ 120.000,00</p>
+                        <p><strong>Estrelas:</strong> 3</p>
+                        <p><strong>Valor Limpeza:</strong> R$5.000</p>
+                        <p><strong>Valor Simulação:</strong> R$ 125.000,00</p>
+                        <p><strong>Localização:</strong> Rua </p>
                         <p><strong>Captação:</strong> Gabriel</p>
-                        <p><strong>Localização:</strong> <a href="https://www.google.com.br/maps/place/R.+Miguel+D%C3%A9bia,+79+-+Pousada+da+Esperan%C3%A7a+I,+Bauru+-+SP,+17022-088/@-22.2772914,-49.0756175,3a,75y,282.15h,79.33t/data=!3m8!1e1!3m6!1sDoVL6uG8jpIfpTZay9JyRg!2e0!5s20250601T000000!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D10.673232887727451%26panoid%3DDoVL6uG8jpIfpTZay9JyRg%26yaw%3D282.15055685942076!7i16384!8i8192!4m15!1m8!3m7!1s0x94bf6866df28b40d:0xa653d19a806c4a62!2sR.+Miguel+D%C3%A9bia,+81+-+Pousada+da+Esperan%C3%A7a,+Bauru+-+SP,+17022-088!3b1!8m2!3d-22.277228!4d-49.075678!16s%2Fg%2F11l_62yrv6!3m5!1s0x94bf6866d9213c2b:0x7074e68948897a46!8m2!3d-22.2772892!4d-49.0757751!16s%2Fg%2F11gdh7x75m!5m1!1e4?hl=pt-BR&entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D"></a></p>
-
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
-                        <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Medidas: <strong>10 X 20</strong></span>
-                        <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>200 m²</strong></span>
+                        <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Medida: <strong>10 X 20</strong></span>
+                        <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área Total: <strong>200 m²</strong></span>
                         <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 1 Quarto: <strong>R$ 172.900,00</strong></span>
                         <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>R$ 207.400,00</strong></span>
                     </div>
@@ -103,7 +102,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Jardim Godoy" data-address="" data-rating="2">
+            <div class="listing-card" data-region="Jardim Godoy" data-address="">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -123,16 +122,17 @@
                     <p class="location">Bauru, SP</p>
                     <p class="description">Lote localizado proximo a Vila São Paulo, Próximo ao Panelão SuperMercado, Igreja, acesso a tudo que você precisa no bairro.</p>
                     <div class="descricao-extra" style="display:none;">
-                        <p><strong>Valor Compra:</strong> R$ 70.000,00</p>
-                        <p><strong>Valor Demolição:</strong> (a consultar)</p>
-                        <p><strong>Valor Venda:</strong> R$ 95.000,00</p>
+                        <p><strong>Potencial:</strong> 3</p>
+                        <p><strong>Valor Limpeza:</strong> R$5.000</p>
+                        <p><strong>Valor Simulação:</strong> R$ 100.000,00</p>
+                        <p><strong>Localização:</strong>https://maps.app.goo.gl/bsPevRPQvPDqBnky7 </p>
                         <p><strong>Captação:</strong> Lucca & Gabriel</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
+                        <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Medida <strong>5.50 X 23</strong></span>
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>126.5 m²</strong></span>
-                        <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 1 Quarto: <strong>(a consultar)</strong></span>
-                        <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>(a consultar)</strong></span>
+                        <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 1 Quarto: <strong>R$155.200</strong></span>
+                        <span><i class="fa-solid fa-bed" aria-hidden="true"></i> Casa 2 Quartos: <strong>R$191.200</strong></span>
                     </div>
                     <div class="card-actions">
                         <button class="cta-button" data-nome="Terreno Pousada I" type="button">
@@ -143,7 +143,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Jardim Godoy" data-address="" data-rating="3">
+            <div class="listing-card" data-region="Jardim Godoy" data-address="">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -168,7 +168,6 @@
                         <p><strong>Valor Limpeza:</strong> R$ 5.000,00</p>
                         <p><strong>Valor Venda:</strong> R$ 125.000,00</p>
                         <p><strong>Captação:</strong> Rafael & Gabriel</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>xxx m²</strong></span>
@@ -184,7 +183,7 @@
                 </div>
             </div>
             
-            <div class="listing-card" data-region="Jardim Godoy" data-address="Rua Luiz Bleriot, 12-50, Jardim Godoy, Bauru, SP" data-rating="5">
+            <div class="listing-card" data-region="Jardim Godoy" data-address="Rua Luiz Bleriot, 12-50, Jardim Godoy, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -208,7 +207,6 @@
                         <p><strong>Valor Limpeza:</strong> R$ 5.000,00</p>
                         <p><strong>Valor Venda:</strong> R$ 125.000,00</p>
                         <p><strong>Captação:</strong> Rafael</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>125 m²</strong></span>
@@ -224,7 +222,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Bela Vista" data-address="Rua Tuffy Anis, 12-110, Bauru, SP" data-rating="4">
+            <div class="listing-card" data-region="Bela Vista" data-address="Rua Tuffy Anis, 12-110, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -248,7 +246,6 @@
                         <p><strong>Valor Terraplanagem:</strong> R$00</p>
                         <p><strong>Valor Venda:</strong> R$ 115.000,00</p>
                         <p><strong>Captação:</strong> Rafael</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>150m²</strong></span>
@@ -264,7 +261,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Vila Garcia" data-address="Rua Lindolpho Silva Sobrinho, 1-1, Jardim TV, Bauru, SP" data-rating="5">
+            <div class="listing-card" data-region="Vila Garcia" data-address="Rua Lindolpho Silva Sobrinho, 1-1, Jardim TV, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -289,7 +286,6 @@
                         <p><strong>Valor Terraplanagem:</strong> R$00</p>
                         <p><strong>Valor Venda:</strong> R$ 105.000,00</p>
                         <p><strong>Captação:</strong> Gabriel</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>150 m²</strong></span>
@@ -305,7 +301,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Nova Esperança" data-address="Rua Lázaro Rodrigues, 8-1, Jardim Eldorado, Bauru, SP" data-rating="3">
+            <div class="listing-card" data-region="Nova Esperança" data-address="Rua Lázaro Rodrigues, 8-1, Jardim Eldorado, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -330,7 +326,6 @@
                         <p><strong>Valor Demolição:</strong> R$******</p>
                         <p><strong>Valor Venda:</strong> R$ 100.000,00</p>
                         <p><strong>Captação:</strong> Rafael</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>125 m²</strong></span>
@@ -346,7 +341,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Parque Paulista" data-address="Supermercado Panelão, R. Benedito de Abreu, 1-55, Parque Paulista, Bauru, SP" data-rating="3">
+            <div class="listing-card" data-region="Parque Paulista" data-address="Supermercado Panelão, R. Benedito de Abreu, 1-55, Parque Paulista, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -370,7 +365,6 @@
                         <p><strong>Valor Limpeza:</strong> R$ 5.000,00</p>
                         <p><strong>Valor Venda:</strong> R$95.000</p>
                         <p><strong>Captação:</strong> Rafael</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>** m²</strong></span>
@@ -386,7 +380,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Geisel" data-address="Rodovia Comandante João Ribeiro de Barros, km 225/226, Bauru, SP" data-rating="4">
+            <div class="listing-card" data-region="Geisel" data-address="Rodovia Comandante João Ribeiro de Barros, km 225/226, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -410,7 +404,6 @@
                         <p><strong>Valor Terraplanagem:</strong> R$ 5.000,00</p>
                         <p><strong>Valor Venda:</strong> R$ 105.000,00</p>
                         <p><strong>Captação:</strong> Rafael</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>190 m²</strong></span>
@@ -426,7 +419,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Mary Dota" data-address="Rua Padre Nobrega, 24-1, Bauru, SP" data-rating="2">
+            <div class="listing-card" data-region="Mary Dota" data-address="Rua Padre Nobrega, 24-1, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -448,7 +441,6 @@
                         <p><strong>Valor Remoção Terra:</strong> (a consultar)</p>
                         <p><strong>Valor Venda:</strong> R$ 85.000,00</p>
                         <p><strong>Captação:</strong>Gabriel</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>150 m²</strong></span>
@@ -464,7 +456,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Ouro Verde" data-address="Rua Marcondes Salgado, 11-39, Chácara das Flores, Bauru, SP" data-rating="3">
+            <div class="listing-card" data-region="Ouro Verde" data-address="Rua Marcondes Salgado, 11-39, Chácara das Flores, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -488,7 +480,6 @@
                         <p><strong>Valor Adicional:</strong> R$ ****</p>
                         <p><strong>Valor Venda:</strong> R$100.000,00</p>
                         <p><strong>Captação:</strong>Rafael</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>** m²</strong></span>
@@ -504,7 +495,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Mary Dota" data-address="Rua Sargento José dos Santos, 14-1, Jardim Mendonça, Bauru, SP" data-rating="4">
+            <div class="listing-card" data-region="Mary Dota" data-address="Rua Sargento José dos Santos, 14-1, Jardim Mendonça, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -527,7 +518,6 @@
                         <p><strong>Valor Adicional:</strong> R$ 00</p>
                         <p><strong>Valor Venda:</strong> R$ 110.000,00</p>
                         <p><strong>Captação:</strong>Rafael</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>125m²</strong></span>
@@ -543,7 +533,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Nova Esperança" data-address="Rua Manoel Fradique, 6-1, Parque Jaraguá, Bauru, SP" data-rating="1">
+            <div class="listing-card" data-region="Nova Esperança" data-address="Rua Manoel Fradique, 6-1, Parque Jaraguá, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -567,7 +557,6 @@
                         <p><strong>Valor Limpeza:</strong> R$ 10.000,00</p>
                         <p><strong>Valor Venda:</strong> R$ 85.000,00</p>
                         <p><strong>Captação:</strong>Rafael</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>125 m²</strong></span>
@@ -583,7 +572,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Quinta da Bela Olinda" data-address="" data-rating="3">
+            <div class="listing-card" data-region="Quinta da Bela Olinda" data-address="">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -609,7 +598,6 @@
                         <p><strong>Valor Muro de Arrimo:</strong> R$ 37.000,00</p>
                         <p><strong>Valor Venda:</strong> R$ 142.000,00</p>
                         <p><strong>Captação:</strong> Gabriel</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>232,5 m²</strong></span>
@@ -625,7 +613,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Mary Dota" data-address="Rua Hélio Senger, 2-1, Jardim Silvestre, Bauru, SP" data-rating="4">
+            <div class="listing-card" data-region="Mary Dota" data-address="Rua Hélio Senger, 2-1, Jardim Silvestre, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -649,7 +637,6 @@
                         <p><strong>Gastos Adicionais:</strong> R$ 0</p>
                         <p><strong>Valor Venda:</strong> R$ 105.000,00</p>
                         <p><strong>Captação:</strong>Rafael</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>125 m²</strong></span>
@@ -665,7 +652,7 @@
                 </div>
             </div>
 
-            <div class="listing-card" data-region="Vila Dutra" data-address="Rua Luiz Alembert, 3-45, Vila Dutra, Bauru, SP" data-rating="3">
+            <div class="listing-card" data-region="Vila Dutra" data-address="Rua Luiz Alembert, 3-45, Vila Dutra, Bauru, SP">
                 <div class="visual-container">
                     <div class="carousel">
                         <div class="carousel-images">
@@ -688,7 +675,6 @@
                         <p><strong>Gastos Adicionais:</strong> R$ 0</p>
                         <p><strong>Valor Venda:</strong> R$ 100.000,00</p>
                         <p><strong>Captação:</strong>Rafael</p>
-                        <div class="admin-rating-container"></div>
                     </div>
                     <div class="info">
                         <span><i class="fa-solid fa-ruler-combined" aria-hidden="true"></i> Área: <strong>125 m²</strong></span>

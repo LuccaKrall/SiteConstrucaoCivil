@@ -1447,3 +1447,40 @@ footer {
     width: 1em; /* Espaço para o marcador */
     margin-left: -1em; /* Alinha o texto corretamente */
 }
+/* ============================================== */
+/* ===== ESTILOS PARA AS ESTRELAS (ADMIN) ===== */
+/* ============================================== */
+
+/* O container .admin-rating-container usa a tag <p>
+   e automaticamente herda os estilos de '.descricao-extra p',
+   incluindo o 'min-width' do 'strong', mantendo o alinhamento.
+*/
+
+.admin-stars {
+    display: inline-block;
+    vertical-align: middle; /* Alinha as estrelas com o texto "Potencial:" */
+}
+
+/* Estilo para todas as estrelas (cheias ou vazias) */
+.admin-stars .fa-solid,
+.admin-stars .fa-regular {
+    font-size: 1.1em; /* Um pouco maiores que o texto */
+    margin-right: 2px; /* Pequeno espaço entre as estrelas */
+}
+
+/* Cor para estrelas CHEIAS (sólidas) */
+.admin-stars .fa-solid {
+     color: var(--color-accent); /* Cor dourada do tema */
+}
+
+/* Cor para estrelas VAZIAS (regulares) */
+.admin-stars .fa-regular {
+    color: #ccc; /* Um cinza claro para estrelas vazias */
+}
+
+/* Estilo para o texto "(Não avaliado)" */
+.admin-stars-unrated {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9em;
+}

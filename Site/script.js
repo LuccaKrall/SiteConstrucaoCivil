@@ -99,6 +99,43 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // =================================================================
+    // === FUNÇÃO PARA RENDERIZAR AS ESTRELAS (ADMIN) ===
+    // =================================================================
+    function renderAdminRatings() {
+        const listingCards = document.querySelectorAll('.listing-card');
+
+        listingCards.forEach(card => {
+            // Pega o rating do atributo data-rating
+            const rating = parseInt(card.dataset.rating, 10);
+            
+            // Encontra o container que você adicionou no HTML
+            const container = card.querySelector('.admin-rating-container');
+
+            if (!container) return; // Se não houver container, pula
+
+            // Verifica se o rating é um número válido (entre 1 e 5)
+            if (isNaN(rating) || rating < 1 || rating > 5) {
+                // Se não tiver rating ou for inválido, mostra uma msg
+                container.innerHTML = `<p><strong>Potencial:</strong> <span class="admin-stars-unrated">(Não avaliado)</span></p>`;
+                return;
+            }
+
+            let starsHtml = '';
+            // Cria as estrelas
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    starsHtml += `<i class="fa-solid fa-star"></i>`; // Estrela cheia
+                } else {
+                    starsHtml += `<i class="fa-regular fa-star"></i>`; // Estrela vazia
+                }
+            }
+            
+            // InjGeta o HTML no container, usando a tag <p> para manter o alinhamento
+            container.innerHTML = `<p><strong>Potencial:</strong> <span class="admin-stars">${starsHtml}</span></p>`;
+        });
+    }
         
     // Restaurar a posição do scroll para o topo ao carregar a página
     if (history.scrollRestoration) {
@@ -650,4 +687,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Executar o cálculo dos valores das casas
     calcularValoresCasas();
+
+    // Executar a renderização das estrelas (Admin)
+    renderAdminRatings();
 });

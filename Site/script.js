@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     // FÓRMULA CORRIGIDA: Valor Venda + (2.400 × quantidade de m²)
                     // - Casa 1 quarto: ~23 m²
                     // - Casa 2 quartos: ~38 m²
-                    const casa1Quarto = valorVenda + (2400 * 23);
-                    const casa2Quartos = valorVenda + (2400 * 38);
+                    const casa1Quarto = valorVenda + (2500 * 23);
+                    const casa2Quartos = valorVenda + (2500 * 38);
                     
                     // Formatando para moeda brasileira
                     const formatarMoeda = (valor) => {
